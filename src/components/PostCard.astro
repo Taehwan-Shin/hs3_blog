@@ -1,0 +1,158 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { formatDate, formatDateMobile, processMarkdown, calculateReadingTime, getReadingTimeMobile } from '../utils/markdown';
+import { siteConfig, getPostCardAspectRatio } from '../config';
+import { getOptimizedFormat } from '@/utils/images';
+import ImageWrapper from './ImageWrapper.astro';
+
+interface Props {
+  post: CollectionEntry<'posts'>;
+  featured?: boolean;
+  eager?: boolean;
+  context?: 'featured' | 'recent' | 'posts' | 'tags';
+}
+
+const { post, featured = false, eager = false, context = 'posts' } = Astro.props;
+
+// Get reading time and word count from markdown processing
+const { excerpt, wordCount } = processMarkdown(post.body || '');
+const readingTime = calculateReadingTime(post.body || '');
+
+const { title, description, date, tags, image: rawImage, imageAlt } = post.data;
+
+// Process Obsidian bracket syntax in image field
+const image = (() => {
+  if (!rawImage) return rawImage;
+  
+  // Handle case where rawImage is an array (unquoted YAML syntax)
+  let imageValue = rawImage;
+  if (Array.isArray(rawImage)) {
+    // If it's an array, take the first element
+    imageValue = rawImage[0];
+  }
+  
+  // Ensure imageValue is a string before calling string methods
+  if (typeof imageValue !== 'string') {
+    console.warn('PostCard: imageValue is not a string:', imageValue);
+    return imageValue;
+  }
+  
+  // Check if it's Obsidian double bracket syntax
+  if (imageValue.startsWith('[[') && imageValue.endsWith(']]')) {
+    // Extract the content inside the double brackets
+    return imageValue.slice(2, -2);
+  }
+  
+  return imageValue;
+})();
+
+// Determine if we should show the cover image based on configuration and context
+const shouldShowCoverImage = (() => {
+  // Only check if image exists - hideCoverImage only affects post content, not cards
+  if (!image) {
+    return false;
+  }
+
+  const showCoverImages = siteConfig.postOptions.showPostCardCoverImages;
+
+  switch (showCoverImages) {
+    case 'all':
+      return true;
+    case 'featured':
+      return context === 'featured' || featured;
+    case 'home':
+      return context === 'featured' || context === 'recent';
+    case 'posts':
+      return context === 'posts' || context === 'tags';
+    case 'featured-and-posts':
+      return context === 'featured' || context === 'posts' || context === 'tags' || featured;
+    case 'none':
+    default:
+      return false;
+  }
+})();
+
+// No need for dynamic image import - ImageWrapper handles this
+---
+
+<article class={`group card ${featured ? 'featured-post' : 'post-card'}`} role="article" aria-labelledby={`post-title-${post.id}`}>
+  <a href={`/posts/${post.id}`} class="block" aria-label={`View post: ${title}`}>
+    {/* Image block removed per user request */}
+
+    <div class="p-5 rounded-xl">
+      <div class="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs font-medium text-primary-500 dark:text-primary-400 mb-3">
+        {post.data.author && (
+          <div class="flex items-center gap-1.5 bg-primary-100 dark:bg-primary-800 px-2 py-0.5 rounded-md border border-primary-200/50 dark:border-primary-700/50">
+            <span class="text-sm">
+              {post.data.author.id === 'goguryeo' ? '🐎' : post.data.author.id === 'baekje' ? '🎨' : '🏛️'}
+            </span>
+            <span class="text-primary-700 dark:text-primary-300">
+              {post.data.author.id === 'goguryeo' ? '고구려' : post.data.author.id === 'baekje' ? '백제' : '신라'}
+            </span>
+          </div>
+        )}
+        
+        <time datetime={date.toISOString()} class="opacity-80">
+          <span class="hidden sm:inline">{formatDate(date)}</span>
+          <span class="sm:hidden">{formatDateMobile(date)}</span>
+        </time>
+
+        {siteConfig.postOptions.readingTime && readingTime && (
+          <>
+            <span class="text-primary-300 dark:text-primary-600 hidden sm:inline">•</span>
+            <span class="text-primary-300 dark:text-primary-600 sm:hidden">•</span>
+            <span>
+              <span class="hidden sm:inline">{readingTime.text && readingTime.text !== 'read0' && readingTime.text !== '' ? readingTime.text : '1분 읽기'}</span>
+              <span class="sm:hidden">{getReadingTimeMobile(readingTime)}</span>
+            </span>
+          </>
+        )}
+
+        {siteConfig.postOptions.wordCount && wordCount !== undefined && (
+          <>
+            <span class="text-primary-300 dark:text-primary-600 hidden sm:inline">•</span>
+            <span class="text-primary-300 dark:text-primary-600 sm:hidden">•</span>
+            <span class="min-w-0">
+              <span class="hidden sm:inline">{wordCount === 1 ? '1 단어' : `${wordCount} 단어`}</span>
+              <span class="sm:hidden">{wordCount === 1 ? '1 단어' : `${wordCount.toLocaleString()} 단어`}</span>
+            </span>
+          </>
+        )}
+      </div>
+
+      <h3 id={`post-title-${post.id}`} class={`font-semibold text-primary-900 dark:text-primary-50 leading-tight group-hover:text-highlight-600 dark:group-hover:text-highlight-400 transition-colors ${
+        featured ? 'text-xl' : 'text-lg'
+      }`}>
+        {title}
+      </h3>
+
+      {featured && description && (
+        <p class="text-primary-600 dark:text-primary-300 line-clamp-3 text-sm leading-relaxed mt-1">
+          {description}
+        </p>
+      )}
+
+      {tags && tags.length > 0 && siteConfig.postOptions.tags && (
+        <div class="mt-3">
+          {tags.slice(0, 3).map((tag) => (
+            <a
+              href={`/posts/tag/${tag}`}
+              class="inline-block text-xs text-primary-600 dark:text-primary-300 bg-primary-100/50 dark:bg-primary-800/50 backdrop-blur-sm px-2.5 py-1 rounded-full border border-primary-200/50 dark:border-primary-700/50 transition-all duration-300 hover:bg-highlight-500 hover:text-white dark:hover:bg-highlight-400 dark:hover:text-primary-950 mr-2 mb-1"
+              aria-label={`View posts tagged with ${tag}`}
+            >
+              #{tag}
+            </a>
+          ))}
+          {tags.length > 3 && (
+            <span 
+              class="inline-block text-xs text-primary-500 dark:text-primary-400 bg-primary-50 dark:bg-primary-800 px-2.5 py-1 rounded-full border border-primary-200 dark:border-primary-700 mr-2 mb-1"
+              aria-label={`${tags.length - 3} more tags available`}
+            >
+              + 그 외 {tags.length - 3}개
+            </span>
+          )}
+        </div>
+      )}
+    </div>
+  </a>
+</article>

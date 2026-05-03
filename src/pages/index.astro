@@ -1,0 +1,250 @@
+---
+import { getCollection, getEntry, render } from 'astro:content';
+import { siteConfig } from '@/config';
+import { generateHomeSEO } from '@/utils/seo';
+import { shouldShowPost, sortPostsByDate, extractTags } from '@/utils/markdown';
+import { optimizePostImagePath } from '@/utils/images';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import PostCard from '@/components/PostCard.astro';
+import Tags from '@/components/Tags.astro';
+import Pagination from '@/components/Pagination.astro';
+import Icon from '@/components/Icon.astro';
+
+// Get special content for posts page (reusing it for homepage now)
+let postsPageContent;
+try {
+  postsPageContent = await getCollection('special', ({ slug }) => slug === 'posts');
+} catch (error) {
+  postsPageContent = [];
+}
+
+const postsPageData = postsPageContent.length > 0 ? postsPageContent[0] : null;
+
+// Get all posts
+const allPosts = await getCollection('posts');
+const isDev = import.meta.env.DEV;
+const visiblePosts = allPosts.filter(post => shouldShowPost(post, isDev));
+const sortedPosts = sortPostsByDate(visiblePosts);
+
+// Get query parameters for pagination
+const url = new URL(Astro.request.url);
+const currentPage = 1; // Always page 1 on the actual root /
+
+// Pagination
+const postsPerPage = siteConfig.postOptions.postsPerPage;
+const totalPosts = sortedPosts.length;
+const totalPages = Math.ceil(totalPosts / postsPerPage);
+const startIndex = 0;
+const endIndex = Math.min(postsPerPage, totalPosts);
+const paginatedPosts = sortedPosts.slice(startIndex, endIndex);
+
+// Extract all unique tags
+const allTags = extractTags(sortedPosts);
+
+// Home blurb content from special collection
+let homeBlurbContent = null;
+let HomeBlurbContent = null;
+
+if (siteConfig.homeOptions.blurb.placement !== 'none') {
+  try {
+    homeBlurbContent = await getEntry('special', 'home');
+    if (homeBlurbContent) {
+      const { Content } = await render(homeBlurbContent);
+      HomeBlurbContent = Content;
+    }
+  } catch (error) {}
+}
+
+// Generate SEO data
+const seoData = generateHomeSEO(Astro.url.href);
+if (siteConfig.homepageTitle) seoData.title = siteConfig.homepageTitle;
+
+const pagination = {
+  currentPage,
+  totalPages,
+  hasNext: currentPage < totalPages,
+  hasPrev: false,
+  nextUrl: totalPages > 1 ? '/posts/2' : undefined,
+  prevUrl: undefined
+};
+---
+
+<BaseLayout seoData={seoData}>
+  <Fragment slot="head">
+    {paginatedPosts.length > 0 && (() => {
+      const firstPost = paginatedPosts[0];
+      if (!firstPost.data.image || typeof firstPost.data.image === 'string' && firstPost.data.image.startsWith('http')) return null;
+
+      const showCoverImages = siteConfig.postOptions.showPostCardCoverImages;
+      const shouldShowCoverImage = ['all', 'posts', 'featured-and-posts'].includes(showCoverImages);
+
+      return shouldShowCoverImage ? (
+        <link
+          rel="preload"
+          as="image"
+          href={optimizePostImagePath(firstPost.data.image, undefined, firstPost.id)}
+          fetchpriority="high"
+        />
+      ) : null;
+    })()}
+  </Fragment>
+
+  <div class="py-8 relative">
+    <div class="mx-auto px-4 sm:px-6 lg:px-8 mb-12" style={`max-width: ${siteConfig.layout.contentWidth}`}>
+      
+      <!-- Home blurb above posts -->
+      {siteConfig.homeOptions.blurb.placement === 'above' && HomeBlurbContent && (
+        <section class="prose prose-sm dark:prose-dark max-w-none mb-12">
+          <HomeBlurbContent />
+        </section>
+      )}
+
+      <!-- Header -->
+      <header class="mb-8">
+        <div class="flex items-start justify-between mb-3">
+          <h1 class="text-lg font-bold text-primary-900 dark:text-primary-50">
+            {postsPageData?.data.title || 'All Posts'}
+          </h1>
+          <div class="flex items-center space-x-2">
+            <a
+              href="/rss.xml"
+              class="inline-flex items-center px-3 py-2 text-sm font-medium text-highlight-600 dark:text-highlight-400 bg-highlight-50 dark:bg-highlight-900/20 rounded-lg border border-highlight-200 dark:border-highlight-700 hover:bg-highlight-100 dark:hover:bg-highlight-900/40 hover:text-highlight-700 dark:hover:text-highlight-300 transition-all duration-200"
+              title="Subscribe to RSS feed"
+              data-no-swup
+            >
+              <Icon name="rss" class="w-4 h-4 mr-1.5" />
+              RSS Feed
+            </a>
+            <a
+              href="/feed.xml"
+              class="inline-flex items-center px-3 py-2 text-sm font-medium text-highlight-600 dark:text-highlight-400 bg-highlight-50 dark:bg-highlight-900/20 rounded-lg border border-highlight-200 dark:border-highlight-700 hover:bg-highlight-100 dark:hover:bg-highlight-900/40 hover:text-highlight-700 dark:hover:text-highlight-300 transition-all duration-200"
+              title="Subscribe to Atom feed"
+              data-no-swup
+            >
+              <Icon name="atom" class="w-4 h-4 mr-1.5" />
+              Atom Feed
+            </a>
+          </div>
+        </div>
+        <p class="text-base text-primary-600 dark:text-primary-300">
+          Explore all <strong>{totalPosts}</strong> posts
+        </p>
+      </header>
+
+      <div class="relative">
+        <!-- Main content -->
+        <div class="max-w-none">
+          {paginatedPosts.length > 0 ? (
+            <>
+              <!-- Posts list -->
+              <div class="space-y-4 mb-12">
+                {paginatedPosts.map((post, index) => (
+                  <PostCard post={post} eager={index < 2} context="posts" />
+                ))}
+              </div>
+
+              <!-- Pagination -->
+              <Pagination pagination={pagination} baseUrl="/posts" />
+            </>
+          ) : (
+            <div class="text-center py-16">
+              <Icon name="file-text" class="w-16 h-16 text-primary-400 dark:text-primary-500 mx-auto mb-6" />
+              <h2 class="text-2xl font-semibold text-primary-900 dark:text-primary-50 mb-4">
+                No posts yet
+              </h2>
+              <p class="text-primary-600 dark:text-primary-300 mb-8">
+                Check back soon for new content!
+              </p>
+            </div>
+          )}
+        </div>
+
+        <!-- Mobile sidebar -->
+        <div class="xl:hidden mt-12 space-y-6">
+          {siteConfig.postOptions.tags && allTags.length > 0 && (
+            <Tags tags={allTags} />
+          )}
+        </div>
+
+        <!-- Desktop sidebar -->
+        <div class="hidden xl:block absolute top-0 left-full ml-8 w-64 h-full">
+          <div class="sticky top-24 pb-6" id="tags-sidebar">
+            {siteConfig.postOptions.tags && allTags.length > 0 && (
+              <Tags tags={allTags} />
+            )}
+          </div>
+        </div>
+      </div>
+
+      <!-- Home blurb below posts -->
+      {siteConfig.homeOptions.blurb.placement === 'below' && HomeBlurbContent && (
+        <section class="prose prose-sm dark:prose-dark max-w-none mt-16">
+          <HomeBlurbContent />
+        </section>
+      )}
+    </div>
+  </div>
+</BaseLayout>
+
+<Fragment slot="scripts">
+  <script>
+    const BOTTOM_SPACING = 96;
+    const MIN_SIDEBAR_HEIGHT = 200;
+
+    function updateTagsSidebarHeight() {
+      const sidebarContent = document.querySelector('.tags-container') as HTMLElement;
+      const sidebarContainer = document.querySelector('#tags-sidebar') as HTMLElement;
+
+      if (!sidebarContent || !sidebarContainer) return;
+
+      const rect = sidebarContainer.getBoundingClientRect();
+      const sidebarTop = rect.top;
+      const availableHeight = window.innerHeight - sidebarTop - BOTTOM_SPACING;
+      const maxHeight = Math.max(MIN_SIDEBAR_HEIGHT, Math.min(availableHeight, window.innerHeight * 0.7));
+
+      const currentMaxHeight = parseInt(sidebarContent.style.maxHeight || '0', 10);
+      if (Math.abs(maxHeight - currentMaxHeight) > 10) {
+        sidebarContent.style.maxHeight = `${maxHeight}px`;
+        sidebarContent.style.overflowY = 'auto';
+      }
+    }
+
+    function debounce(func: Function, wait: number) {
+      let timeout: ReturnType<typeof setTimeout>;
+      return function executedFunction(...args: any[]) {
+        const later = () => {
+          clearTimeout(timeout);
+          func(...args);
+        };
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+      };
+    }
+
+    function initializeTagsSidebar() {
+      const sidebarContainer = document.querySelector('#tags-sidebar') as HTMLElement;
+      if (!sidebarContainer) return;
+      updateTagsSidebarHeight();
+      const debouncedUpdateHeight = debounce(() => {
+        updateTagsSidebarHeight();
+      }, 150);
+      window.addEventListener('resize', debouncedUpdateHeight);
+    }
+
+    (window as any).initializeTagsSidebar = initializeTagsSidebar;
+    (window as any).updateTagsSidebarHeight = updateTagsSidebarHeight;
+    document.addEventListener('DOMContentLoaded', initializeTagsSidebar);
+  </script>
+</Fragment>
+
+<style>
+  .posts-grid {
+    display: grid;
+    gap: 2rem;
+  }
+  @media (min-width: 768px) {
+    .posts-grid {
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    }
+  }
+</style>
