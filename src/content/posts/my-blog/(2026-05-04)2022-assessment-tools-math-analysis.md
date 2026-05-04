@@ -2,7 +2,7 @@
 title: "2022 서·논술형 평가 도구 자료집(수학) — 실제 평가 설계에서 본 수학 문제의 구조"
 description: "중학교 1학년 '양수와 음수, 정수와 유리수' 단원 서·논술형 평가 도구 자료집 분석: 성취기준, 평가원리, 교수학습 활동, 평가문항의 전체 설계 과정"
 date: 2026-05-04
-author: silla
+author: baekje
 image: "attachments/assess-tools-hero.png"
 tags: ["서논술평가", "중학교수학", "평가도구", "성취기준", "수학커리큘럼", "교수학습설계"]
 draft: false
