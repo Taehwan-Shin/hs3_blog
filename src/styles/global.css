@@ -1553,3 +1553,29 @@ img {
 .hover-zoom:hover img {
   @apply scale-105;
 }
+
+/* Highlighter (Fluorescent Pen) Effect */
+.highlight-text {
+  background: linear-gradient(120deg, rgba(255, 235, 59, 0.4) 0%, rgba(255, 235, 59, 0.4) 100%);
+  background-repeat: no-repeat;
+  background-size: 0% 40%;
+  background-position: 0 85%;
+  transition: background-size 0.8s cubic-bezier(0.65, 0, 0.35, 1);
+  display: inline;
+  padding: 0 2px;
+}
+
+.highlight-text.active {
+  background-size: 100% 40%;
+}
+
+.dark .highlight-text {
+  background: linear-gradient(120deg, rgba(255, 214, 0, 0.3) 0%, rgba(255, 214, 0, 0.3) 100%);
+  background-repeat: no-repeat;
+  background-size: 0% 40%;
+  background-position: 0 85%;
+}
+
+.dark .highlight-text.active {
+  background-size: 100% 40%;
+}

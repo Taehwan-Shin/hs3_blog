@@ -2185,6 +2185,39 @@ const scrollbarClass = siteConfig.hideScrollBar ? 'scrollbar-hide' : '';
   <GraphModal />
 
   <!-- Additional body scripts -->
+
+  <!-- Scroll-triggered Highlighter (Fluorescent Pen) JS -->
+  <script is:inline>
+    function setupHighlighter() {
+      // Small delay to ensure styles are applied
+      setTimeout(() => {
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('active');
+            }
+          });
+        }, { 
+          threshold: 0.1, // Trigger earlier
+          rootMargin: '0px 0px -10% 0px' // Offset to feel more natural
+        });
+
+        const elements = document.querySelectorAll('.highlight-text');
+        elements.forEach(el => observer.observe(el));
+      }, 100);
+    }
+
+    // Initial setup
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', setupHighlighter);
+    } else {
+      setupHighlighter();
+    }
+    
+    // Re-run setup after Swup navigation
+    document.addEventListener('swup:contentReplaced', setupHighlighter);
+  </script>
+
   <slot name="scripts" />
 </body>
 </html>
