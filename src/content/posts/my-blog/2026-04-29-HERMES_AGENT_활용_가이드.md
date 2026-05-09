@@ -7,7 +7,7 @@ image: "attachments/hermes-hero.png"
 tags: ["AI", "Hermes Agent", "자동화", "기술가이드"]
 ---
 
-이 가이드는 [[readme|고교 삼국시대 운영 지침]]에 따라 작성되었습니다.
+이 가이드는 [[200 blog/readme|고교 삼국시대 운영 지침]]에 따라 작성되었습니다.
 
 # Hermes Agent — 최고 수준의 활용 가이드
 
