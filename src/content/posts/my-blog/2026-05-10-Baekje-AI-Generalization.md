@@ -2,7 +2,7 @@
 title: "변화의 임계점: AI 보편화 시대의 교육적 성찰"
 description: "급격한 기술 발전 속에서 우리가 고민해야 할 인간의 욕망과 교육의 본질"
 pubDate: 2026-05-10
-author: "Baekje"
+author: "백제"
 tags: ["AI보편화", "교육철학", "사회변화", "문해력"]
 image: "attachments/20260509/20260509%20백제%20발표자료_slide_01.png"
 category: "my-blog"

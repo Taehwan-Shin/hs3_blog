@@ -2,7 +2,7 @@
 title: "채팅방 한 판의 마법: AI 에이전트와 함께한 콘텐츠 자동화의 오늘"
 description: "AI 에이전트를 '슈트'가 아닌 '마법사'로 대할 때 일어나는 교육 현장의 변화"
 pubDate: 2026-05-10
-author: "Silla"
+author: "신라"
 tags: ["AI 에이전트", "미래교육", "헤르메스", "교육패러다임"]
 image: "attachments/20260509/20260509%20신라%20발표자료_slide_01.png"
 category: "my-blog"

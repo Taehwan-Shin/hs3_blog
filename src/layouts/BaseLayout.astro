@@ -2191,15 +2191,23 @@ const scrollbarClass = siteConfig.hideScrollBar ? 'scrollbar-hide' : '';
     function setupHighlighter() {
       // Small delay to ensure styles are applied
       setTimeout(() => {
+
         const observer = new IntersectionObserver((entries) => {
           entries.forEach(entry => {
             if (entry.isIntersecting) {
               entry.target.classList.add('active');
+            } else {
+              // Optional: remove class when scrolling away to allow re-triggering
+              const rect = entry.boundingClientRect;
+              if (rect.top > window.innerHeight || rect.bottom < 0) {
+                entry.target.classList.remove('active');
+              }
             }
           });
         }, { 
-          threshold: 0.1, // Trigger earlier
-          rootMargin: '0px 0px -10% 0px' // Offset to feel more natural
+          // Trigger when the element is between 30% and 70% of the viewport height
+          rootMargin: '-30% 0px -30% 0px',
+          threshold: 0
         });
 
         const elements = document.querySelectorAll('.highlight-text');
