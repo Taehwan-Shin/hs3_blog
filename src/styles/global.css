@@ -1384,31 +1384,6 @@ img + p em {
 
 /* End of Mermaid styles */
 
-/* NUCLEAR BOMB HIDING - Hide ALL Mermaid error bombs permanently */
-svg[aria-roledescription="error"],
-svg:has(.error-icon),
-svg:has(.error-text),
-svg[viewBox="0 0 2412 512"],
-svg[viewBox="0 0 417 625"] {
-  display: none !important;
-  visibility: hidden !important;
-  opacity: 0 !important;
-  height: 0 !important;
-  width: 0 !important;
-  overflow: hidden !important;
-}
-
-/* Hide any SVG containing bomb text */
-svg:has(text:contains("Syntax error in text")),
-svg:has(text:contains("mermaid version")) {
-  display: none !important;
-  visibility: hidden !important;
-  opacity: 0 !important;
-  height: 0 !important;
-  width: 0 !important;
-  overflow: hidden !important;
-}
-
 /* ============================================================================
    OBSIDIAN EMBEDS
    ============================================================================ */
@@ -1554,28 +1529,7 @@ img {
   @apply scale-105;
 }
 
-/* Highlighter (Fluorescent Pen) Effect */
-.highlight-text {
-  background: linear-gradient(120deg, rgba(255, 235, 59, 0.4) 0%, rgba(255, 235, 59, 0.4) 100%);
-  background-repeat: no-repeat;
-  background-size: 0% 40%;
-  background-position: 0 85%;
-  transition: background-size 0.8s cubic-bezier(0.65, 0, 0.35, 1);
-  display: inline;
-  padding: 0 2px;
-}
-
-.highlight-text.active {
-  background-size: 100% 40%;
-}
-
-.dark .highlight-text {
-  background: linear-gradient(120deg, rgba(255, 214, 0, 0.3) 0%, rgba(255, 214, 0, 0.3) 100%);
-  background-repeat: no-repeat;
-  background-size: 0% 40%;
-  background-position: 0 85%;
-}
-
-.dark .highlight-text.active {
-  background-size: 100% 40%;
+/* Desktop Image Optimization */
+.desktop-image-fix {
+  @apply w-full max-w-2xl mx-auto rounded-xl shadow-lg my-8;
 }
