@@ -1,0 +1,81 @@
+{
+  "nodes": [
+    {
+      "id": "my-blog/2026-04-29-hermes_agent_활용_가이드",
+      "type": "post",
+      "title": "Hermes Agent: 시스템 접근권이 있는 자율 에이전트 활용 가이드",
+      "slug": "my-blog/2026-04-29-hermes_agent_활용_가이드",
+      "connections": 1
+    },
+    {
+      "id": "my-blog/2026-05-05-ai를-쓸수록-지능이-올라가는-사람의-특징들",
+      "type": "post",
+      "title": "AI를 쓸수록 지능이 올라가는 사람의 특징들: 교육학적 관점에서 본 AI-인간 공진화",
+      "slug": "my-blog/2026-05-05-ai를-쓸수록-지능이-올라가는-사람의-특징들",
+      "connections": 0
+    },
+    {
+      "id": "my-blog/2026-05-10-baekje-ai-generalization",
+      "type": "post",
+      "title": "AI 상식의 시대, 무엇을 가르칠 것인가",
+      "slug": "my-blog/2026-05-10-baekje-ai-generalization",
+      "connections": 2
+    },
+    {
+      "id": "my-blog/2026-05-10-goguryeo-workspace-data-analysis",
+      "type": "post",
+      "title": "데이터로 읽는 학교, 분석으로 돕는 교사",
+      "slug": "my-blog/2026-05-10-goguryeo-workspace-data-analysis",
+      "connections": 2
+    },
+    {
+      "id": "my-blog/2026-05-10-silla-magic-of-ai-agents",
+      "type": "post",
+      "title": "AI 디지털 교육의 콘셉트",
+      "slug": "my-blog/2026-05-10-silla-magic-of-ai-agents",
+      "connections": 2
+    },
+    {
+      "id": "my-blog/readme",
+      "type": "post",
+      "title": "고교 삼국시대 운영 및 관리 지침서",
+      "slug": "my-blog/readme",
+      "connections": 1
+    },
+    {
+      "id": "my-blog/구글시트_연수자료_분석",
+      "type": "post",
+      "title": "구글시트(Sheets), 공유문서를 넘어 기능문서로",
+      "slug": "my-blog/구글시트_연수자료_분석",
+      "connections": 0
+    }
+  ],
+  "connections": [
+    {
+      "source": "my-blog/2026-04-29-hermes_agent_활용_가이드",
+      "target": "my-blog/readme",
+      "type": "link"
+    },
+    {
+      "source": "my-blog/2026-05-10-baekje-ai-generalization",
+      "target": "my-blog/2026-05-10-goguryeo-workspace-data-analysis",
+      "type": "link"
+    },
+    {
+      "source": "my-blog/2026-05-10-baekje-ai-generalization",
+      "target": "my-blog/2026-05-10-silla-magic-of-ai-agents",
+      "type": "link"
+    },
+    {
+      "source": "my-blog/2026-05-10-goguryeo-workspace-data-analysis",
+      "target": "my-blog/2026-05-10-silla-magic-of-ai-agents",
+      "type": "link"
+    }
+  ],
+  "metadata": {
+    "totalPosts": 7,
+    "totalConnections": 4,
+    "maxNodesApplied": false,
+    "originalNodeCount": 7
+  }
+}
