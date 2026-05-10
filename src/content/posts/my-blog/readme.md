@@ -3,7 +3,7 @@ title: "고교 삼국시대 운영 및 관리 지침서"
 description: "고교 삼국시대 블로그의 정체성, 페르소나, 그리고 운영 규칙을 정의하는 마스터 가이드라인입니다."
 date: 2026-05-03
 author: goguryeo
-image: "/posts/attachments/hermes-hero.png"
+image: "attachments/hermes-hero.png"
 tags: ["운영지침", "가이드", "브랜딩"]
 ---
 
@@ -42,7 +42,7 @@ title: "게시글 제목"
 description: "게시글의 핵심 내용을 요약한 1~2문장의 설명"
 date: YYYY-MM-DD
 author: goguryeo # goguryeo, baekje, silla 중 선택 (파일 ID)
-image: "/posts/attachments/filename.png" # 히어로 이미지 경로
+image: "attachments/filename.png" # 히어로 이미지 경로
 tags: ["키워드1", "키워드2"]
 draft: false
 ---
@@ -59,7 +59,7 @@ draft: false
 
 ### 🚀 게시글 작성 및 발행
 1.  **초안 작성**: 사용자가 아이디어나 키워드를 제공하면 위 세 명의 페르소나 중 적절한 인물을 선택해 글을 작성합니다.
-2.  **이미지 생성**: 게시글의 주제에 맞는 히어로 이미지를 생성하여 `/posts/attachments/` 폴더에 저장하고 문서에 링크합니다.
+2.  **이미지 생성**: 게시글의 주제에 맞는 히어로 이미지를 생성하여 `attachments/` 폴더에 저장하고 문서에 링크합니다.
 3.  **검수 및 교정**: 오탈자 확인, 마크다운 문법(표, 코드 블록 등) 최적화, SEO(검색 엔진 최적화)를 고려한 설명을 작성합니다.
 
 ### 🛠 관리 및 운영
