@@ -8,14 +8,6 @@ dist/
 .astro/
 
 # Synced/generated public files (regenerated at build time)
-public/posts/
-!public/posts/attachments/
-!public/posts/attachments/20260509/
-public/pages/
-public/docs/
-public/projects/
-public/special/
-public/graph/
 
 # Environment variables
 .env
@@ -56,6 +48,4 @@ src/content/.obsidian/workspace-mobile.json
 obsidian_askpass.sh
 
 # Generated deployment platform files (GitHub Pages + Cloudflare Workers only)
-public/_redirects
-public/_headers
 .vercel
