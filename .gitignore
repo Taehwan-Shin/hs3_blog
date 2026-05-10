@@ -9,8 +9,6 @@ dist/
 
 # Synced/generated public files (regenerated at build time)
 public/posts/
-!public/posts/attachments/
-!public/posts/attachments/20260509/
 public/pages/
 public/docs/
 public/projects/
