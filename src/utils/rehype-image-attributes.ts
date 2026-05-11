@@ -18,29 +18,29 @@ export function rehypeImageAttributes() {
     visit(tree, 'element', (node: Element) => {
       if (node.tagName === 'img') {
         const properties = node.properties || {};
-        const src = (properties.src as string) || '';
+        let src = (properties.src as string) || '';
 
-        // Fix raw HTML <img src="attachments/..."> paths
-        // remarkFolderImages only processes mdast image nodes, not raw HTML elements
-        // So raw HTML <img src="attachments/..."> needs manual path transformation
-        if (src && typeof src === 'string' && src.startsWith('attachments/') && !src.startsWith('http')) {
-          // URL-decode any encoded characters (e.g., %20 for space)
-          const decoded = decodeURIComponent(src);
-          properties.src = `/${collection}/attachments/${decoded}`;
-          // Skip WebP conversion since we already have a valid path
+        if (!src || src.startsWith('http') || src.startsWith('data:')) {
+          // Skip external or data URLs
         } else {
+          // Fix relative paths for raw HTML <img> tags
+          if (src.startsWith('attachments/')) {
+            // Prefix with collection: /posts/attachments/...
+            src = `/${collection}/${src}`;
+          } else if (!src.startsWith('/')) {
+            // Assume it's a relative path that needs to be in attachments
+            src = `/${collection}/attachments/${src}`;
+          }
+
           // Convert image paths to WebP if available
-          // The sync script generates WebP versions of JPG/PNG files
-          // Only convert if path doesn't already end with .webp (remarkFolderImages may have already converted it)
-          if (src && typeof src === 'string' && !src.startsWith('http') && !src.toLowerCase().endsWith('.webp') && !src.toLowerCase().endsWith('.svg')) {
-            // Check if this is an image format that would have been converted to WebP
+          if (!src.toLowerCase().endsWith('.webp') && !src.toLowerCase().endsWith('.svg')) {
             if (/\.(jpg|jpeg|png|gif|bmp|tiff|tif)$/i.test(src)) {
-              // Replace extension with .webp
-              // Note: remarkFolderImages should have already set the correct path with collection prefix
-              // This is a fallback for any images that weren't processed by remarkFolderImages
-              properties.src = src.replace(/\.(jpg|jpeg|png|gif|bmp|tiff|tif)$/i, '.webp');
+              src = src.replace(/\.(jpg|jpeg|png|gif|bmp|tiff|tif)$/i, '.webp');
             }
           }
+
+          // Update the actual property
+          properties.src = src;
         }
         
         // Add loading="lazy" if not already set
