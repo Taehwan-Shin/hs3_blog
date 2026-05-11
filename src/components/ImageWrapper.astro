@@ -108,9 +108,11 @@ if (isLocal) {
     }
     
     // Normalize the path for the glob pattern
+    // CRITICAL: Decode URL-encoded characters (like %20) before matching against glob keys
     let normalizedPath = path
-      .normalize(path.join("/public", basePath, cleanSrc))
+      .normalize(path.join("/public", basePath, decodeURIComponent(cleanSrc)))
       .replace(/\\/g, "/");
+
     
     // Ensure the path starts with /public
     if (!normalizedPath.startsWith("/public")) {
