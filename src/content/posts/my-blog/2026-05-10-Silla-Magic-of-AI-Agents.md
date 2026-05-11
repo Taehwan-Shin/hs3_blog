@@ -1,7 +1,7 @@
 ---
 title: "AI 디지털 교육의 콘셉트"
 description: "AI 에이전트를 '슈트'가 아닌 '마법사'로 대할 때 일어나는 교육 현장의 변화"
-pubDate: 2026-05-10
+date: 2026-05-10
 author: "silla"
 tags: ["AI 에이전트", "미래교육", "헤르메스", "교육패러다임"]
 image: "attachments/20260509/20260509%20신라%20발표자료_slide_01.webp"

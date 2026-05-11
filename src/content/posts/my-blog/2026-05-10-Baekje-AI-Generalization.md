@@ -1,7 +1,7 @@
 ---
 title: "AI 상식의 시대, 무엇을 가르칠 것인가"
 description: "급격한 기술 발전 속에서 우리가 고민해야 할 인간의 욕망과 교육의 본질"
-pubDate: 2026-05-10
+date: 2026-05-10
 author: "baekje"
 tags: ["AI보편화", "교육철학", "사회변화", "문해력"]
 image: "attachments/20260509/20260509%20백제%20발표자료_slide_01.webp"

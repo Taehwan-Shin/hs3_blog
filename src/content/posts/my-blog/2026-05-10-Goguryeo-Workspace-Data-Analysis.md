@@ -1,7 +1,7 @@
 ---
 title: "데이터로 읽는 학교, 분석으로 돕는 교사"
 description: "구글 클라우드와 BigQuery를 활용한 학습 이력 분석 및 교무 행정 자동화 실험"
-pubDate: 2026-05-10
+date: 2026-05-10
 author: "goguryeo"
 tags: ["데이터분석", "BigQuery", "GCP", "교무행정자동화"]
 image: "attachments/20260509/20260509%20고구려%20발표자료_slide_01.webp"
