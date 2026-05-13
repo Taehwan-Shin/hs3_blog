@@ -4,7 +4,7 @@ description: "로컬 AI 에이전트를 구글 챗에 완벽하게 이식하는 
 date: 2026-05-13
 author: "silla"
 tags: ["헤르메스", "구글챗", "AI 에이전트", "PubSub", "입문가이드", "Docker", "트러블슈팅"]
-image: "attachments/20260513/hermes_cover.webp"
+image: "attachments/20260513/hermes_cover_v3.webp"
 category: "my-blog"
 ---
 
@@ -26,7 +26,7 @@ category: "my-blog"
 
 헤르메스는 우리 집(로컬 컴퓨터)에 있고, 구글 챗은 클라우드에 있습니다. 보통은 밖에서 우리 집으로 들어오려면 대문을 열어줘야 하지만(Webhook/공인 IP), 헤르메스는 **Google Cloud Pub/Sub**이라는 똑똑한 방식을 씁니다.
 
-<img src="/posts/attachments/20260513/hermes_step2.webp" alt="메시지 전달 원리 인포그래픽" class="desktop-image-fix" />
+<img src="/posts/attachments/20260513/hermes_step2_v3.webp" alt="메시지 전달 원리 인포그래픽" class="desktop-image-fix" />
 
 - **📬 Pub/Sub (Mailbox Analogy)**: 구글 챗이 메시지를 받으면 구글 서버의 '우체통(Topic)'에 넣습니다. 그러면 우리 집의 헤르메스가 주기적으로 그 우체통을 확인해 자기 편지(Subscription)를 쓱 가져오는 방식입니다.
 - **장점**: 우리 집 컴퓨터의 보안 설정을 건드릴 필요 없이, 구글 클라우드라는 안전한 다리를 통해 대화할 수 있습니다. 별도의 터널링(ngrok 등)이나 TLS 인증서가 필요하지 않습니다.
@@ -37,7 +37,7 @@ category: "my-blog"
 
 에이전트가 활동할 가상의 본부를 만드는 단계입니다.
 
-<img src="/posts/attachments/20260513/hermes_step1.webp" alt="구글 클라우드 기초 설정 인포그래픽" class="desktop-image-fix" />
+<img src="/posts/attachments/20260513/hermes_step1_v3.webp" alt="구글 클라우드 기초 설정 인포그래픽" class="desktop-image-fix" />
 
 1. **프로젝트 생성**: [Google Cloud Console](https://console.cloud.google.com)에서 새 프로젝트를 만듭니다 (예: `hermes-chat-project`). 개인 계정의 무료 티어 범위 내에서 충분히 운영 가능합니다.
 
@@ -51,7 +51,7 @@ category: "my-blog"
 
 가장 보안이 중요하고 까다로운 단계입니다. 이 열쇠가 있어야 헤르메스가 구글 클라우드 문을 열고 들어갈 수 있습니다.
 
-<img src="/posts/attachments/20260513/hermes_step3.webp" alt="서비스 계정 및 보안 인포그래픽" class="desktop-image-fix" />
+<img src="/posts/attachments/20260513/hermes_step3_v3.webp" alt="서비스 계정 및 보안 인포그래픽" class="desktop-image-fix" />
 
 1. **서비스 계정 생성**: [IAM 및 관리자] -> [서비스 계정] 메뉴로 이동합니다. `hermes-chat-bot`이라는 이름으로 계정을 만듭니다. 
 
@@ -140,7 +140,7 @@ GOOGLE_CHAT_ALLOWED_USERS=you@domain.com
 
 축하합니다! 이제 모든 설정이 끝났습니다. 마지막으로 헤르메스를 깨워 구글 챗과 인사를 나누게 할 시간입니다.
 
-<img src="/posts/attachments/20260513/hermes_step4.webp" alt="헤르메스 연동 완료 인포그래픽" class="desktop-image-fix" />
+<img src="/posts/attachments/20260513/hermes_step4_v3.webp" alt="헤르메스 연동 완료 인포그래픽" class="desktop-image-fix" />
 
 ### 1. 헤르메스 실행
 
