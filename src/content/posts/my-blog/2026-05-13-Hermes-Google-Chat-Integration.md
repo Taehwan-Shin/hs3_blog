@@ -37,7 +37,7 @@ category: "my-blog"
 
 에이전트가 활동할 가상의 본부를 만드는 단계입니다.
 
-<img src="/posts/attachments/20260513/hermes_step1_final.webp" alt="구글 클라우드 기초 설정 인포그래픽" class="desktop-image-fix" />
+<img src="/posts/attachments/20260513/hermes_step1_fixed.webp" alt="구글 클라우드 기초 설정 인포그래픽" class="desktop-image-fix" />
 
 1. **프로젝트 생성**: [Google Cloud Console](https://console.cloud.google.com)에서 새 프로젝트를 만듭니다 (예: `hermes-chat-project`). 개인 계정의 무료 티어 범위 내에서 충분히 운영 가능합니다.
 
