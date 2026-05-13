@@ -15,6 +15,7 @@ import GiscusComments from '@/components/GiscusComments.astro';
 import Lightbox from '@/components/Lightbox.astro';
 import Icon from '@/components/Icon.astro';
 import ImageWrapper from '@/components/ImageWrapper.astro';
+import ViewCounter from '@/components/ViewCounter.astro';
 import { devConfig } from '@/config/dev';
 import { readFileSync } from 'fs';
 import { join } from 'path';
@@ -190,7 +191,7 @@ if (siteConfig.postOptions.graphView.enabled && siteConfig.postOptions.graphView
               </>
             )}
 
-
+            <ViewCounter postId={post.id} />
           </div>
 
           {siteConfig.postOptions.tags && post.data.tags && post.data.tags.length > 0 && (

@@ -1,0 +1,48 @@
+
+---
+import Icon from './Icon.astro';
+
+interface Props {
+  postId: string;
+}
+
+const { postId } = Astro.props;
+---
+
+<div class="flex items-center gap-1.5 text-primary-600 dark:text-primary-300" id="view-counter-container" data-post-id={postId}>
+  <span class="text-primary-300 dark:text-primary-600">•</span>
+  <Icon name="eye" class="w-3.5 h-3.5" />
+  <span id="view-count-text">조회수 ...회</span>
+</div>
+
+<script>
+  import { db } from '../lib/firebase';
+  import { ref, onValue, set, runTransaction } from 'firebase/database';
+
+  async function updateViewCount() {
+    const container = document.getElementById('view-counter-container');
+    if (!container) return;
+    
+    const postId = container.dataset.postId;
+    const viewCountText = document.getElementById('view-count-text');
+    if (!postId || !viewCountText) return;
+
+    // Path in Firebase: views/posts/[postId]
+    const viewRef = ref(db, `views/posts/${postId}`);
+
+    // Increment view count using transaction for accuracy
+    runTransaction(viewRef, (currentValue) => {
+      return (currentValue || 0) + 1;
+    }).then((result) => {
+      if (result.committed) {
+        viewCountText.textContent = `조회수 ${result.snapshot.val().toLocaleString()}회`;
+      }
+    });
+  }
+
+  // Run on initial load
+  updateViewCount();
+
+  // Support for Swup (SPA navigation)
+  document.addEventListener('swup:content:replace', updateViewCount);
+</script>
