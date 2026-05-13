@@ -17,7 +17,7 @@ const { postId } = Astro.props;
 
 <script>
   import { db } from '../lib/firebase';
-  import { ref, onValue, set, runTransaction } from 'firebase/database';
+  import { ref, onValue, set, runTransaction, get } from 'firebase/database';
 
   async function updateViewCount() {
     const container = document.getElementById('view-counter-container');
@@ -27,22 +27,38 @@ const { postId } = Astro.props;
     const viewCountText = document.getElementById('view-count-text');
     if (!postId || !viewCountText) return;
 
+    // Get today's date in KST (Korean Standard Time)
+    const kstDate = new Date(new Date().getTime() + 9 * 60 * 60 * 1000).toISOString().split('T')[0];
+    const storageKey = `hs3_viewed_${postId}_${kstDate}`;
+
     // Path in Firebase: views/posts/[postId]
     const viewRef = ref(db, `views/posts/${postId}`);
 
-    // Increment view count using transaction for accuracy
-    runTransaction(viewRef, (currentValue) => {
-      return (currentValue || 0) + 1;
-    }).then((result) => {
-      if (result.committed) {
-        viewCountText.textContent = `조회수 ${result.snapshot.val().toLocaleString()}회`;
-      }
-    });
-  }
+    // Check if user already viewed this post today
+    const hasViewedToday = localStorage.getItem(storageKey) === 'true';
 
-  // Run on initial load
-  updateViewCount();
+    if (!hasViewedToday) {
+      // Increment view count using transaction for accuracy
+      runTransaction(viewRef, (currentValue) => {
+        return (currentValue || 0) + 1;
+      }).then((result) => {
+        if (result.committed) {
+          viewCountText.textContent = `조회수 ${result.snapshot.val().toLocaleString()}회`;
+          localStorage.setItem(storageKey, 'true'); // Mark as viewed today
+        }
+      });
+    } else {
+      // If already viewed today, just fetch and display the current count
+      get(viewRef).then((snapshot) => {
+        const val = snapshot.val() || 0;
+        viewCountText.textContent = `조회수 ${val.toLocaleString()}회`;
+      });
+    }
+  }
 
   // Support for Swup (SPA navigation)
   document.addEventListener('swup:content:replace', updateViewCount);
+  
+  // Initial load
+  updateViewCount();
 </script>
