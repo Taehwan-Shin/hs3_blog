@@ -43,7 +43,10 @@ export default defineConfig({
         "https://cdnjs.cloudflare.com",
         "https://cdn.jsdelivr.net",
         "https://giscus.app",
-        "https://platform.twitter.com"
+        "https://platform.twitter.com",
+        "https://www.gstatic.com",
+        "https://*.firebaseio.com",
+        "https://*.googleapis.com"
       ]
     },
     styleDirective: {
@@ -66,7 +69,13 @@ export default defineConfig({
       resources: ["'self'", "data:", "https:"]
     },
     connectDirective: {
-      resources: ["'self'", "https://giscus.app"]
+      resources: [
+        "'self'",
+        "https://giscus.app",
+        "https://*.firebaseio.com",
+        "wss://*.firebaseio.com",
+        "https://*.googleapis.com"
+      ]
     },
     frameDirective: {
       resources: [
