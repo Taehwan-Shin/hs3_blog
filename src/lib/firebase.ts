@@ -2,6 +2,8 @@
 import { initializeApp } from 'firebase/app';
 import { getDatabase } from 'firebase/database';
 
+// Build Trigger: 2026-05-13 Final Verification
+
 // TODO: Replace with your actual Firebase config
 const firebaseConfig = {
   apiKey: "AIzaSyAFygHP6i6RTgRaO44ls_iLHnTLk2VjIv4",
