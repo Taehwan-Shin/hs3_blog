@@ -74,7 +74,9 @@
     "onlyBuiltDependencies": [
       "esbuild",
       "sharp",
-      "workerd",
+      "workerd"
+    ],
+    "neverBuiltDependencies": [
       "@firebase/util",
       "protobufjs"
     ]
