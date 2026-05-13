@@ -36,6 +36,13 @@
       "connections": 2
     },
     {
+      "id": "my-blog/2026-05-13-hermes-google-chat-integration",
+      "type": "post",
+      "title": "헤르메스 에이전트 x 구글 챗 연동 가이드: 원리부터 실전 트러블슈팅까지",
+      "slug": "my-blog/2026-05-13-hermes-google-chat-integration",
+      "connections": 0
+    },
+    {
       "id": "my-blog/readme",
       "type": "post",
       "title": "고교 삼국시대 운영 및 관리 지침서",
@@ -73,9 +80,9 @@
     }
   ],
   "metadata": {
-    "totalPosts": 7,
+    "totalPosts": 8,
     "totalConnections": 4,
     "maxNodesApplied": false,
-    "originalNodeCount": 7
+    "originalNodeCount": 8
   }
 }

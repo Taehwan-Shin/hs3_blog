@@ -145,30 +145,7 @@ const scrollbarClass = siteConfig.hideScrollBar ? 'scrollbar-hide' : '';
 
   <!-- Swup handled via Astro integration -->
   
-  <!-- Busuanzi Analytics with Swup Integration -->
-  <script is:inline>
-    function initBusuanzi() {
-      const script = document.createElement('script');
-      script.src = 'https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js';
-      script.async = true;
-      script.id = 'busuanzi-script';
-      
-      // Remove old script if exists to force re-execution
-      const oldScript = document.getElementById('busuanzi-script');
-      if (oldScript) oldScript.remove();
-      
-      document.head.appendChild(script);
-    }
-
-    // Initial load
-    initBusuanzi();
-
-    // Re-run on Swup page transitions
-    document.addEventListener('swup:content:replace', () => {
-      // Small delay to ensure elements are in the DOM
-      setTimeout(initBusuanzi, 100);
-    });
-  </script>
+  <!-- Swup handled via Astro integration -->
 
 
   <!-- Font CSS Variables -->
