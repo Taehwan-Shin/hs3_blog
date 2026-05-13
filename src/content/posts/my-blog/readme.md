@@ -3,7 +3,7 @@ title: "고교 삼국시대 운영 및 관리 지침서"
 description: "고교 삼국시대 블로그의 정체성, 페르소나, 그리고 운영 규칙을 정의하는 마스터 가이드라인입니다."
 date: 2026-05-03
 author: goguryeo
-image: "attachments/hermes-hero.webp"
+image: "attachments/hermes-hero.png"
 tags: ["운영지침", "가이드", "브랜딩"]
 ---
 
@@ -42,7 +42,7 @@ title: "게시글 제목"
 description: "게시글의 핵심 내용을 요약한 1~2문장의 설명"
 date: YYYY-MM-DD
 author: goguryeo # goguryeo, baekje, silla 중 선택 (파일 ID)
-image: "attachments/filename.webp" # 히어로 이미지 경로
+image: "attachments/filename.png" # 히어로 이미지 경로
 tags: ["키워드1", "키워드2"]
 draft: false
 ---
