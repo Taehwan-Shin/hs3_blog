@@ -156,40 +156,44 @@ function createHtmlNode(html: string): any {
 }
 
 export const remarkObsidianEmbeds: Plugin<[], Root> = () => {
-  return async (tree, file: any) => {
-    // Visit image nodes (covers ![[file]] syntax)
-    visit(tree, 'image', (node: Image, index, parent) => {
-      if (!node.url || !parent || typeof index !== 'number') return;
+  return (tree, file: any) => {
+    if (!tree) return;
 
-      // Clean up URL - remove pipe syntax (alt text) and fragments if present
-      let url = node.url;
-      const pipeIndex = url.indexOf('|');
-      if (pipeIndex !== -1) {
-        url = url.slice(0, pipeIndex);
-      }
-      const hashIndex = url.indexOf('#');
-      if (hashIndex !== -1) {
-        url = url.slice(0, hashIndex);
-      }
+    // Use a single visit pass for efficiency and stability
+    visit(tree, (node: any, index, parent: any) => {
+      if (!parent || typeof index !== 'number' || !node) return;
 
-      const alt = node.alt || '';
-      const extension = getFileExtension(url);
+      // Handle Image nodes
+      if (node.type === 'image') {
+        if (!node.url) return;
 
-      // Handle web embeds (YouTube, Twitter/X) FIRST - before attachment processing
-      if (isExternalUrl(url)) {
-        // Check for Twitter/X
-        const twitterPostId = extractTwitterPostId(url);
-        if (twitterPostId) {
-          const title = alt || 'Twitter post';
-          const html = `<blockquote class="twitter-tweet" data-twitter-embed data-theme="preferred_color_scheme" data-conversation="none" title="${title}"><a href="https://twitter.com/user/status/${twitterPostId}"></a></blockquote>`;
-          parent.children[index] = createHtmlNode(html);
-          return;
+        // Clean up URL - remove pipe syntax (alt text) and fragments if present
+        let url = node.url;
+        const pipeIndex = url.indexOf('|');
+        if (pipeIndex !== -1) {
+          url = url.slice(0, pipeIndex);
+        }
+        const hashIndex = url.indexOf('#');
+        if (hashIndex !== -1) {
+          url = url.slice(0, hashIndex);
         }
 
-        // Check for YouTube
-        const youtubeVideoId = extractYouTubeVideoId(url);
-        if (youtubeVideoId) {
-          const html = `
+        const alt = node.alt || '';
+        const extension = getFileExtension(url);
+
+        // Handle web embeds (YouTube, Twitter/X) FIRST
+        if (isExternalUrl(url)) {
+          const twitterPostId = extractTwitterPostId(url);
+          if (twitterPostId) {
+            const title = alt || 'Twitter post';
+            const html = `<blockquote class="twitter-tweet" data-twitter-embed data-theme="preferred_color_scheme" data-conversation="none" title="${title}"><a href="https://twitter.com/user/status/${twitterPostId}"></a></blockquote>`;
+            parent.children[index] = createHtmlNode(html);
+            return [SKIP, index + 1];
+          }
+
+          const youtubeVideoId = extractYouTubeVideoId(url);
+          if (youtubeVideoId) {
+            const html = `
 <div class="youtube-embed aspect-video overflow-hidden rounded-xl my-8">
   <iframe
     src="https://www.youtube.com/embed/${youtubeVideoId}?rel=0&modestbranding=1"
@@ -200,113 +204,96 @@ export const remarkObsidianEmbeds: Plugin<[], Root> = () => {
     class="w-full h-full"
   ></iframe>
 </div>`;
-          parent.children[index] = createHtmlNode(html);
-          return;
-        }
-      }
-
-      // Handle Obsidian Bases files (.base)
-      if (extension === '.base' || url.endsWith('.base') || url.includes('.base|')) {
-        // Extract optional alias params (e.g., source=posts;select=title,date;limit=10;view=Posts)
-        let raw = url;
-        const pipeIndex = raw.indexOf('|');
-        let params = '';
-        if (pipeIndex !== -1) {
-          params = raw.slice(pipeIndex + 1);
-          raw = raw.slice(0, pipeIndex);
+            parent.children[index] = createHtmlNode(html);
+            return [SKIP, index + 1];
+          }
         }
 
-        const cfg: any = { view: 'table' };
-        // Parse simple key=value;key2=value2 list
-        if (params) {
-          params.split(';').forEach((pair) => {
-            const [k, v] = pair.split('=').map((s) => s && s.trim());
-            if (!k || !v) return;
-            if (k.toLowerCase() === 'source') {
-              if (['posts', 'pages', 'projects', 'docs'].includes(v)) cfg.source = v;
-            } else if (k.toLowerCase() === 'limit') {
-              const n = Number(v);
-              if (!Number.isNaN(n) && n > 0) cfg.limit = n;
-            } else if (k.toLowerCase() === 'select') {
-              // select=title,date -> ["title","date"]
-              cfg.select = v.split(',').map((s) => s.trim()).filter(Boolean);
-            } else if (k.toLowerCase() === 'view') {
-              cfg.viewName = v; // name of view inside the .base file
+        // Handle Obsidian Bases files (.base)
+        if (extension === '.base' || url.endsWith('.base') || url.includes('.base|')) {
+          let raw = url;
+          const pipeIndex = raw.indexOf('|');
+          let params = '';
+          if (pipeIndex !== -1) {
+            params = raw.slice(pipeIndex + 1);
+            raw = raw.slice(0, pipeIndex);
+          }
+
+          const cfg: any = { view: 'table' };
+          if (params) {
+            params.split(';').forEach((pair) => {
+              const [k, v] = pair.split('=').map((s) => s && s.trim());
+              if (!k || !v) return;
+              if (k.toLowerCase() === 'source') {
+                if (['posts', 'pages', 'projects', 'docs'].includes(v)) cfg.source = v;
+              } else if (k.toLowerCase() === 'limit') {
+                const n = Number(v);
+                if (!Number.isNaN(n) && n > 0) cfg.limit = n;
+              } else if (k.toLowerCase() === 'select') {
+                cfg.select = v.split(',').map((s) => s.trim()).filter(Boolean);
+              } else if (k.toLowerCase() === 'view') {
+                cfg.viewName = v;
+              }
+            });
+          }
+
+          const baseName = raw.split('/').pop()?.replace(/\.base$/i, '') || 'home';
+          const basePath = path.join(process.cwd(), 'src', 'content', 'bases', `${baseName}.base`);
+          if (fs.existsSync(basePath)) {
+            const text = fs.readFileSync(basePath, 'utf8');
+            const requireMd = /file\.ext\s*==\s*\"md\"/.test(text);
+            if (requireMd) {
+              cfg.requireMd = true;
             }
-          });
-        }
 
-        // Read the .base file and map a single view to config (no try/catch to satisfy older parser)
-        const baseName = raw.split('/').pop()?.replace(/\.base$/i, '') || 'home';
-        const basePath = path.join(process.cwd(), 'src', 'content', 'bases', `${baseName}.base`);
-        if (fs.existsSync(basePath)) {
-          const text = fs.readFileSync(basePath, 'utf8');
-          // Global filter hint: detect file.ext == "md" to require md
-          const requireMd = /file\.ext\s*==\s*\"md\"/.test(text);
-          if (requireMd) {
-            (cfg as any).requireMd = true;
-          }
+            const parsed = parseViewsFromBase(text);
+            const displayNamesMap: Record<string,string> = (parsed as any).displayNames || {};
 
-          // Very small parser for the subset we need:
-          // - capture view blocks under "views:" starting with "- type:" lines
-          // - read `name:`, and first filter like file.folder.startsWith("X")
-          // - read `order:` list for columns
-          const parsed = parseViewsFromBase(text);
-          const displayNamesMap: Record<string,string> = (parsed as any).displayNames || {};
-
-          // Strict: use first view unless view= was provided; prefer a view literally named "Posts"
-          let chosen: any = null;
-          const targetName = (cfg.viewName || '').toLowerCase();
-          if (targetName) {
-            chosen = parsed.find(v => (v.name || '').toLowerCase() === targetName) || parsed[0];
-          } else {
-            chosen = parsed.find(v => (v.name || '').toLowerCase() === 'posts') || parsed[0];
-          }
-          if (chosen) {
-            // map folder → source
-            if (!cfg.source) {
-              if (['posts','pages','projects','docs','special'].some(p => (chosen.folder || '').startsWith(p))) {
-                cfg.source = (chosen.folder || '').split('/')[0] as any;
+            let chosen: any = null;
+            const targetName = (cfg.viewName || '').toLowerCase();
+            if (targetName) {
+              chosen = parsed.find(v => (v.name || '').toLowerCase() === targetName) || parsed[0];
+            } else {
+              chosen = parsed.find(v => (v.name || '').toLowerCase() === 'posts') || parsed[0];
+            }
+            if (chosen) {
+              if (!cfg.source) {
+                if (['posts','pages','projects','docs','special'].some(p => (chosen.folder || '').startsWith(p))) {
+                  cfg.source = (chosen.folder || '').split('/')[0] as any;
+                }
+              }
+              if ((chosen.folder || '').toLowerCase().startsWith('posts')) {
+                cfg.source = 'posts';
+              }
+              if (!cfg.select && chosen.order && chosen.order.length) {
+                cfg.select = chosen.order.map((o: string) => {
+                  if (o.toLowerCase() === 'formula.slug') return 'path';
+                  if (o.toLowerCase() === 'note.pubdate' || o.toLowerCase() === 'note.date') return 'date';
+                  if (o.toLowerCase() === 'note.title' || o.toLowerCase() === 'title') return 'title';
+                  return o;
+                });
+              }
+              if (Array.isArray(cfg.select) && cfg.select.length) {
+                const labels: string[] = [];
+                for (const key of cfg.select) {
+                  let srcKey = key;
+                  if (key === 'path') srcKey = 'formula.Slug';
+                  if (key === 'date') srcKey = 'note.date';
+                  if (key === 'title') srcKey = 'note.title';
+                  labels.push(displayNamesMap[srcKey] || key);
+                }
+                cfg.headerLabels = labels;
+              }
+              if (chosen.sort && !cfg.sort) {
+                cfg.sort = chosen.sort;
+              }
+              if (typeof chosen.limit === 'number' && chosen.limit > 0 && !cfg.limit) {
+                cfg.limit = chosen.limit;
               }
             }
-            // Force posts if the chosen folder indicates posts
-            if ((chosen.folder || '').toLowerCase().startsWith('posts')) {
-              cfg.source = 'posts';
-            }
-            // columns from order
-            if (!cfg.select && chosen.order && chosen.order.length) {
-              cfg.select = chosen.order.map((o: string) => {
-                if (o.toLowerCase() === 'formula.slug') return 'path';
-                if (o.toLowerCase() === 'note.pubdate') return 'date';
-                if (o.toLowerCase() === 'note.date') return 'date';
-                if (o.toLowerCase() === 'note.title' || o.toLowerCase() === 'title') return 'title';
-                return o;
-              });
-            }
-            // header labels from properties.displayName mapping
-            if (Array.isArray(cfg.select) && cfg.select.length) {
-              const labels: string[] = [];
-              for (const key of cfg.select) {
-                // map back to base property keys where possible
-                let srcKey = key;
-                if (key === 'path') srcKey = 'formula.Slug';
-                if (key === 'date') srcKey = 'note.date';
-                if (key === 'title') srcKey = 'note.title';
-                labels.push(displayNamesMap[srcKey] || key);
-              }
-              (cfg as any).headerLabels = labels;
-            }
-            if (chosen.sort && !cfg.sort) {
-              cfg.sort = chosen.sort;
-            }
-            if (typeof chosen.limit === 'number' && chosen.limit > 0 && !cfg.limit) {
-              cfg.limit = chosen.limit;
-            }
           }
-        }
 
-        // Insert client-side placeholder; client will resolve to rows via APIs
-        const html = `
+          const html = `
 <div class="base-embed base-embed--table" data-base-config='${JSON.stringify(cfg).replace(/'/g, '&apos;')}'>
   <div class="prose w-full overflow-x-auto">
     <div class="rounded-lg border border-primary-200 dark:border-primary-600 p-4 bg-primary-50 dark:bg-primary-800 text-primary-600 dark:text-primary-300">
@@ -314,31 +301,24 @@ export const remarkObsidianEmbeds: Plugin<[], Root> = () => {
     </div>
   </div>
 </div>`;
-        parent.children[index] = createHtmlNode(html);
-        return;
-      }
+          parent.children[index] = createHtmlNode(html);
+          return [SKIP, index + 1];
+        }
 
-        // Detect collection and slug from file path (same logic as remarkFolderImages)
+        // Resolve local URL for media handling
         let resolvedUrl = url;
-
-        // Normalize path separators (Windows uses backslashes, Unix uses forward slashes)
         const normalizedFilePath = file.path ? file.path.replace(/\\/g, '/') : '';
 
-        // Handle URLs that have already been converted by remarkFolderImages (absolute paths)
-        // or relative URLs that need conversion
         if ((url.startsWith('attachments/') || url.includes('/attachments/')) && normalizedFilePath) {
-          // If URL is already absolute (converted by remarkFolderImages), use it as-is
           if (url.startsWith('/')) {
             resolvedUrl = url;
           } else {
-            // URL is relative, need to convert it
             const isFolderPost = normalizedFilePath.includes('/posts/') && normalizedFilePath.endsWith('/index.md');
             const isFolderPage = normalizedFilePath.includes('/pages/') && normalizedFilePath.endsWith('/index.md');
             const isFolderProject = normalizedFilePath.includes('/projects/') && normalizedFilePath.endsWith('/index.md');
             const isFolderDoc = normalizedFilePath.includes('/docs/') && normalizedFilePath.endsWith('/index.md');
 
             if (isFolderPost || isFolderPage || isFolderProject || isFolderDoc) {
-              // Folder-based content: /collection/slug/attachments/file
               const pathParts = normalizedFilePath.split('/');
               let collection = 'posts';
               let contentIndex = pathParts.indexOf('posts');
@@ -357,7 +337,6 @@ export const remarkObsidianEmbeds: Plugin<[], Root> = () => {
               const contentSlug = pathParts[contentIndex + 1];
               resolvedUrl = `/${collection}/${contentSlug}/${url}`;
             } else {
-              // File-based content: /collection/attachments/file (shared attachments folder)
               let collection = 'posts';
               if (normalizedFilePath.includes('/pages/')) collection = 'pages';
               else if (normalizedFilePath.includes('/projects/')) collection = 'projects';
@@ -366,9 +345,7 @@ export const remarkObsidianEmbeds: Plugin<[], Root> = () => {
               resolvedUrl = `/${collection}/${url}`;
             }
           }
-        }
-        // Handle files directly in folder-based content (no attachments/ prefix)
-        else if (normalizedFilePath && !url.startsWith('/') && !url.startsWith('http')) {
+        } else if (normalizedFilePath && !url.startsWith('/') && !url.startsWith('http')) {
           const isFolderPost = normalizedFilePath.includes('/posts/') && normalizedFilePath.endsWith('/index.md');
           const isFolderPage = normalizedFilePath.includes('/pages/') && normalizedFilePath.endsWith('/index.md');
           const isFolderProject = normalizedFilePath.includes('/projects/') && normalizedFilePath.endsWith('/index.md');
@@ -395,119 +372,107 @@ export const remarkObsidianEmbeds: Plugin<[], Root> = () => {
           }
         }
 
-      // Handle audio files
-      if (AUDIO_EXTENSIONS.includes(extension)) {
-        const title = alt || url.split('/').pop() || 'Audio file';
-        const html = `<div class="audio-embed">
+        // Handle media files
+        if (AUDIO_EXTENSIONS.includes(extension)) {
+          const title = alt || url.split('/').pop() || 'Audio file';
+          const html = `<div class="audio-embed">
   <audio class="audio-player" controls src="${resolvedUrl}" title="${title}"></audio>
 </div>`;
-        parent.children[index] = createHtmlNode(html);
-        return;
-      }
+          parent.children[index] = createHtmlNode(html);
+          return [SKIP, index + 1];
+        }
 
-      // Handle video files
-      if (VIDEO_EXTENSIONS.includes(extension)) {
-        const title = alt || url.split('/').pop() || 'Video file';
-        const html = `<div class="video-embed">
+        if (VIDEO_EXTENSIONS.includes(extension)) {
+          const title = alt || url.split('/').pop() || 'Video file';
+          const html = `<div class="video-embed">
   <video class="video-player" controls src="${resolvedUrl}" title="${title}"></video>
 </div>`;
-        parent.children[index] = createHtmlNode(html);
-        return;
-      }
+          parent.children[index] = createHtmlNode(html);
+          return [SKIP, index + 1];
+        }
 
-      // Handle PDF files
-      if (PDF_EXTENSIONS.includes(extension)) {
-        // Preserve hash fragment for PDF page linking
-        const originalUrl = node.url;
-        const hashIndex = originalUrl.indexOf('#');
-        const fragment = hashIndex !== -1 ? originalUrl.slice(hashIndex) : '';
-
-        const filename = url.split('/').pop() || 'document.pdf';
-        const title = alt || filename; // Use alt text if available, fallback to filename
-        const pdfUrl = resolvedUrl + fragment; // Add fragment back to resolved URL
-        const html = `<div class="pdf-embed">
+        if (PDF_EXTENSIONS.includes(extension)) {
+          const originalUrl = node.url;
+          const hashIndex = originalUrl.indexOf('#');
+          const fragment = hashIndex !== -1 ? originalUrl.slice(hashIndex) : '';
+          const filename = url.split('/').pop() || 'document.pdf';
+          const title = alt || filename;
+          const pdfUrl = resolvedUrl + fragment;
+          const html = `<div class="pdf-embed">
   <iframe class="pdf-viewer" src="${pdfUrl}" title="${title}"></iframe>
   <div class="pdf-info">
     <span class="pdf-filename">${filename}</span>
     <a href="${pdfUrl}" download class="pdf-download-link" target="_blank">Download PDF</a>
   </div>
 </div>`;
-        parent.children[index] = createHtmlNode(html);
-        return;
-      }
+          parent.children[index] = createHtmlNode(html);
+          return [SKIP, index + 1];
+        }
 
-      // Handle SVG files (embedded as responsive images)
-      if (SVG_EXTENSIONS.includes(extension)) {
-        const html = `<div class="svg-embed">
+        if (SVG_EXTENSIONS.includes(extension)) {
+          const html = `<div class="svg-embed">
   <img src="${resolvedUrl}" alt="${alt}" class="svg-image" />
 </div>`;
-        parent.children[index] = createHtmlNode(html);
-        return;
-      }
-    });
-
-    // Visit code blocks for directive-based Bases (```base ... ```)
-    visit(tree, 'code', (node: any, index: number | undefined, parent: any) => {
-      if (!parent || typeof index !== 'number') return;
-      const lang = (node.lang || '').toLowerCase();
-      if (lang !== 'base') return;
-
-      const text: string = node.value || '';
-      const cfg: any = { view: 'table' };
-
-      // Detect md-only filter
-      if (/file\.ext\s*==\s*"md"/.test(text)) {
-        cfg.requireMd = true;
+          parent.children[index] = createHtmlNode(html);
+          return [SKIP, index + 1];
+        }
       }
 
-      // Parse base content similar to .base file
-      const parsed = parseViewsFromBase(text);
-      const displayNamesMap: Record<string,string> = (parsed as any).displayNames || {};
+      // Handle Code blocks
+      if (node.type === 'code') {
+        const lang = (node.lang || '').toLowerCase();
+        if (lang !== 'base') return;
 
-      // Choose view: prefer a view named "Posts", else first
-      let chosen: any = null;
-      chosen = parsed.find((v: any) => (v.name || '').toLowerCase() === 'posts') || parsed[0];
-      if (chosen) {
-        // map folder → source
-        if (!cfg.source) {
-          if (['posts','pages','projects','docs','special'].some(p => (chosen.folder || '').startsWith(p))) {
-            cfg.source = (chosen.folder || '').split('/')[0];
+        const text: string = node.value || '';
+        const cfg: any = { view: 'table' };
+
+        if (/file\.ext\s*==\s*"md"/.test(text)) {
+          cfg.requireMd = true;
+        }
+
+        const parsed = parseViewsFromBase(text);
+        const displayNamesMap: Record<string,string> = (parsed as any).displayNames || {};
+
+        let chosen: any = null;
+        chosen = parsed.find((v: any) => (v.name || '').toLowerCase() === 'posts') || parsed[0];
+        if (chosen) {
+          if (!cfg.source) {
+            if (['posts','pages','projects','docs','special'].some(p => (chosen.folder || '').startsWith(p))) {
+              cfg.source = (chosen.folder || '').split('/')[0];
+            }
+          }
+          if ((chosen.folder || '').toLowerCase().startsWith('posts')) {
+            cfg.source = 'posts';
+          }
+          if (!cfg.select && chosen.order && chosen.order.length) {
+            cfg.select = chosen.order.map((o: string) => {
+              const lower = o.toLowerCase();
+              if (lower === 'formula.slug') return 'path';
+              if (lower === 'note.pubdate' || lower === 'note.date' || lower === 'date') return 'date';
+              if (lower === 'note.title' || lower === 'title') return 'title';
+              return o;
+            });
+          }
+          if (chosen.sort && !cfg.sort) {
+            cfg.sort = chosen.sort;
+          }
+          if (typeof chosen.limit === 'number' && chosen.limit > 0 && !cfg.limit) {
+            cfg.limit = chosen.limit;
+          }
+          if (Array.isArray(cfg.select) && cfg.select.length) {
+            const labels: string[] = [];
+            for (const key of cfg.select) {
+              let srcKey = key;
+              if (key === 'path') srcKey = 'formula.Slug';
+              if (key === 'date') srcKey = 'note.date';
+              if (key === 'title') srcKey = 'note.title';
+              labels.push(displayNamesMap[srcKey] || key);
+            }
+            cfg.headerLabels = labels;
           }
         }
-        if ((chosen.folder || '').toLowerCase().startsWith('posts')) {
-          cfg.source = 'posts';
-        }
-        // columns from order
-        if (!cfg.select && chosen.order && chosen.order.length) {
-          cfg.select = chosen.order.map((o: string) => {
-            const lower = o.toLowerCase();
-            if (lower === 'formula.slug') return 'path';
-            if (lower === 'note.pubdate' || lower === 'note.date' || lower === 'date') return 'date';
-            if (lower === 'note.title' || lower === 'title') return 'title';
-            return o;
-          });
-        }
-        if (chosen.sort && !cfg.sort) {
-          cfg.sort = chosen.sort;
-        }
-        if (typeof chosen.limit === 'number' && chosen.limit > 0 && !cfg.limit) {
-          cfg.limit = chosen.limit;
-        }
-        // header labels from properties.displayName mapping
-        if (Array.isArray(cfg.select) && cfg.select.length) {
-          const labels: string[] = [];
-          for (const key of cfg.select) {
-            let srcKey = key;
-            if (key === 'path') srcKey = 'formula.Slug';
-            if (key === 'date') srcKey = 'note.date';
-            if (key === 'title') srcKey = 'note.title';
-            labels.push(displayNamesMap[srcKey] || key);
-          }
-          cfg.headerLabels = labels;
-        }
-      }
 
-      const html = `
+        const html = `
 <div class="base-embed base-embed--table" data-base-config='${JSON.stringify(cfg).replace(/'/g, '&apos;')}'>
   <div class="prose w-full overflow-x-auto">
     <div class="rounded-lg border border-primary-200 dark:border-primary-600 p-4 bg-primary-50 dark:bg-primary-800 text-primary-600 dark:text-primary-300">
@@ -515,21 +480,17 @@ export const remarkObsidianEmbeds: Plugin<[], Root> = () => {
     </div>
   </div>
 </div>`;
-      parent.children[index] = createHtmlNode(html);
-    });
+        parent.children[index] = createHtmlNode(html);
+        return [SKIP, index + 1];
+      }
 
-    // Visit link nodes (covers ![](url) syntax for web embeds)
-    visit(tree, 'link', (node: Link, index, parent) => {
-      if (!node.url || !parent || typeof index !== 'number') return;
-
-      const url = node.url;
-      const title = node.title || '';
-
-
-      // Handle YouTube embeds
-      const youtubeVideoId = extractYouTubeVideoId(url);
-      if (youtubeVideoId) {
-        const html = `
+      // Handle Link nodes
+      if (node.type === 'link') {
+        if (!node.url) return;
+        const youtubeVideoId = extractYouTubeVideoId(node.url);
+        if (youtubeVideoId) {
+          const title = node.title || '';
+          const html = `
 <div class="youtube-embed aspect-video overflow-hidden rounded-xl my-8">
   <iframe
     src="https://www.youtube.com/embed/${youtubeVideoId}?rel=0&modestbranding=1"
@@ -540,11 +501,13 @@ export const remarkObsidianEmbeds: Plugin<[], Root> = () => {
     class="w-full h-full"
   ></iframe>
 </div>`;
-        parent.children[index] = createHtmlNode(html);
-        return;
+          parent.children[index] = createHtmlNode(html);
+          return [SKIP, index + 1];
+        }
       }
-
-
     });
   };
 };
+
+import { SKIP } from 'unist-util-visit';
+
