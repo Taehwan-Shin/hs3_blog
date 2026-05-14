@@ -453,17 +453,14 @@ export function remarkWikilinks() {
 
         if (isImageWikilink) {
           // Process image wikilink - convert to markdown image syntax
-          // Use the image path as-is (Obsidian doesn't use ./ by default)
           let imagePath = linkText.trim();
           const altText = displayText || "";
 
           // Resolve the image path to a public URL
-          // If it starts with attachments/, it's a shared attachment
+          // We'll use absolute paths starting with / to ensure they work from any page level
           if (imagePath.startsWith("attachments/")) {
-            // Default to posts collection if we can't determine it, as it's the most common
             imagePath = `/posts/${imagePath}`;
           } else if (!imagePath.startsWith("/") && !imagePath.startsWith("http")) {
-            // Assume it's a post-specific attachment
             imagePath = `/posts/attachments/${imagePath}`;
           }
 
@@ -472,7 +469,7 @@ export function remarkWikilinks() {
             imagePath = imagePath.replace(/\.(jpg|jpeg|png|gif|bmp|tiff|tif)$/i, ".webp");
           }
 
-          // Create a proper image node that Astro can process
+          // Create a proper image node
           newChildren.push({
             type: "image",
             url: imagePath,
@@ -1797,39 +1794,36 @@ export function remarkFolderImages() {
       }
 
       if (!collection) {
-        collection = "posts"; // Default to posts if detection fails
+        collection = "posts"; 
       }
 
-      // Handle folder-based content (e.g., /posts/my-post/index.md with image.png)
+      // 1. Clean up image path
+      let cleanPath = imagePath;
+      if (cleanPath.startsWith("./")) cleanPath = cleanPath.slice(2);
+
+      // 2. Determine final URL
+      let finalUrl = cleanPath;
+
       if (isFolderBased && contentSlug) {
-        // Sync script copies images to post folder root, removing subfolder prefixes
-        // Strip 'images/' or 'attachments/' prefixes if present
-        let cleanImagePath = imagePath;
-        if (cleanImagePath.startsWith('images/') || cleanImagePath.startsWith('attachments/')) {
-          cleanImagePath = cleanImagePath.replace(/^(images|attachments)\//, '');
+        // Folder-based: /posts/my-post/image.png
+        if (cleanPath.startsWith('images/') || cleanPath.startsWith('attachments/')) {
+          cleanPath = cleanPath.replace(/^(images|attachments)[/\\]/, '');
         }
-        // Image is relative to the folder: /posts/my-post/image.png
-        let finalUrl = `/${collection}/${contentSlug}/${cleanImagePath}`;
-        // Convert to WebP if applicable (sync-images.js creates WebP versions)
-        finalUrl = convertToWebP(finalUrl);
-        node.url = finalUrl;
+        finalUrl = `/${collection}/${contentSlug}/${cleanPath}`;
+      } else {
+        // Single-file or fallback: ensure it starts with /posts/attachments/
+        if (cleanPath.startsWith('attachments/')) {
+          finalUrl = `/${collection}/${cleanPath}`;
+        } else if (!cleanPath.startsWith('/') && !cleanPath.startsWith('http')) {
+          finalUrl = `/${collection}/attachments/${cleanPath}`;
+        }
       }
-      // Handle single-file content with attachments/ prefix
-      else if (imagePath.startsWith("attachments/")) {
-        // Image uses shared attachments folder: /posts/attachments/image.png
-        let finalUrl = `/${collection}/${imagePath}`;
-        // Convert to WebP if applicable (sync-images.js creates WebP versions)
-        finalUrl = convertToWebP(finalUrl);
-        node.url = finalUrl;
-      }
-      // Handle single-file content with other relative paths
-      else {
-        // Assume it's in the attachments folder
-        let finalUrl = `/${collection}/attachments/${imagePath}`;
-        // Convert to WebP if applicable (sync-images.js creates WebP versions)
-        finalUrl = convertToWebP(finalUrl);
-        node.url = finalUrl;
-      }
+
+      // 3. Convert to WebP
+      finalUrl = convertToWebP(finalUrl);
+      
+      // 4. Apply changes
+      node.url = finalUrl;
 
       // Also update the hProperties if they exist (for wikilink images)
       if (node.data && node.data.hProperties) {
