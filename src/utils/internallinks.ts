@@ -454,8 +454,23 @@ export function remarkWikilinks() {
         if (isImageWikilink) {
           // Process image wikilink - convert to markdown image syntax
           // Use the image path as-is (Obsidian doesn't use ./ by default)
-          const imagePath = linkText;
+          let imagePath = linkText.trim();
           const altText = displayText || "";
+
+          // Resolve the image path to a public URL
+          // If it starts with attachments/, it's a shared attachment
+          if (imagePath.startsWith("attachments/")) {
+            // Default to posts collection if we can't determine it, as it's the most common
+            imagePath = `/posts/${imagePath}`;
+          } else if (!imagePath.startsWith("/") && !imagePath.startsWith("http")) {
+            // Assume it's a post-specific attachment
+            imagePath = `/posts/attachments/${imagePath}`;
+          }
+
+          // Convert to WebP (since our sync-images.js optimizes them)
+          if (!imagePath.startsWith("http") && !imagePath.toLowerCase().endsWith(".svg") && !imagePath.toLowerCase().endsWith(".webp")) {
+            imagePath = imagePath.replace(/\.(jpg|jpeg|png|gif|bmp|tiff|tif)$/i, ".webp");
+          }
 
           // Create a proper image node that Astro can process
           newChildren.push({
@@ -1782,7 +1797,7 @@ export function remarkFolderImages() {
       }
 
       if (!collection) {
-        return; // Not a recognized content type
+        collection = "posts"; // Default to posts if detection fails
       }
 
       // Handle folder-based content (e.g., /posts/my-post/index.md with image.png)
