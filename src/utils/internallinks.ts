@@ -458,27 +458,33 @@ export function remarkWikilinks() {
 
           // Resolve the image path to a public URL
           // We'll use absolute paths starting with / to ensure they work from any page level
-          if (imagePath.startsWith("attachments/")) {
-            imagePath = `/posts/${imagePath}`;
-          } else if (!imagePath.startsWith("/") && !imagePath.startsWith("http")) {
-            imagePath = `/posts/attachments/${imagePath}`;
+          let finalUrl = imagePath;
+          if (finalUrl.startsWith("attachments/")) {
+            finalUrl = `/posts/${finalUrl}`;
+          } else if (!finalUrl.startsWith("/") && !finalUrl.startsWith("http")) {
+            finalUrl = `/posts/attachments/${finalUrl}`;
           }
 
           // Convert to WebP (since our sync-images.js optimizes them)
-          if (!imagePath.startsWith("http") && !imagePath.toLowerCase().endsWith(".svg") && !imagePath.toLowerCase().endsWith(".webp")) {
-            imagePath = imagePath.replace(/\.(jpg|jpeg|png|gif|bmp|tiff|tif)$/i, ".webp");
+          if (!finalUrl.startsWith("http") && !finalUrl.toLowerCase().endsWith(".svg") && !finalUrl.toLowerCase().endsWith(".webp")) {
+            finalUrl = finalUrl.replace(/\.(jpg|jpeg|png|gif|bmp|tiff|tif)$/i, ".webp");
+          }
+
+          // Encode URL for safety with Korean characters
+          if (!finalUrl.startsWith("http")) {
+            finalUrl = encodeURI(finalUrl);
           }
 
           // Create a proper image node
           newChildren.push({
             type: "image",
-            url: imagePath,
+            url: finalUrl,
             alt: altText,
             title: null,
             data: {
               hName: "img",
               hProperties: {
-                src: imagePath,
+                src: finalUrl,
                 alt: altText,
               },
             },
@@ -1822,7 +1828,12 @@ export function remarkFolderImages() {
       // 3. Convert to WebP
       finalUrl = convertToWebP(finalUrl);
       
-      // 4. Apply changes
+      // 4. Encode URL for safety with Korean characters
+      if (!finalUrl.startsWith("http")) {
+        finalUrl = encodeURI(finalUrl);
+      }
+      
+      // 5. Apply changes
       node.url = finalUrl;
 
       // Also update the hProperties if they exist (for wikilink images)
