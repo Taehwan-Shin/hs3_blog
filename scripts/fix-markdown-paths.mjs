@@ -34,16 +34,27 @@ async function fixMarkdownFiles(dir) {
           return `![[${encodedPath}${size || ''}]]`;
         });
 
-        // 3. FIX RAW HTML IMG TAGS: <img src="attachments/..." ... />
+        // 3. Fix raw HTML img tags: <img src="attachments/..." ... />
         const htmlImgRegex = /<img\s+[^>]*?src=["'](attachments\/.*?)\.(png|jpg|jpeg|gif|bmp|tiff|tif)["'][^>]*?>/gi;
         content = content.replace(htmlImgRegex, (match, pPath, ext) => {
           changed = true;
           let cleanPath = pPath;
           try { cleanPath = decodeURIComponent(cleanPath); } catch(e) {}
           const encodedPath = encodeURI(`/posts/${cleanPath}.webp`);
-          // Replace only the src attribute in the full tag match
           return match.replace(/src=["'](attachments\/.*?)\.(png|jpg|jpeg|gif|bmp|tiff|tif)["']/i, `src="${encodedPath}"`);
         });
+
+        // 4. FIX FRONTMATTER IMAGES: image: "attachments/..."
+        const frontmatterImageRegex = /^image:\s*["']?(attachments\/.*?)\.(png|jpg|jpeg|gif|bmp|tiff|tif)["']?/m;
+        if (frontmatterImageRegex.test(content)) {
+          content = content.replace(frontmatterImageRegex, (match, pPath, ext) => {
+            changed = true;
+            let cleanPath = pPath;
+            try { cleanPath = decodeURIComponent(cleanPath); } catch(e) {}
+            const encodedPath = encodeURI(`/posts/${cleanPath}.webp`);
+            return `image: "${encodedPath}"`;
+          });
+        }
 
         if (changed) {
           console.log(`Fixed paths in: ${itemPath}`);
@@ -64,7 +75,7 @@ const targetDirs = [
 ];
 
 async function run() {
-  console.log('🏗️ Brute-forcing ALL markdown & HTML image paths to absolute .webp URLs...');
+  console.log('🏗️ Brute-forcing ALL markdown, HTML & Frontmatter image paths to absolute .webp URLs...');
   for (const dir of targetDirs) {
     await fixMarkdownFiles(dir);
   }

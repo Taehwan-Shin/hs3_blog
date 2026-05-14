@@ -4,7 +4,7 @@ description: "구글 클라우드와 BigQuery를 활용한 학습 이력 분석 
 pubDate: 2026-05-10
 author: "goguryeo"
 tags: ["데이터분석", "BigQuery", "GCP", "교무행정자동화"]
-image: "attachments/20260509/20260509%20고구려%20발표자료_slide_01.png"
+image: "/posts/attachments/20260509/20260509%20%EA%B3%A0%EA%B5%AC%EB%A0%A4%20%EB%B0%9C%ED%91%9C%EC%9E%90%EB%A3%8C_slide_01.webp"
 category: "my-blog"
 ---
 
