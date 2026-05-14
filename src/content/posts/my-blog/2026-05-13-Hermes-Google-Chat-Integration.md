@@ -1,10 +1,10 @@
 ---
 title: "헤르메스 에이전트 x 구글 챗 연동 가이드: 원리부터 실전 트러블슈팅까지"
-description: "로컬 에이전트 헤르메스를 구글 챗과 연결하여 강력한 AI 협업 환경을 구축하는 단계별 실전 가이드입니다."
+description: "로컬 AI 에이전트를 구글 챗에 완벽하게 이식하는 단계별 가이드. Pub/Sub 원리부터 권한 설정까지 한 번에 해결하세요."
 pubDate: 2026-05-13
 author: "silla"
-tags: ["헤르메스", "구글챗", "AI에이전트", "워크플로우", "트러블슈팅"]
-image: "/posts/attachments/20260513/hermes_step4_final_v5.webp"
+tags: ["헤르메스", "구글챗", "AI 에이전트", "PubSub", "입문가이드", "Docker", "트러블슈팅"]
+image: "/posts/attachments/20260513/hermes_cover_super_final.webp"
 category: "my-blog"
 ---
 
@@ -16,24 +16,40 @@ category: "my-blog"
 
 ---
 
-## 🏗️ 1단계: 설계도 이해하기 (원리)
+## 🏗️ 0단계: 설계도 이해하기 (원리)
 
-헤르메스와 구글 챗은 직접 대화하지 않습니다. 구글의 **Cloud Pub/Sub**이라는 메시지 고속도로를 사이에 두고 대화합니다.
+시작하기 전에 우리가 왜 이 과정을 거치는지 이해해야 합니다. 
 
-1. **사용자**가 구글 챗에서 말을 겁니다.
-2. **구글 챗**이 그 말을 **Pub/Sub 토픽**으로 던집니다.
-3. **헤르메스**가 그 토픽을 계속 지켜보다가 메시지를 '가져와서' 답변을 생성합니다.
-4. **헤르메스**가 다시 구글 챗 API를 통해 답변을 보냅니다.
+헤르메스는 우리 집(로컬 컴퓨터)에 있고, 구글 챗은 클라우드에 있습니다. 보통은 밖에서 우리 집으로 들어오려면 대문을 열어줘야 하지만(Webhook/공인 IP), 헤르메스는 **Google Cloud Pub/Sub**이라는 똑똑한 방식을 씁니다.
+
+<img src="/posts/attachments/20260513/hermes_step2_super_final.webp" alt="메시지 전달 원리 인포그래픽" class="desktop-image-fix" />
+
+- **📬 Pub/Sub (Mailbox Analogy)**: 구글 챗이 메시지를 받으면 구글 서버의 '우체통(Topic)'에 넣습니다. 그러면 우리 집의 헤르메스가 주기적으로 그 우체통을 확인해 자기 편지(Subscription)를 쓱 가져오는 방식입니다.
+- **장점**: 우리 집 컴퓨터의 보안 설정을 건드릴 필요 없이, 구글 클라우드라는 안전한 다리를 통해 대화할 수 있습니다. 별도의 터널링(ngrok 등)이나 TLS 인증서가 필요하지 않습니다.
 
 ---
 
-## 🔑 2단계: 구글 클라우드(GCP) 기초 공사
+## 🛠️ 1단계: 구글 클라우드 기초 공사 (GCP Project)
 
-가장 먼저 구글 클라우드 콘솔([console.cloud.google.com](https://console.cloud.google.com/))에서 프로젝트를 만들고 권한을 설정해야 합니다.
+에이전트가 활동할 가상의 본부를 만드는 단계입니다.
 
-1. **서비스 계정 생성**: [IAM 및 관리] -> [서비스 계정]에서 헤르메스 전용 계정을 만듭니다.
-   - 이름: `hermes-agent-access`
-   - 역할: 처음에는 테스트를 위해 **'프로젝트 편집자(Editor)'**를 주어도 되지만, 보안을 위해 나중에는 필요한 권한만 줍니다.
+<img src="/posts/attachments/20260513/hermes_step1_super_final.webp" alt="구글 클라우드 기초 설정 인포그래픽" class="desktop-image-fix" />
+
+1. **프로젝트 생성**: [Google Cloud Console](https://console.cloud.google.com)에서 새 프로젝트를 만듭니다 (예: `hermes-chat-project`). 개인 계정의 무료 티어 범위 내에서 충분히 운영 가능합니다.
+
+2. **API 활성화**: 다음 두 가지를 검색해 활성화합니다.
+    - **Google Chat API**: 봇의 정체성을 정의하고 대화 기능을 제공합니다.
+    - **Cloud Pub/Sub API**: 메시지가 오가는 고속도로 역할을 합니다.
+
+---
+
+## 🔑 2단계: 서비스 계정과 신분증 발급 (Identity)
+
+가장 보안이 중요하고 까다로운 단계입니다. 이 열쇠가 있어야 헤르메스가 구글 클라우드 문을 열고 들어갈 수 있습니다.
+
+<img src="/posts/attachments/20260513/hermes_step3_super_final.webp" alt="서비스 계정 및 보안 인포그래픽" class="desktop-image-fix" />
+
+1. **서비스 계정 생성**: [IAM 및 관리자] -> [서비스 계정] 메뉴로 이동합니다. `hermes-chat-bot`이라는 이름으로 계정을 만듭니다. 
 
 2. **JSON 키 다운로드**: 만든 계정을 클릭해 **[키(Keys)] -> [새 키 만들기(JSON)]**를 눌러 파일을 컴퓨터에 저장합니다.
 
@@ -120,7 +136,7 @@ GOOGLE_CHAT_ALLOWED_USERS=you@domain.com
 
 축하합니다! 이제 모든 설정이 끝났습니다. 마지막으로 헤르메스를 깨워 구글 챗과 인사를 나누게 할 시간입니다.
 
-<img src="/posts/attachments/20260513/hermes_step4_final_v5.webp" alt="헤르메스 연동 완료 인포그래픽" class="desktop-image-fix" />
+<img src="/posts/attachments/20260513/hermes_step4_super_final.webp" alt="헤르메스 연동 완료 인포그래픽" class="desktop-image-fix" />
 
 ### 1. 헤르메스 실행
 
