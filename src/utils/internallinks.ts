@@ -459,6 +459,10 @@ export function remarkWikilinks() {
           // Resolve the image path to a public URL
           // We'll use absolute paths starting with / to ensure they work from any page level
           let finalUrl = imagePath;
+          
+          // Decode first to avoid double-encoding later
+          try { finalUrl = decodeURIComponent(finalUrl); } catch (e) {}
+
           if (finalUrl.startsWith("attachments/")) {
             finalUrl = `/posts/${finalUrl}`;
           } else if (!finalUrl.startsWith("/") && !finalUrl.startsWith("http")) {
@@ -1806,6 +1810,9 @@ export function remarkFolderImages() {
       // 1. Clean up image path
       let cleanPath = imagePath;
       if (cleanPath.startsWith("./")) cleanPath = cleanPath.slice(2);
+      
+      // Decode first to avoid double-encoding later
+      try { cleanPath = decodeURIComponent(cleanPath); } catch (e) {}
 
       // 2. Determine final URL
       let finalUrl = cleanPath;
