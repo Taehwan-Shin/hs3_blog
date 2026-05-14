@@ -109,7 +109,30 @@ image: {
     refreshContentOnChange(),
     tailwind(),
     sitemap(),
-    mdx(),
+    mdx({
+      remarkPlugins: [
+        remarkObsidianImageSize(),
+        remarkInternalLinks(),
+        remarkInlineTags(),
+        remarkObsidianComments(),
+        remarkFolderImages(),
+        remarkObsidianEmbeds(),
+        remarkBases(),
+        remarkImageCaptions(),
+        remarkMath,
+        remarkCallouts(),
+        remarkBreaks,
+        remarkImageGrids(),
+        remarkMermaid(),
+        [remarkReadingTime, {}],
+        [remarkToc, {
+          tight: true,
+          ordered: false,
+          maxDepth: 3,
+          heading: 'contents|table[ -]of[ -]contents?|toc'
+        }],
+      ],
+    }),
     swup({
       theme: false,
       animationClass: 'transition-swup-',
@@ -133,20 +156,20 @@ image: {
   ],
   markdown: {
       remarkPlugins: [
-      remarkObsidianImageSize, // Parse Obsidian image size syntax first
-      remarkInternalLinks,
-      remarkInlineTags,
-      remarkObsidianComments, // Remove Obsidian comments (%%...%%) early in processing
-      remarkFolderImages,
-      remarkObsidianEmbeds,
+      remarkObsidianImageSize(), // Parse Obsidian image size syntax first
+      remarkInternalLinks(),
+      remarkInlineTags(),
+      remarkObsidianComments(), // Remove Obsidian comments (%%...%%) early in processing
+      remarkFolderImages(),
+      remarkObsidianEmbeds(),
       // Bases directive (table-only v1)
-      remarkBases,
-      remarkImageCaptions,
+      remarkBases(),
+      remarkImageCaptions(),
       remarkMath,
-      remarkCallouts,
+      remarkCallouts(),
       remarkBreaks,
-      remarkImageGrids,
-      remarkMermaid,
+      remarkImageGrids(),
+      remarkMermaid(),
       [remarkReadingTime, {}],
       [remarkToc, {
         tight: true,
