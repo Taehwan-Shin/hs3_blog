@@ -13,8 +13,17 @@ async function normalizeDir(dir) {
       let finalPath = itemPath;
       if (item !== normalizedItem) {
         finalPath = path.join(dir, normalizedItem);
-        console.log(`Normalizing: ${item} -> ${normalizedItem}`);
-        await fs.rename(itemPath, finalPath);
+        console.log(`Normalizing & Purging: ${item} -> ${normalizedItem}`);
+        
+        // If the target NFC file already exists, we should delete the NFD one
+        // and potentially overwrite if needed (but rename handles it usually)
+        try {
+          await fs.rename(itemPath, finalPath);
+        } catch (err) {
+          // If rename fails (e.g. file exists), delete the NFD one
+          console.log(`Rename failed, deleting source: ${item}`);
+          await fs.unlink(itemPath);
+        }
       }
       
       if (stat.isDirectory()) {
@@ -29,16 +38,24 @@ async function normalizeDir(dir) {
 }
 
 const targetDirs = [
-  'src/content/posts/attachments',
-  'public/posts/attachments'
+  'src/content/posts',
+  'src/content/pages',
+  'src/content/projects',
+  'src/content/docs',
+  'src/content/special',
+  'public/posts/attachments',
+  'public/pages/attachments',
+  'public/projects/attachments',
+  'public/docs/attachments',
+  'public/special/attachments'
 ];
 
 async function run() {
-  console.log('🔄 Normalizing filenames to NFC...');
+  console.log('🔄 Normalizing all filenames to NFC and purging NFD duplicates...');
   for (const dir of targetDirs) {
     await normalizeDir(dir);
   }
-  console.log('✅ Normalization complete!');
+  console.log('✅ Normalization and purge complete!');
 }
 
 run();
