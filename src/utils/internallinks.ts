@@ -1817,19 +1817,21 @@ export function remarkFolderImages() {
       // 2. Determine final URL
       let finalUrl = cleanPath;
 
-      if (isFolderBased && contentSlug) {
-        // Folder-based: /posts/my-post/image.png
-        if (cleanPath.startsWith('images/') || cleanPath.startsWith('attachments/')) {
-          cleanPath = cleanPath.replace(/^(images|attachments)[/\\]/, '');
+      // PRIORITY 1: Shared attachments (starts with attachments/)
+      if (cleanPath.startsWith('attachments/')) {
+        finalUrl = `/${collection}/${cleanPath}`;
+      } 
+      // PRIORITY 2: Folder-based post-specific images
+      else if (isFolderBased && contentSlug) {
+        // Strip 'images/' prefix if present
+        if (cleanPath.startsWith('images/')) {
+          cleanPath = cleanPath.replace(/^images[/\\]/, '');
         }
         finalUrl = `/${collection}/${contentSlug}/${cleanPath}`;
-      } else {
-        // Single-file or fallback: ensure it starts with /posts/attachments/
-        if (cleanPath.startsWith('attachments/')) {
-          finalUrl = `/${collection}/${cleanPath}`;
-        } else if (!cleanPath.startsWith('/') && !cleanPath.startsWith('http')) {
-          finalUrl = `/${collection}/attachments/${cleanPath}`;
-        }
+      } 
+      // PRIORITY 3: Fallback for single-file content images
+      else if (!cleanPath.startsWith('/') && !cleanPath.startsWith('http')) {
+        finalUrl = `/${collection}/attachments/${cleanPath}`;
       }
 
       // 3. Convert to WebP
