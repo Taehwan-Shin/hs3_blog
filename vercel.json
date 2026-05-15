@@ -18,7 +18,7 @@
   ],
   "headers": [
     {
-      "source": "/_assets/(.*)",
+      "source": "/_assets/:path*",
       "headers": [
         {
           "key": "Cache-Control",
@@ -27,7 +27,7 @@
       ]
     },
     {
-      "source": "/(.*\\.(webp|jpg|jpeg|png|gif|svg))",
+      "source": "/:path*(webp|jpg|jpeg|png|gif|svg)",
       "headers": [
         {
           "key": "Cache-Control",
@@ -36,7 +36,7 @@
       ]
     },
     {
-      "source": "/(.*\\.pdf)",
+      "source": "/:path*(pdf)",
       "headers": [
         {
           "key": "Cache-Control",
@@ -49,7 +49,7 @@
       ]
     },
     {
-      "source": "/(.*)",
+      "source": "/:path*",
       "headers": [
         {
           "key": "Content-Security-Policy",
