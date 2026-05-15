@@ -3,7 +3,7 @@ title: "고교 삼국시대 운영 및 관리 지침서"
 description: "고교 삼국시대 블로그의 정체성, 페르소나, 그리고 운영 규칙을 정의하는 마스터 가이드라인입니다."
 date: 2026-05-03
 author: goguryeo
-image: "attachments/hermes-hero.png"
+image: "/posts/attachments/hermes-hero.webp"
 tags: ["운영지침", "가이드", "브랜딩"]
 ---
 
