@@ -14,6 +14,13 @@ import type { Root, Code } from 'mdast';
 
 const remarkMermaid: Plugin<[], Root> = () => {
   return (tree) => {
+    const nodesToReplace: Array<{
+      parent: any;
+      index: number;
+      node: any;
+      newNode: any;
+    }> = [];
+
     visit(tree, 'code', (node: Code, index, parent) => {
       // Check if this is a mermaid code block
       if (node.lang !== 'mermaid') {
@@ -40,8 +47,14 @@ const remarkMermaid: Plugin<[], Root> = () => {
 
       // Replace the code block with the mermaid container
       if (parent && typeof index === 'number') {
-        parent.children.splice(index, 1, mermaidHtml);
-        return [SKIP, index + 1];
+        nodesToReplace.push({ parent, index, node, newNode: mermaidHtml });
+      }
+    });
+
+    // Replace in reverse order
+    nodesToReplace.reverse().forEach(({ parent, index, node, newNode }) => {
+      if (parent && parent.children && parent.children[index] === node) {
+        parent.children.splice(index, 1, newNode);
       }
     });
   };

@@ -1,4 +1,4 @@
-import { visit } from 'unist-util-visit';
+import { visit, SKIP } from 'unist-util-visit';
 import type { Plugin } from 'unified';
 import type { Root, Image, Link } from 'mdast';
 import fs from 'node:fs';
@@ -509,5 +509,4 @@ export const remarkObsidianEmbeds: Plugin<[], Root> = () => {
   };
 };
 
-import { SKIP } from 'unist-util-visit';
 

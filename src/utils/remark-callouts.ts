@@ -68,6 +68,13 @@ const calloutMappings: Record<string, CalloutMapping> = {
 
 const remarkCallouts: Plugin<[], Root> = () => {
   return (tree) => {
+    const nodesToReplace: Array<{
+      parent: any;
+      index: number;
+      node: any;
+      newNodes: any[];
+    }> = [];
+
     visit(tree, 'blockquote', (node: Blockquote, index, parent) => {
       // Check if this blockquote contains a callout pattern
       const firstChild = node.children[0];
@@ -78,9 +85,7 @@ const remarkCallouts: Plugin<[], Root> = () => {
       const paragraphText = extractTextFromNode(firstParagraph);
       
       // Match callout pattern at the start of the paragraph text
-      // The custom title capture should stop at newline (title is on same line as callout)
       const calloutMatch = paragraphText.match(/^\[!([\w-]+)\]([+\-]?)(?:\s+([^\n]+))?/);
-      
       if (!calloutMatch) return;
       
       const [fullMatch, calloutType, collapseState, customTitle] = calloutMatch;
@@ -91,74 +96,49 @@ const remarkCallouts: Plugin<[], Root> = () => {
         title: calloutType.charAt(0).toUpperCase() + calloutType.slice(1)
       };
       
-      // Get remaining text after the callout syntax
       const remainingText = paragraphText.slice(fullMatch.length).trim();
       const hasMultipleParagraphs = node.children.length > 1;
       
-      // CRITICAL: Check if the FIRST text node starts with callout syntax followed by newline
-      // This indicates the callout is on its own line, even if content follows in the same paragraph
       const firstTextNode = firstParagraph.children.find((child: any) => child.type === 'text') as Text | undefined;
       const firstTextValue = firstTextNode?.value || '';
       
-      // Check if first text node starts with callout syntax followed by newline
-      // Pattern: "[!example]\n" or "[!example] \n" (with optional space before newline)
       const calloutStartsOnOwnLine = firstTextValue.match(/^\[![\w-]+\][+\-]?\s*\n/);
-      
-      // The callout is on its own line if:
-      // 1. Multiple paragraphs exist, OR
-      // 2. First text node starts with callout syntax + newline (callout on own line, content follows), OR
-      // 3. No remaining text (callout only)
       const isCalloutOnOwnLine = hasMultipleParagraphs || 
                                 calloutStartsOnOwnLine !== null || 
                                 remainingText.length === 0;
       
-      // Determine the actual title to use - ALWAYS use mapped title when callout is on its own line
       const calloutTitle = isCalloutOnOwnLine
-        ? mapping.title  // Use mapped title when callout is on its own line
-        : (customTitle || mapping.title);  // Use custom title if provided, otherwise mapped title
+        ? mapping.title
+        : (customTitle || mapping.title);
       
-      // Determine if callout should be collapsible and its initial state
       const isCollapsible = collapseState === '+' || collapseState === '-';
       const isCollapsed = collapseState === '-';
       
-      // Process the remaining content
       let contentChildren = [...node.children];
       
-      // Handle content based on structure:
-      // - Multiple paragraphs: Remove first paragraph (callout line separate from content)
-      // - Single paragraph, callout on own line (newline detected): Keep paragraph, remove callout syntax
-      // - Single paragraph, callout only: Remove paragraph (no content)
-      // - Single paragraph, callout with title on same line: Keep paragraph, remove callout syntax
       if (hasMultipleParagraphs) {
-        // Multiple paragraphs - callout line is separate, remove first paragraph
         contentChildren = contentChildren.slice(1);
       } else if (calloutStartsOnOwnLine) {
-        // Single paragraph but callout starts on its own line (has newline after callout)
-        // Keep the paragraph but remove the callout syntax from the first text node
         if (firstTextNode) {
-          // Remove callout syntax and newline from start of first text node
           const newlinePattern = /^\[![\w-]+\][+\-]?\s*\n\s*/;
           firstTextNode.value = firstTextNode.value.replace(newlinePattern, '');
         }
-        // Keep the paragraph (contentChildren already has it)
       } else if (remainingText.length === 0) {
-        // Single paragraph with only callout syntax - remove it
         contentChildren = contentChildren.slice(1);
       } else if (remainingText) {
-        // Single paragraph with text after callout - remove callout syntax, keep the text
-        const updateTextNode = (node: any): boolean => {
-          if (node.type === 'text' && node.value) {
-            const textValue = node.value as string;
+        const updateTextNode = (n: any): boolean => {
+          if (n.type === 'text' && n.value) {
+            const textValue = n.value as string;
             if (textValue.includes(fullMatch)) {
-              const index = textValue.indexOf(fullMatch);
-              const before = textValue.slice(0, index);
-              const after = textValue.slice(index + fullMatch.length).trim();
-              node.value = (before + (after ? ' ' + after : '')).trim();
+              const idx = textValue.indexOf(fullMatch);
+              const before = textValue.slice(0, idx);
+              const after = textValue.slice(idx + fullMatch.length).trim();
+              n.value = (before + (after ? ' ' + after : '')).trim();
               return true;
             }
           }
-          if (node.children && Array.isArray(node.children)) {
-            for (const child of node.children) {
+          if (n.children && Array.isArray(n.children)) {
+            for (const child of n.children) {
               if (updateTextNode(child)) return true;
             }
           }
@@ -167,7 +147,6 @@ const remarkCallouts: Plugin<[], Root> = () => {
         updateTextNode(firstParagraph);
       }
       
-      // Generate toggle button HTML if collapsible
       const toggleButton = isCollapsible ? 
         `<button class="callout-toggle" aria-expanded="${!isCollapsed}" aria-label="Toggle callout content">
           <svg class="callout-toggle-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -175,7 +154,6 @@ const remarkCallouts: Plugin<[], Root> = () => {
           </svg>
         </button>` : '';
       
-      // Transform the blockquote into a callout HTML structure
       const calloutHtml: any = {
         type: 'html',
         value: `<div class="callout callout-${mapping.type}${isCollapsible ? ' callout-collapsible' : ''}${isCollapsed ? ' callout-collapsed' : ''}">
@@ -192,10 +170,15 @@ const remarkCallouts: Plugin<[], Root> = () => {
         value: '</div></div>'
       };
       
-      // Replace the blockquote with the callout structure
       if (parent && typeof index === 'number') {
-        parent.children.splice(index, 1, calloutHtml, ...contentChildren, closeHtml);
-        return [SKIP, index + contentChildren.length + 2];
+        nodesToReplace.push({ parent, index, node, newNodes: [calloutHtml, ...contentChildren, closeHtml] });
+      }
+    });
+
+    // Replace in reverse order
+    nodesToReplace.reverse().forEach(({ parent, index, node, newNodes }) => {
+      if (parent && parent.children && parent.children[index] === node) {
+        parent.children.splice(index, 1, ...newNodes);
       }
     });
   };
