@@ -66,15 +66,11 @@ const structuredData = {
 const allPosts = await getCollection('posts');
 const visiblePosts = allPosts.filter(p => shouldShowPost(p, isDev));
 
-// Process the post content and get processed data including word count
-const { Content, headings, remarkPluginFrontmatter } = await render(post);
-const { wordCount } = await processPost(post);
-const readingTime = calculateReadingTime(post.body || '');
+// Process the post content and get all necessary data
+const { Content, headings, remarkPluginFrontmatter, wordCount, readingTime, toc } = await processPost(post);
 
-// Generate table of contents if enabled
-const hideTOC = post.data.hideTOC === true;
-const shouldShowTOC = !hideTOC && siteConfig.tableOfContents.enabled && headings.length > 0;
-const toc = shouldShowTOC ? await generateTOC(headings) : [];
+// Table of contents is already generated in processPost
+const shouldShowTOC = !post.data.hideTOC && siteConfig.tableOfContents.enabled && toc.length > 0;
 
 // Get adjacent posts for navigation
 const { prev: prevPost, next: nextPost } = getAdjacentPosts(visiblePosts, post.id);
@@ -209,9 +205,10 @@ if (siteConfig.postOptions.graphView.enabled && siteConfig.postOptions.graphView
         </header>
 
         <!-- Article content -->
-        <div class="prose dark:prose-dark max-w-none" id="post-content">
+        <article class="prose dark:prose-invert max-w-none mb-16" id="post-content">
           <Content />
-        </div>
+          {!Content && <p class="text-red-500 font-bold">Content rendering failed. Please check build logs.</p>}
+        </article>
 
         {author && (
           <div class="mt-16 pt-10 border-t border-primary-200 dark:border-primary-800">

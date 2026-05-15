@@ -42,7 +42,7 @@ title: "게시글 제목"
 description: "게시글의 핵심 내용을 요약한 1~2문장의 설명"
 date: YYYY-MM-DD
 author: goguryeo # goguryeo, baekje, silla 중 선택 (파일 ID)
-image: "attachments/filename.png" # 히어로 이미지 경로
+image: "/posts/attachments/filename.webp" # 히어로 이미지 경로
 tags: ["키워드1", "키워드2"]
 draft: false
 ---
