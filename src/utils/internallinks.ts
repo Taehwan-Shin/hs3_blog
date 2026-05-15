@@ -482,14 +482,14 @@ export function remarkWikilinks() {
           // Create a proper image node
           newChildren.push({
             type: "image",
-            url: finalUrl,
-            alt: altText,
+            url: finalUrl || "",
+            alt: altText || "",
             title: null,
             data: {
               hName: "img",
               hProperties: {
-                src: finalUrl,
-                alt: altText,
+                src: finalUrl || "",
+                alt: altText || "",
               },
             },
           });
@@ -502,28 +502,22 @@ export function remarkWikilinks() {
           const isSamePageAnchor = linkText.startsWith("#") || link === "";
 
           // Handle different link formats
-          let url: string;
-          let wikilinkData: string;
+          let url: string = "";
+          let wikilinkData: string = "";
+          let skipProcessing = false;
 
           if (isSamePageAnchor) {
             // Same-page anchor: [[#heading]] or [[#heading|text]]
-            // Extract anchor from linkText (which starts with #)
             const anchorText = linkText.startsWith("#") 
               ? linkText.substring(1) 
               : linkText;
             
-            // Decode URL-encoded anchor if present
             const decodedAnchor = decodeAnchorText(anchorText);
-            
-            // Generate slug for same-page anchor
             const anchorSlug = createAnchorSlug(decodedAnchor);
             url = `#${anchorSlug}`;
-            wikilinkData = ""; // No post reference for same-page anchors
+            wikilinkData = ""; 
           } else if (link.startsWith("posts/")) {
-            // Handle posts/path format
             const postPath = link.replace("posts/", "");
-            // Conservative approach: only remove /index if it follows folder-based pattern
-            // Pattern: folder-name/index -> folder-name (where folder-name matches the slug)
             const cleanPath =
               postPath.endsWith("/index") && postPath.split("/").length === 2
                 ? postPath.replace("/index", "")
@@ -531,57 +525,56 @@ export function remarkWikilinks() {
             url = `/posts/${cleanPath}`;
             wikilinkData = cleanPath;
           } else if (link.includes("/")) {
-            // Handle folder-based post format: folder-name/index
-            // In Astro v6, folder-based posts have IDs like 'folder-name' (not 'folder-name/index')
-            // So we need to handle the /index pattern explicitly
             if (link.endsWith("/index") && link.split("/").length === 2) {
-              // This is a folder-based post: folder-name/index -> folder-name
               const folderName = link.replace("/index", "");
               url = `/posts/${folderName}`;
               wikilinkData = folderName;
             } else {
-              // Other paths with slashes that don't start with posts/ are not valid for wikilinks
-            // Skip processing - this would not work in Obsidian
-            return;
+              // Not a valid wikilink format for this blog - just treat as text
+              skipProcessing = true;
             }
           } else {
-            // Handle simple slug format - ASSUMES POSTS COLLECTION
             const slugifiedLink = createSlugFromTitle(link);
             url = `/posts/${slugifiedLink}`;
             wikilinkData = link.trim();
           }
 
-          // Add anchor if present (for cross-page anchors, not same-page)
-          // CRITICAL: This must run AFTER all URL construction
-          if (anchor && !isSamePageAnchor) {
-            const anchorSlug = createAnchorSlug(anchor);
-            // Ensure anchor is added (don't overwrite existing anchor)
-            if (!url.includes('#')) {
-              url += `#${anchorSlug}`;
+          if (skipProcessing) {
+            // Just treat the original text as text
+            newChildren.push({
+              type: "text",
+              value: fullMatch || "",
+            });
+          } else {
+            // Add anchor if present
+            if (anchor && !isSamePageAnchor) {
+              const anchorSlug = createAnchorSlug(anchor);
+              if (!url.includes('#')) {
+                url += `#${anchorSlug}`;
+              }
             }
-          }
 
-          // Add the wikilink as a link node
-          // We'll use the link text as placeholder - the actual resolution happens in PostLayout
-          newChildren.push({
-            type: "link",
-            url: url,
-            title: null,
-            data: {
-              hName: "a",
-              hProperties: {
-                className: ["wikilink"],
-                "data-wikilink": wikilinkData,
-                "data-display-override": displayText,
+            // Add the wikilink as a link node
+            newChildren.push({
+              type: "link",
+              url: url || "#",
+              title: null,
+              data: {
+                hName: "a",
+                hProperties: {
+                  className: ["wikilink"],
+                  "data-wikilink": wikilinkData || "",
+                  "data-display-override": displayText || "",
+                },
               },
-            },
-            children: [
-              {
-                type: "text",
-                value: displayText || (isSamePageAnchor ? linkText.replace(/^#/, "") : link.trim()),
-              },
-            ],
-          });
+              children: [
+                {
+                  type: "text",
+                  value: String(displayText || (isSamePageAnchor ? linkText.replace(/^#/, "") : link.trim()) || ""),
+                },
+              ],
+            });
+          }
         }
 
         lastIndex = wikilinkRegex.lastIndex;
@@ -591,7 +584,7 @@ export function remarkWikilinks() {
       if (lastIndex < node.value.length) {
         newChildren.push({
           type: "text",
-          value: node.value.slice(lastIndex),
+          value: node.value.slice(lastIndex) || "",
         });
       }
 
