@@ -109,19 +109,23 @@ function isInsideCodeBlock(parent: any, tree: any): boolean {
   // Check if the immediate parent is a code-related node
   if (!parent) return false;
 
-  // Check for inline code or code blocks
+  // Common markdown code node types
   if (parent.type === "inlineCode" || parent.type === "code") {
     return true;
   }
 
-  // Walk up the AST to check for code block ancestors
+  // Traversal up the tree if parent pointers exist (some unist utilities add them)
   let currentNode = parent;
-  while (currentNode) {
+  while (currentNode && typeof currentNode === 'object') {
     if (currentNode.type === "inlineCode" || currentNode.type === "code") {
       return true;
     }
-    // Try to find the parent node in the tree (simplified check)
-    currentNode = currentNode.parent;
+    // Only continue if parent pointer exists
+    if ('parent' in currentNode) {
+      currentNode = currentNode.parent;
+    } else {
+      break;
+    }
   }
 
   return false;
@@ -588,18 +592,18 @@ export function remarkWikilinks() {
         });
       }
 
-      if (hasWikilinks && parent && parent.children) {
+      if (hasWikilinks && parent && parent.children && typeof index === 'number') {
         nodesToReplace.push({
           parent,
           index,
-          newChildren,
+          newChildren: newChildren.filter(child => child !== undefined && child !== null),
         });
       }
     });
 
     // Replace nodes with wikilinks
     nodesToReplace.reverse().forEach(({ parent, index, newChildren }) => {
-      if (parent && parent.children && Array.isArray(parent.children)) {
+      if (parent && parent.children && Array.isArray(parent.children) && typeof index === 'number') {
         parent.children.splice(index, 1, ...newChildren);
       }
     });

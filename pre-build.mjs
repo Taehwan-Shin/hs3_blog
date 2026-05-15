@@ -10,7 +10,7 @@ import { join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const __dirname = fileURLToPath(new URL('.', import.meta.url));
-const root = resolve(__dirname, '..');
+const root = __dirname;
 const srcAttachments = join(root, 'src', 'content', 'posts', 'attachments');
 const pubAttachments = join(root, 'public', 'posts', 'attachments');
 
@@ -37,5 +37,5 @@ if (existsSync(srcAttachments)) {
         console.log(`✓ ${entry} → public/posts/attachments/ (${(stat.size / 1024).toFixed(1)}KB)`);
     }
 } else {
-    console.log('⚠ src content/posts/my-blog/attachments not found — skipping');
+    console.log(`⚠ src ${srcAttachments} not found — skipping`);
 }
