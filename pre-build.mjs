@@ -11,7 +11,7 @@ import { fileURLToPath } from 'node:url';
 
 const __dirname = fileURLToPath(new URL('.', import.meta.url));
 const root = resolve(__dirname, '..');
-const srcAttachments = join(root, 'src', 'content', 'posts', 'my-blog', 'attachments');
+const srcAttachments = join(root, 'src', 'content', 'posts', 'attachments');
 const pubAttachments = join(root, 'public', 'posts', 'attachments');
 
 function copyRecursive(src, dest) {
