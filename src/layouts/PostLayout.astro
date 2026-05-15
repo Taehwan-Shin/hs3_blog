@@ -4,9 +4,8 @@ import { siteConfig } from '@/config';
 import { generatePostSEO } from '@/utils/seo';
 import { optimizePostImagePath, getOptimizedFormat } from '@/utils/images';
 import { processWikilinksInHTML } from '@/utils/internallinks';
-import { getCollection } from 'astro:content';
+import { getCollection, getEntry, render } from 'astro:content';
 import { shouldShowPost, processPost, calculateReadingTime, generateTOC, getAdjacentPosts, formatDate, formatDateMobile, getReadingTimeMobile } from '@/utils/markdown';
-import { getEntry } from 'astro:content';
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import TableOfContents from '@/components/TableOfContents.astro';
 import LinkedMentions from '@/components/LinkedMentions.astro';
@@ -68,7 +67,8 @@ const allPosts = await getCollection('posts');
 const visiblePosts = allPosts.filter(p => shouldShowPost(p, isDev));
 
 // Process the post content and get processed data including word count
-const { Content, headings, wordCount, remarkPluginFrontmatter } = await processPost(post);
+const { Content, headings, remarkPluginFrontmatter } = await render(post);
+const { wordCount } = await processPost(post);
 const readingTime = calculateReadingTime(post.body || '');
 
 // Generate table of contents if enabled

@@ -1,4 +1,4 @@
-import { visit } from 'unist-util-visit';
+import { visit, SKIP, CONTINUE } from 'unist-util-visit';
 import type { Plugin } from 'unified';
 import type { Root, Blockquote, Paragraph, Text } from 'mdast';
 
@@ -195,6 +195,7 @@ const remarkCallouts: Plugin<[], Root> = () => {
       // Replace the blockquote with the callout structure
       if (parent && typeof index === 'number') {
         parent.children.splice(index, 1, calloutHtml, ...contentChildren, closeHtml);
+        return [SKIP, index + contentChildren.length + 2];
       }
     });
   };

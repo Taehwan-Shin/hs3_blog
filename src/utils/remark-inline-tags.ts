@@ -83,6 +83,7 @@ const remarkInlineTags: Plugin<[], Root> = () => {
       // Replace the text node with the new children
       if (newChildren.length > 0) {
         parent.children.splice(index, 1, ...newChildren);
+        return [SKIP, index + newChildren.length];
       }
     });
   };

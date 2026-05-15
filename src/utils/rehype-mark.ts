@@ -33,6 +33,7 @@ const rehypeMark: Plugin<[], Root> = () => {
       if (last < value.length) out.push({ type: 'text', value: value.slice(last) });
 
       parent.children.splice(index, 1, ...out);
+      return [SKIP, index + out.length];
     });
   };
 };

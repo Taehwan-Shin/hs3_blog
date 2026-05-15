@@ -105,28 +105,11 @@ function parseLinkWithAnchor(linkText: string): {
 }
 
 // Helper function to check if a node is inside a code block
-function isInsideCodeBlock(parent: any, tree: any): boolean {
-  // Check if the immediate parent is a code-related node
-  if (!parent) return false;
+function isInsideCodeBlock(node: any, tree: any): boolean {
+  if (!node || !tree) return false;
 
-  // Common markdown code node types
-  if (parent.type === "inlineCode" || parent.type === "code") {
-    return true;
-  }
-
-  // Traversal up the tree if parent pointers exist (some unist utilities add them)
-  let currentNode = parent;
-  while (currentNode && typeof currentNode === 'object') {
-    if (currentNode.type === "inlineCode" || currentNode.type === "code") {
-      return true;
-    }
-    // Only continue if parent pointer exists
-    if ('parent' in currentNode) {
-      currentNode = currentNode.parent;
-    } else {
-      break;
-    }
-  }
+  // Optimization: if node is already a code-related node
+  if (node && typeof node === 'object' && (node.type === 'code' || node.type === 'inlineCode')) return true;
 
   return false;
 }
@@ -413,6 +396,7 @@ function extractLinkTextFromUrlWithAnchor(
 // Remark plugin for processing wikilinks (Obsidian-style) - original behavior
 export function remarkWikilinks() {
   return function transformer(tree: any, file: any) {
+    if (!tree) return;
     const nodesToReplace: Array<{
       parent: any;
       index: number;
@@ -592,18 +576,20 @@ export function remarkWikilinks() {
         });
       }
 
-      if (hasWikilinks && parent && parent.children && typeof index === 'number') {
+      if (newChildren.length > 0 && (newChildren.length > 1 || newChildren[0].value !== node.value)) {
         nodesToReplace.push({
           parent,
           index,
-          newChildren: newChildren.filter(child => child !== undefined && child !== null),
+          node, // Store original node for verification
+          newChildren: newChildren.filter(child => child !== undefined && child !== null && (child.type !== 'text' || (child.value && child.value !== ''))),
         });
       }
     });
 
-    // Replace nodes with wikilinks
-    nodesToReplace.reverse().forEach(({ parent, index, newChildren }) => {
-      if (parent && parent.children && Array.isArray(parent.children) && typeof index === 'number') {
+    // Replace nodes with wikilinks in reverse order to maintain indices
+    nodesToReplace.reverse().forEach(({ parent, index, node, newChildren }) => {
+      // Final safety check: ensure the node at this index is still the same one we intended to replace
+      if (parent && parent.children && parent.children[index] === node && Array.isArray(parent.children)) {
         parent.children.splice(index, 1, ...newChildren);
       }
     });
@@ -739,6 +725,7 @@ export function validateWikilinks(
 // Remark plugin for processing standard markdown links (all content types)
 export function remarkStandardLinks() {
   return function transformer(tree: any, file: any) {
+    if (!tree) return;
     // Process existing link nodes to add wikilink data attributes for internal links
     visit(tree, "link", (node: any) => {
       if (!node.url) return;
@@ -1085,6 +1072,7 @@ export function extractStandardLinks(content: string): WikilinkMatch[] {
 // Combined remark plugin for both wikilinks and standard links
 export function remarkInternalLinks() {
   return function transformer(tree: any, file: any) {
+    if (!tree) return;
     // First process wikilinks (Obsidian-style, posts only) with build-time resolution
     const wikilinkPlugin = remarkWikilinks();
     wikilinkPlugin(tree, file);
@@ -1726,9 +1714,10 @@ function convertToWebP(imagePath: string): string {
 // Custom remark plugin to handle ALL content images (folder-based AND single-file)
 export function remarkFolderImages() {
   return function transformer(tree: any, file: any) {
+    if (!tree) return;
     visit(tree, "image", (node: any) => {
       // Skip if already absolute or external URL
-      if (!node.url || node.url.startsWith("/") || node.url.startsWith("http")) {
+      if (!node || !node.url || node.url.startsWith("/") || node.url.startsWith("http")) {
         return;
       }
 

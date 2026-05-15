@@ -28,8 +28,8 @@ export function rehypeNormalizeAnchors() {
         }
         
         // Also check if parent is a heading element
-        if (parent && typeof parent === 'object' && parent !== null && 'tagName' in parent) {
-          const parentTag = String(parent.tagName || '').toLowerCase();
+        if (parent && typeof parent === 'object' && parent !== null) {
+          const parentTag = String((parent as any).tagName || '').toLowerCase();
           if (/^h[1-6]$/.test(parentTag)) {
             return; // Skip this link - it's inside a heading
           }
@@ -50,8 +50,8 @@ export function rehypeNormalizeAnchors() {
         // Handle same-page anchor links (href starts with #)
         if (href.startsWith('#') && href.length > 1) {
           // Final safety check: skip if parent is a heading
-          if (parent && typeof parent === 'object' && parent !== null && 'tagName' in parent) {
-            const parentTag = String(parent.tagName || '').toLowerCase();
+          if (parent && typeof parent === 'object' && parent !== null) {
+            const parentTag = String((parent as any).tagName || '').toLowerCase();
             if (/^h[1-6]$/.test(parentTag)) {
               return; // Skip - this is a heading anchor link
             }

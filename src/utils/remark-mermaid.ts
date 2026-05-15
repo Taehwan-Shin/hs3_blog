@@ -1,4 +1,4 @@
-import { visit } from 'unist-util-visit';
+import { visit, SKIP } from 'unist-util-visit';
 import type { Plugin } from 'unified';
 import type { Root, Code } from 'mdast';
 
@@ -41,6 +41,7 @@ const remarkMermaid: Plugin<[], Root> = () => {
       // Replace the code block with the mermaid container
       if (parent && typeof index === 'number') {
         parent.children.splice(index, 1, mermaidHtml);
+        return [SKIP, index + 1];
       }
     });
   };

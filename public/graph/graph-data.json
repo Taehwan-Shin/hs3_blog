@@ -50,11 +50,81 @@
       "connections": 0
     },
     {
+      "id": "my-blog/2026-04-29-hermes_agent_활용_가이드",
+      "type": "post",
+      "title": "Hermes Agent: 시스템 접근권이 있는 자율 에이전트 활용 가이드",
+      "slug": "my-blog/2026-04-29-hermes_agent_활용_가이드",
+      "connections": 1
+    },
+    {
+      "id": "my-blog/2026-05-05-ai를-쓸수록-지능이-올라가는-사람의-특징들",
+      "type": "post",
+      "title": "AI를 쓸수록 지능이 올라가는 사람의 특징들: 교육학적 관점에서 본 AI-인간 공진화",
+      "slug": "my-blog/2026-05-05-ai를-쓸수록-지능이-올라가는-사람의-특징들",
+      "connections": 0
+    },
+    {
+      "id": "my-blog/2026-05-10-baekje-ai-generalization",
+      "type": "post",
+      "title": "AI 상식의 시대, 무엇을 가르칠 것인가",
+      "slug": "my-blog/2026-05-10-baekje-ai-generalization",
+      "connections": 4
+    },
+    {
+      "id": "my-blog/2026-05-10-goguryeo-workspace-data-analysis",
+      "type": "post",
+      "title": "데이터로 읽는 학교, 분석으로 돕는 교사",
+      "slug": "my-blog/2026-05-10-goguryeo-workspace-data-analysis",
+      "connections": 4
+    },
+    {
+      "id": "my-blog/2026-05-10-silla-magic-of-ai-agents",
+      "type": "post",
+      "title": "AI 디지털 교육의 콘셉트",
+      "slug": "my-blog/2026-05-10-silla-magic-of-ai-agents",
+      "connections": 4
+    },
+    {
+      "id": "my-blog/2026-05-13-hermes-google-chat-integration",
+      "type": "post",
+      "title": "헤르메스 에이전트 x 구글 챗 연동 가이드: 원리부터 실전 트러블슈팅까지",
+      "slug": "my-blog/2026-05-13-hermes-google-chat-integration",
+      "connections": 0
+    },
+    {
+      "id": "my-blog/2026-05-14-blog-publishing-guide",
+      "type": "post",
+      "title": "🏰 신라와 함께하는 '옵시디언 블로그' 무작정 따라하기: 완전 초보를 위한 실전 구축 가이드 (Vault CMS 통합본)",
+      "slug": "my-blog/2026-05-14-blog-publishing-guide",
+      "connections": 0
+    },
+    {
+      "id": "my-blog/2026-05-14-firebase-analytics-case-study",
+      "type": "post",
+      "title": "🛠️ [개발기] 파이어베이스로 만드는 나만의 스마트 방문자 카운터: 구축부터 트러블슈팅까지",
+      "slug": "my-blog/2026-05-14-firebase-analytics-case-study",
+      "connections": 0
+    },
+    {
+      "id": "my-blog/readme",
+      "type": "post",
+      "title": "고교 삼국시대 운영 및 관리 지침서",
+      "slug": "my-blog/readme",
+      "connections": 2
+    },
+    {
+      "id": "my-blog/구글시트_연수자료_분석",
+      "type": "post",
+      "title": "구글시트(Sheets), 공유문서를 넘어 기능문서로",
+      "slug": "my-blog/구글시트_연수자료_분석",
+      "connections": 0
+    },
+    {
       "id": "readme",
       "type": "post",
       "title": "고교 삼국시대 운영 및 관리 지침서",
       "slug": "readme",
-      "connections": 1
+      "connections": 0
     },
     {
       "id": "구글시트_연수자료_분석",
@@ -67,29 +137,64 @@
   "connections": [
     {
       "source": "2026-04-29-hermes_agent_활용_가이드",
-      "target": "readme",
+      "target": "my-blog/readme",
       "type": "link"
     },
     {
       "source": "2026-05-10-baekje-ai-generalization",
-      "target": "2026-05-10-goguryeo-workspace-data-analysis",
+      "target": "my-blog/2026-05-10-goguryeo-workspace-data-analysis",
       "type": "link"
     },
     {
       "source": "2026-05-10-baekje-ai-generalization",
-      "target": "2026-05-10-silla-magic-of-ai-agents",
+      "target": "my-blog/2026-05-10-silla-magic-of-ai-agents",
       "type": "link"
     },
     {
       "source": "2026-05-10-goguryeo-workspace-data-analysis",
-      "target": "2026-05-10-silla-magic-of-ai-agents",
+      "target": "my-blog/2026-05-10-baekje-ai-generalization",
+      "type": "link"
+    },
+    {
+      "source": "2026-05-10-goguryeo-workspace-data-analysis",
+      "target": "my-blog/2026-05-10-silla-magic-of-ai-agents",
+      "type": "link"
+    },
+    {
+      "source": "2026-05-10-silla-magic-of-ai-agents",
+      "target": "my-blog/2026-05-10-goguryeo-workspace-data-analysis",
+      "type": "link"
+    },
+    {
+      "source": "2026-05-10-silla-magic-of-ai-agents",
+      "target": "my-blog/2026-05-10-baekje-ai-generalization",
+      "type": "link"
+    },
+    {
+      "source": "my-blog/2026-04-29-hermes_agent_활용_가이드",
+      "target": "my-blog/readme",
+      "type": "link"
+    },
+    {
+      "source": "my-blog/2026-05-10-baekje-ai-generalization",
+      "target": "my-blog/2026-05-10-goguryeo-workspace-data-analysis",
+      "type": "link"
+    },
+    {
+      "source": "my-blog/2026-05-10-baekje-ai-generalization",
+      "target": "my-blog/2026-05-10-silla-magic-of-ai-agents",
+      "type": "link"
+    },
+    {
+      "source": "my-blog/2026-05-10-goguryeo-workspace-data-analysis",
+      "target": "my-blog/2026-05-10-silla-magic-of-ai-agents",
       "type": "link"
     }
   ],
   "metadata": {
-    "totalPosts": 9,
-    "totalConnections": 4,
+    "totalPosts": 19,
+    "totalConnections": 11,
     "maxNodesApplied": false,
-    "originalNodeCount": 9
+    "originalNodeCount": 19
   }
 }
