@@ -1,3 +1,4 @@
+I0517 01:44:30.478760 7117706 ev_poll_posix.cc:593] FD from fork parent still in poll list: fd(26, generation: 1)
 import { defineCollection, reference, z } from 'astro:content';
 import { glob } from 'astro/loaders';
 
@@ -125,15 +126,24 @@ const docsCollection = defineCollection({
   }),
 });
 
-// Export collections - pages, docs, projects, posts, authors are the only collections
-// NOTE: 'special' collection removed because its md files (404.md, home.md, etc.)
-// are rendered directly by Astro as pages, not via Content Collections API.
-// Including them in a collection caused "Cannot use 'in' operator to search for 'children' in undefined"
-// errors when Astro tried to render them through the content pipeline.
+// Define schema for special pages (static pages like 404, home, etc.)
+const specialCollection = defineCollection({
+  loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/special' }),
+  schema: z.object({
+    title: z.string().default('Untitled Page'),
+    description: z.string().nullable().optional().default('No description provided'),
+    hideTOC: z.boolean().optional(),
+    showTOC: z.boolean().optional(),
+    noIndex: z.boolean().optional(),
+  }),
+});
+
+// Export collections
 export const collections = {
   posts: postsCollection,
   authors: authorsCollection,
   pages: pagesCollection,
   projects: projectsCollection,
   docs: docsCollection,
+  special: specialCollection,
 };
