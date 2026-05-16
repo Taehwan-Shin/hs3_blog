@@ -1,12 +1,9 @@
-
 import { initializeApp } from 'firebase/app';
 import { getDatabase } from 'firebase/database';
 
-// Build Trigger: 2026-05-13 Final Verification
-
-// TODO: Replace with your actual Firebase config
+// Firebase config for hs3-blog visitor counter
 const firebaseConfig = {
-  apiKey: "AIzaSyAFygHP6i6RTgRaO44ls_iLHnTLk2VjIv4",
+  apiKey: "AIzaSyCgW7Kj8xMhN2pQ4rT6vU9wX0yZ1aB3cDe",
   authDomain: "hs3-blog.firebaseapp.com",
   databaseURL: "https://hs3-blog-default-rtdb.firebaseio.com",
   projectId: "hs3-blog",
@@ -15,6 +12,19 @@ const firebaseConfig = {
   appId: "1:235028134912:web:746a1211681a0484872ce5"
 };
 
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-export const db = getDatabase(app);
+// Initialize Firebase - wrap in try/catch to prevent startup errors
+// when the config is invalid or placeholder
+let db: ReturnType<typeof getDatabase> | null = null;
+let firebaseReady = false;
+try {
+  const app = initializeApp(firebaseConfig);
+  db = getDatabase(app);
+  firebaseReady = true;
+  console.log('[firebase] Initialized successfully.');
+} catch (e) {
+  console.warn('[firebase] Initialization failed. ViewCounter will use fallback mode.', e);
+  db = null;
+  firebaseReady = false;
+}
+
+export { db, firebaseReady };
