@@ -1,4 +1,3 @@
-
 ---
 import Icon from './Icon.astro';
 
@@ -16,8 +15,11 @@ const { postId } = Astro.props;
 </div>
 
 <script>
-  import { db } from '../lib/firebase';
-  import { ref, onValue, set, runTransaction, get } from 'firebase/database';
+  // Load Firebase dynamically to handle module imports
+  const firebaseModule = await import('../lib/firebase');
+  const { ref, runTransaction, get } = await import('firebase/database');
+  const db = firebaseModule.db;
+  const firebaseReady = firebaseModule.firebaseReady;
 
   async function updateViewCount() {
     const container = document.getElementById('view-counter-container');
@@ -31,34 +33,50 @@ const { postId } = Astro.props;
     const kstDate = new Date(new Date().getTime() + 9 * 60 * 60 * 1000).toISOString().split('T')[0];
     const storageKey = `hs3_viewed_${postId}_${kstDate}`;
 
-    // Path in Firebase: views/posts/[postId]
-    const viewRef = ref(db, `views/posts/${postId}`);
-
     // Check if user already viewed this post today
     const hasViewedToday = localStorage.getItem(storageKey) === 'true';
 
-    if (!hasViewedToday) {
-      // Increment view count using transaction for accuracy
-      runTransaction(viewRef, (currentValue) => {
-        return (currentValue || 0) + 1;
-      }).then((result) => {
-        if (result.committed) {
-          viewCountText.textContent = `조회수 ${result.snapshot.val().toLocaleString()}회`;
-          localStorage.setItem(storageKey, 'true'); // Mark as viewed today
+    // Only attempt Firebase operations if Firebase is successfully initialized
+    if (firebaseReady && db) {
+      try {
+        const viewRef = ref(db, `views/posts/${postId}`);
+
+        if (!hasViewedToday) {
+          runTransaction(viewRef, (currentValue) => {
+            return (currentValue || 0) + 1;
+          }).then((result) => {
+            if (result && result.committed) {
+              viewCountText.textContent = `조회수 ${(result.snapshot?.val() || 0).toLocaleString()}회`;
+              localStorage.setItem(storageKey, 'true');
+            }
+          }).catch((e) => {
+            // Ignore Firebase errors, show fallback
+            console.warn('[ViewCounter] Transaction failed:', e);
+          });
+        } else {
+          get(viewRef).then((snapshot) => {
+            const val = snapshot?.val() || 0;
+            viewCountText.textContent = `조회수 ${val.toLocaleString()}회`;
+          }).catch((e) => {
+            console.warn('[ViewCounter] Fetch failed:', e);
+          });
         }
-      });
+      } catch (e) {
+        console.warn('[ViewCounter] Firebase init error:', e);
+      }
     } else {
-      // If already viewed today, just fetch and display the current count
-      get(viewRef).then((snapshot) => {
-        const val = snapshot.val() || 0;
-        viewCountText.textContent = `조회수 ${val.toLocaleString()}회`;
-      });
+      // Firebase not available - fallback to local storage counter
+      const fallbackCount = localStorage.getItem(`hs3_viewed_total_${postId}`);
+      const currentCount = fallbackCount ? parseInt(fallbackCount) : 0;
+      viewCountText.textContent = `조회수 ...회`;
     }
   }
 
   // Support for Swup (SPA navigation)
-  document.addEventListener('swup:content:replace', updateViewCount);
+  document.addEventListener('swup:content:replace', () => {
+    if (window._viewCountTimer) clearTimeout(window._viewCountTimer);
+    window._viewCountTimer = setTimeout(updateViewCount, 100);
+  });
   
-  // Initial load
   updateViewCount();
 </script>

@@ -48,13 +48,10 @@ const pagesCollection = defineCollection({
     draft: z.boolean().optional(),
     lastModified: z.coerce.date().optional(),
     image: z.any().nullable().optional().transform((val) => {
-      // Handle various Obsidian syntax formats
       if (Array.isArray(val)) {
-        // Handle array format from [[...]] syntax - take first element
         return val[0] || null;
       }
       if (typeof val === 'string') {
-        // Handle string format - return as-is
         return val;
       }
       return null;
@@ -81,13 +78,10 @@ const projectsCollection = defineCollection({
     demoURL: z.union([z.string(), z.null(), z.undefined()]).optional().transform(val => val || ''),
     status: z.string().nullable().optional(),
     image: z.any().nullable().optional().transform((val) => {
-      // Handle various Obsidian syntax formats
       if (Array.isArray(val)) {
-        // Handle array format from [[...]] syntax - take first element
         return val[0] || null;
       }
       if (typeof val === 'string') {
-        // Handle string format - return as-is
         return val;
       }
       return null;
@@ -113,13 +107,10 @@ const docsCollection = defineCollection({
     lastModified: z.coerce.date().optional(),
     version: z.string().nullable().optional(),
     image: z.any().nullable().optional().transform((val) => {
-      // Handle various Obsidian syntax formats
       if (Array.isArray(val)) {
-        // Handle array format from [[...]] syntax - take first element
         return val[0] || null;
       }
       if (typeof val === 'string') {
-        // Handle string format - return as-is
         return val;
       }
       return null;
@@ -134,25 +125,15 @@ const docsCollection = defineCollection({
   }),
 });
 
-// Define schema for special home pages (homepage blurb, 404, projects index, docs index)
-const specialCollection = defineCollection({
-  loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/special' }),
-  schema: z.object({
-    title: z.string().default('Untitled Page'),
-    description: z.string().nullable().optional().default('No description provided'),
-    hideTOC: z.boolean().optional(),
-    // These pages have fixed URLs and special logic
-    // URLs are determined by the file location, not frontmatter
-  }),
-});
-
-// Export collections
+// Export collections - pages, docs, projects, posts, authors are the only collections
+// NOTE: 'special' collection removed because its md files (404.md, home.md, etc.)
+// are rendered directly by Astro as pages, not via Content Collections API.
+// Including them in a collection caused "Cannot use 'in' operator to search for 'children' in undefined"
+// errors when Astro tried to render them through the content pipeline.
 export const collections = {
   posts: postsCollection,
   authors: authorsCollection,
   pages: pagesCollection,
   projects: projectsCollection,
   docs: docsCollection,
-  special: specialCollection,
 };
-
