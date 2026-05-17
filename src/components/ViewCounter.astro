@@ -15,11 +15,6 @@ const { postId } = Astro.props;
 </div>
 
 <script>
-  const firebaseModule = await import('../lib/firebase');
-  const { ref, runTransaction, get } = await import('firebase/database');
-  const db = firebaseModule.db;
-  const firebaseReady = firebaseModule.firebaseReady;
-
   async function initializeViewCounter() {
     const container = document.getElementById('view-counter-container');
     if (!container) return;
@@ -28,17 +23,32 @@ const { postId } = Astro.props;
     const viewCountText = document.getElementById('view-count-text');
     if (!postId || !viewCountText) return;
 
+    // Import Firebase lazily so it doesn't block page rendering
+    let db: any, firebaseReady: boolean, ref: any, runTransaction: any, get: any;
+    try {
+      const firebaseModule = await import('../lib/firebase');
+      const dbModule = await import('firebase/database');
+      db = firebaseModule.db;
+      firebaseReady = firebaseModule.firebaseReady;
+      ref = dbModule.ref;
+      runTransaction = dbModule.runTransaction;
+      get = dbModule.get;
+    } catch (e) {
+      console.warn('[ViewCounter] Firebase load failed:', e);
+      return;
+    }
+
+    if (!firebaseReady || !db) return;
+
     const kstDate = new Date(new Date().getTime() + 9 * 60 * 60 * 1000).toISOString().split('T')[0];
     const storageKey = `hs3_viewed_${postId}_${kstDate}`;
     const hasViewedToday = localStorage.getItem(storageKey) === 'true';
-
-    if (!firebaseReady || !db) return;
 
     try {
       const viewRef = ref(db, `views/posts/${postId}`);
 
       if (!hasViewedToday) {
-        const result = await runTransaction(viewRef, (current) => (current || 0) + 1);
+        const result = await runTransaction(viewRef, (current: number) => (current || 0) + 1);
         if (result.committed) {
           viewCountText.textContent = `조회수 ${(result.snapshot?.val() || 0).toLocaleString()}회`;
           localStorage.setItem(storageKey, 'true');
@@ -47,15 +57,19 @@ const { postId } = Astro.props;
         const snapshot = await get(viewRef);
         viewCountText.textContent = `조회수 ${(snapshot?.val() || 0).toLocaleString()}회`;
       }
-    } catch (e) {
-      // silently fail — leave the "...회" placeholder
+    } catch (e: any) {
+      console.warn('[ViewCounter] Firebase operation failed:', e?.code, e?.message);
     }
   }
 
   window.initializeViewCounter = initializeViewCounter;
 
-  // Run immediately (script may load after DOMContentLoaded)
-  initializeViewCounter();
+  // Run after page is interactive, non-blocking
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => setTimeout(initializeViewCounter, 0));
+  } else {
+    setTimeout(initializeViewCounter, 0);
+  }
 
   // Re-run on Swup page navigation
   if (window.swup) {
