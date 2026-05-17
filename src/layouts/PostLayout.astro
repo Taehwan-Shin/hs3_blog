@@ -1,5 +1,5 @@
 ---
-import type { Post, Heading } from '@/types';
+import type { Post, Heading, ReadingTime } from '@/types';
 import { siteConfig } from '@/config';
 import { generatePostSEO } from '@/utils/seo';
 import { optimizePostImagePath, getOptimizedFormat } from '@/utils/images';
@@ -21,6 +21,12 @@ import { join } from 'path';
 
 export interface Props {
   post: Post;
+  Content?: any;
+  headings?: any[];
+  remarkPluginFrontmatter?: any;
+  wordCount?: number;
+  readingTime?: ReadingTime;
+  toc?: Heading[];
 }
 
 const { post } = Astro.props;
@@ -30,7 +36,6 @@ const isDev = import.meta.env.DEV;
 
 // Generate SEO data
 const seoData = generatePostSEO(post, import.meta.env.SITE || '');
-
 
 
 // Fetch author data
@@ -66,8 +71,41 @@ const structuredData = {
 const allPosts = await getCollection('posts');
 const visiblePosts = allPosts.filter(p => shouldShowPost(p, isDev));
 
-// Process the post content and get all necessary data
-const { Content, headings, remarkPluginFrontmatter, wordCount, readingTime, toc } = await processPost(post);
+// FIX: Use Content from props ([...slug].astro) if passed, otherwise render from scratch.
+// This prevents the double-render bug where processPost() calls render() again
+// and overwrites the Content that was already rendered by the parent page.
+const propsContent = Astro.props.Content;
+
+let Content, headings, remarkPluginFrontmatter, wordCount, readingTime, toc;
+
+if (propsContent) {
+  // Content already rendered by parent — extract metadata via processPost
+  Content = propsContent;
+  headings = Astro.props.headings || [];
+  remarkPluginFrontmatter = Astro.props.remarkPluginFrontmatter;
+  wordCount = Astro.props.wordCount || 0;
+  readingTime = Astro.props.readingTime;
+  toc = Astro.props.toc || [];
+  try {
+    const meta = await processPost(post);
+    if (wordCount === 0) wordCount = meta.wordCount ?? 0;
+    if (!readingTime) readingTime = meta.readingTime;
+    if (!toc || toc.length === 0) toc = meta.toc || [];
+  } catch {
+    wordCount = post.body ? post.body.split(/\s+/).filter(w => w).length : 0;
+    readingTime = calculateReadingTime(post.body || '');
+    toc = await generateTOC(headings);
+  }
+} else {
+  // Fallback: no Content from parent — render from scratch
+  const processed = await processPost(post);
+  Content = processed.Content;
+  headings = processed.headings;
+  remarkPluginFrontmatter = processed.remarkPluginFrontmatter;
+  wordCount = processed.wordCount;
+  readingTime = processed.readingTime;
+  toc = processed.toc;
+}
 
 // Table of contents is already generated in processPost
 const shouldShowTOC = !post.data.hideTOC && siteConfig.tableOfContents.enabled && toc.length > 0;
@@ -207,7 +245,6 @@ if (siteConfig.postOptions.graphView.enabled && siteConfig.postOptions.graphView
         <!-- Article content -->
         <article class="prose dark:prose-invert max-w-none mb-16" id="post-content">
           <Content />
-          {!Content && <p class="text-red-500 font-bold">Content rendering failed. Please check build logs.</p>}
         </article>
 
         {author && (

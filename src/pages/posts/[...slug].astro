@@ -1,7 +1,8 @@
 ---
 import type { GetStaticPaths } from 'astro';
-import { getCollection, getEntry } from 'astro:content';
+import { getCollection, getEntry, render } from 'astro:content';
 import { shouldShowPost } from '@/utils/markdown';
+import { processMarkdown, calculateReadingTime, generateTOC } from '@/utils/markdown';
 import PostLayout from '@/layouts/PostLayout.astro';
 
 export const getStaticPaths: GetStaticPaths = async () => {
@@ -30,6 +31,14 @@ const isDev = import.meta.env.DEV;
 if (!shouldShowPost(post, isDev)) {
   return Astro.redirect('/404');
 }
+
+// Render post content at build-time (before props serialization)
+const { Content, headings, remarkPluginFrontmatter } = await render(post);
+
+// Extract metadata from markdown (for props passed to PostLayout)
+const { wordCount, hasMore } = processMarkdown(post.body || '');
+const readingTime = calculateReadingTime(post.body || '');
+const toc = await generateTOC(headings);
 ---
 
-<PostLayout post={post} />
+<PostLayout post={post} Content={Content} headings={headings} remarkPluginFrontmatter={remarkPluginFrontmatter} wordCount={wordCount} readingTime={readingTime} toc={toc} />
