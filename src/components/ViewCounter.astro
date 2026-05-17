@@ -53,13 +53,16 @@ const { postId } = Astro.props;
   }
 
   window.initializeViewCounter = initializeViewCounter;
-  document.addEventListener('DOMContentLoaded', initializeViewCounter);
 
+  // Run immediately (script may load after DOMContentLoaded)
+  initializeViewCounter();
+
+  // Re-run on Swup page navigation
   if (window.swup) {
     window.swup.hooks.on('page:view', initializeViewCounter);
   } else {
     document.addEventListener('swup:enable', () => {
-      window.swup.hooks.on('page:view', initializeViewCounter);
+      window.swup?.hooks.on('page:view', initializeViewCounter);
     });
   }
 </script>
