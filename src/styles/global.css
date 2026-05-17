@@ -1029,24 +1029,14 @@ textarea {
   html { scroll-behavior: auto; }
 }
 
-/* Swup Transitions - Simplified */
+/* Swup Transitions */
 .transition-swup-fade {
-  transition: opacity 0.2s ease-out;
+  transition: opacity 0.15s ease-out;
 }
 
-/* Page leaving - simple fade out */
+/* Fade out only during page leave — new content appears at full opacity */
 html.is-leaving .transition-swup-fade {
   opacity: 0;
-}
-
-/* Page entering - simple fade in */
-html.is-animating .transition-swup-fade {
-  opacity: 0;
-}
-
-/* Page ready - final state */
-html.is-ready .transition-swup-fade {
-  opacity: 1;
 }
 
 /* Ensure smooth transitions with hardware acceleration */
