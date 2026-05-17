@@ -1,56 +1,38 @@
 ---
 import type { GetStaticPaths } from 'astro';
-import { getCollection, render } from 'astro:content';
-import { shouldShowPost, processMarkdown, calculateReadingTime, generateTOC } from '@/utils/markdown';
+import { getCollection, getEntry } from 'astro:content';
+import { shouldShowPost } from '@/utils/markdown';
 import PostLayout from '@/layouts/PostLayout.astro';
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  // Get all posts
   const posts = await getCollection('posts');
-
-  // Filter posts for production (in dev, show all including drafts)
   const isDev = import.meta.env.DEV;
   const visiblePosts = posts.filter(post => shouldShowPost(post, isDev));
 
-  // Generate paths
+  // Pass only the id — the full entry object cannot be serialized through getStaticPaths
+  // without losing the body() getter that render() needs.
   return visiblePosts.map(post => ({
     params: { slug: post.id },
-    props: { post }
+    props: { id: post.id }
   }));
 };
 
 export interface Props {
-  post: any;
+  id: string;
 }
 
-const { post } = Astro.props;
+const { id } = Astro.props;
+// Re-fetch with getEntry so the full entry (including body getter) is available.
+const post = await getEntry('posts', id);
 
-// Validate post data
 if (!post) {
   return Astro.redirect('/404');
 }
 
-// Check if post should be visible in production
 const isDev = import.meta.env.DEV;
 if (!shouldShowPost(post, isDev)) {
   return Astro.redirect('/404');
 }
-
-// CRITICAL: render() MUST be called in the PAGE component, not in a layout.
-// The Content component can only produce HTML when used in the same file that called render().
-const { Content, headings, remarkPluginFrontmatter } = await render(post);
-const { wordCount } = processMarkdown(post.body || '');
-const readingTime = calculateReadingTime(post.body || '');
-const toc = await generateTOC(headings);
 ---
 
-<PostLayout
-  post={post}
-  headings={headings}
-  remarkPluginFrontmatter={remarkPluginFrontmatter}
-  wordCount={wordCount}
-  readingTime={readingTime}
-  toc={toc}
->
-  <Content />
-</PostLayout>
+<PostLayout post={post} />

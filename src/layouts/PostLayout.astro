@@ -4,8 +4,8 @@ import { siteConfig } from '@/config';
 import { generatePostSEO } from '@/utils/seo';
 import { optimizePostImagePath, getOptimizedFormat } from '@/utils/images';
 import { processWikilinksInHTML } from '@/utils/internallinks';
-import { getCollection, getEntry } from 'astro:content';
-import { shouldShowPost, processMarkdown, calculateReadingTime, generateTOC, getAdjacentPosts, formatDate, formatDateMobile, getReadingTimeMobile } from '@/utils/markdown';
+import { getCollection, getEntry, render } from 'astro:content';
+import { shouldShowPost, processPost, calculateReadingTime, generateTOC, getAdjacentPosts, formatDate, formatDateMobile, getReadingTimeMobile } from '@/utils/markdown';
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import TableOfContents from '@/components/TableOfContents.astro';
 import LinkedMentions from '@/components/LinkedMentions.astro';
@@ -21,11 +21,6 @@ import { join } from 'path';
 
 export interface Props {
   post: Post;
-  headings?: Heading[];
-  remarkPluginFrontmatter?: any;
-  wordCount?: number;
-  readingTime?: ReadingTime;
-  toc?: Heading[];
 }
 
 const { post } = Astro.props;
@@ -70,13 +65,13 @@ const structuredData = {
 const allPosts = await getCollection('posts');
 const visiblePosts = allPosts.filter(p => shouldShowPost(p, isDev));
 
-// Content is passed via slot from the page component.
-// Metadata is received from props (computed in [..slug].astro).
-const headings = Astro.props.headings || [];
-const remarkPluginFrontmatter = Astro.props.remarkPluginFrontmatter || {};
-const wordCount = Astro.props.wordCount || 0;
-const readingTime = Astro.props.readingTime || calculateReadingTime(post.body || '');
-const toc = Astro.props.toc || [];
+// render() must be called in the same component that uses <Content />.
+// Passing the Content component across component boundaries (as a prop or slot) does not work in Astro 6.
+const renderResult = await render(post);
+const { Content, headings: rawHeadings, remarkPluginFrontmatter } = renderResult;
+const wordCount = post.body ? post.body.split(/\s+/).filter((w: string) => w.length > 0).length : 0;
+const readingTime = calculateReadingTime(post.body || '');
+const toc = await generateTOC(rawHeadings);
 
 // Table of contents is already generated in processPost
 const shouldShowTOC = !post.data.hideTOC && siteConfig.tableOfContents.enabled && toc.length > 0;
@@ -215,7 +210,7 @@ if (siteConfig.postOptions.graphView.enabled && siteConfig.postOptions.graphView
 
         <!-- Article content -->
         <article class="prose dark:prose-invert max-w-none mb-16" id="post-content">
-          <slot />
+          <Content />
         </article>
 
         {author && (
