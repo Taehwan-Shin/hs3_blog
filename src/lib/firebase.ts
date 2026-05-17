@@ -3,7 +3,7 @@ import { getDatabase } from 'firebase/database';
 
 // Firebase config for hs3-blog visitor counter
 const firebaseConfig = {
-  apiKey: "AIzaSyCgW7Kj8xMhN2pQ4rT6vU9wX0yZ1aB3cDe",
+  apiKey: "AIzaSyAFygHP6i6RTgRaO44ls_iLHnTLk2VjIv4",
   authDomain: "hs3-blog.firebaseapp.com",
   databaseURL: "https://hs3-blog-default-rtdb.firebaseio.com",
   projectId: "hs3-blog",

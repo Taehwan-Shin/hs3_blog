@@ -15,68 +15,51 @@ const { postId } = Astro.props;
 </div>
 
 <script>
-  // Load Firebase dynamically to handle module imports
   const firebaseModule = await import('../lib/firebase');
   const { ref, runTransaction, get } = await import('firebase/database');
   const db = firebaseModule.db;
   const firebaseReady = firebaseModule.firebaseReady;
 
-  async function updateViewCount() {
+  async function initializeViewCounter() {
     const container = document.getElementById('view-counter-container');
     if (!container) return;
-    
+
     const postId = container.dataset.postId;
     const viewCountText = document.getElementById('view-count-text');
     if (!postId || !viewCountText) return;
 
-    // Get today's date in KST (Korean Standard Time)
     const kstDate = new Date(new Date().getTime() + 9 * 60 * 60 * 1000).toISOString().split('T')[0];
     const storageKey = `hs3_viewed_${postId}_${kstDate}`;
-
-    // Check if user already viewed this post today
     const hasViewedToday = localStorage.getItem(storageKey) === 'true';
 
-    // Only attempt Firebase operations if Firebase is successfully initialized
-    if (firebaseReady && db) {
-      try {
-        const viewRef = ref(db, `views/posts/${postId}`);
+    if (!firebaseReady || !db) return;
 
-        if (!hasViewedToday) {
-          runTransaction(viewRef, (currentValue) => {
-            return (currentValue || 0) + 1;
-          }).then((result) => {
-            if (result && result.committed) {
-              viewCountText.textContent = `조회수 ${(result.snapshot?.val() || 0).toLocaleString()}회`;
-              localStorage.setItem(storageKey, 'true');
-            }
-          }).catch((e) => {
-            // Ignore Firebase errors, show fallback
-            console.warn('[ViewCounter] Transaction failed:', e);
-          });
-        } else {
-          get(viewRef).then((snapshot) => {
-            const val = snapshot?.val() || 0;
-            viewCountText.textContent = `조회수 ${val.toLocaleString()}회`;
-          }).catch((e) => {
-            console.warn('[ViewCounter] Fetch failed:', e);
-          });
+    try {
+      const viewRef = ref(db, `views/posts/${postId}`);
+
+      if (!hasViewedToday) {
+        const result = await runTransaction(viewRef, (current) => (current || 0) + 1);
+        if (result.committed) {
+          viewCountText.textContent = `조회수 ${(result.snapshot?.val() || 0).toLocaleString()}회`;
+          localStorage.setItem(storageKey, 'true');
         }
-      } catch (e) {
-        console.warn('[ViewCounter] Firebase init error:', e);
+      } else {
+        const snapshot = await get(viewRef);
+        viewCountText.textContent = `조회수 ${(snapshot?.val() || 0).toLocaleString()}회`;
       }
-    } else {
-      // Firebase not available - fallback to local storage counter
-      const fallbackCount = localStorage.getItem(`hs3_viewed_total_${postId}`);
-      const currentCount = fallbackCount ? parseInt(fallbackCount) : 0;
-      viewCountText.textContent = `조회수 ...회`;
+    } catch (e) {
+      // silently fail — leave the "...회" placeholder
     }
   }
 
-  // Support for Swup (SPA navigation)
-  document.addEventListener('swup:content:replace', () => {
-    if (window._viewCountTimer) clearTimeout(window._viewCountTimer);
-    window._viewCountTimer = setTimeout(updateViewCount, 100);
-  });
-  
-  updateViewCount();
+  window.initializeViewCounter = initializeViewCounter;
+  document.addEventListener('DOMContentLoaded', initializeViewCounter);
+
+  if (window.swup) {
+    window.swup.hooks.on('page:view', initializeViewCounter);
+  } else {
+    document.addEventListener('swup:enable', () => {
+      window.swup.hooks.on('page:view', initializeViewCounter);
+    });
+  }
 </script>
