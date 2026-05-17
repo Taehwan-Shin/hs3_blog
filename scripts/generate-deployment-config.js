@@ -340,7 +340,7 @@ function generateVercelConfig(redirects) {
         ]
       },
       {
-        source: "/(.*\\.(webp|jpg|jpeg|png|gif|svg))",
+        source: "/(.*).(webp|jpg|jpeg|png|gif|svg)",
         headers: [
           {
             key: "Cache-Control",
@@ -349,7 +349,7 @@ function generateVercelConfig(redirects) {
         ]
       },
       {
-        source: "/(.*\\.pdf)",
+        source: "/(.*).pdf",
         headers: [
           {
             key: "Cache-Control",
