@@ -4,8 +4,8 @@ import { siteConfig } from '@/config';
 import { generatePostSEO } from '@/utils/seo';
 import { optimizePostImagePath, getOptimizedFormat } from '@/utils/images';
 import { processWikilinksInHTML } from '@/utils/internallinks';
-import { getCollection, getEntry, render } from 'astro:content';
-import { shouldShowPost, processPost, calculateReadingTime, generateTOC, getAdjacentPosts, formatDate, formatDateMobile, getReadingTimeMobile } from '@/utils/markdown';
+import { getCollection, getEntry } from 'astro:content';
+import { shouldShowPost, processMarkdown, calculateReadingTime, generateTOC, getAdjacentPosts, formatDate, formatDateMobile, getReadingTimeMobile } from '@/utils/markdown';
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import TableOfContents from '@/components/TableOfContents.astro';
 import LinkedMentions from '@/components/LinkedMentions.astro';
@@ -21,8 +21,7 @@ import { join } from 'path';
 
 export interface Props {
   post: Post;
-  Content?: any;
-  headings?: any[];
+  headings?: Heading[];
   remarkPluginFrontmatter?: any;
   wordCount?: number;
   readingTime?: ReadingTime;
@@ -71,41 +70,13 @@ const structuredData = {
 const allPosts = await getCollection('posts');
 const visiblePosts = allPosts.filter(p => shouldShowPost(p, isDev));
 
-// FIX: Use Content from props ([...slug].astro) if passed, otherwise render from scratch.
-// This prevents the double-render bug where processPost() calls render() again
-// and overwrites the Content that was already rendered by the parent page.
-const propsContent = Astro.props.Content;
-
-let Content, headings, remarkPluginFrontmatter, wordCount, readingTime, toc;
-
-if (propsContent) {
-  // Content already rendered by parent — extract metadata via processPost
-  Content = propsContent;
-  headings = Astro.props.headings || [];
-  remarkPluginFrontmatter = Astro.props.remarkPluginFrontmatter;
-  wordCount = Astro.props.wordCount || 0;
-  readingTime = Astro.props.readingTime;
-  toc = Astro.props.toc || [];
-  try {
-    const meta = await processPost(post);
-    if (wordCount === 0) wordCount = meta.wordCount ?? 0;
-    if (!readingTime) readingTime = meta.readingTime;
-    if (!toc || toc.length === 0) toc = meta.toc || [];
-  } catch {
-    wordCount = post.body ? post.body.split(/\s+/).filter(w => w).length : 0;
-    readingTime = calculateReadingTime(post.body || '');
-    toc = await generateTOC(headings);
-  }
-} else {
-  // Fallback: no Content from parent — render from scratch
-  const processed = await processPost(post);
-  Content = processed.Content;
-  headings = processed.headings;
-  remarkPluginFrontmatter = processed.remarkPluginFrontmatter;
-  wordCount = processed.wordCount;
-  readingTime = processed.readingTime;
-  toc = processed.toc;
-}
+// Content is passed via slot from the page component.
+// Metadata is received from props (computed in [..slug].astro).
+const headings = Astro.props.headings || [];
+const remarkPluginFrontmatter = Astro.props.remarkPluginFrontmatter || {};
+const wordCount = Astro.props.wordCount || 0;
+const readingTime = Astro.props.readingTime || calculateReadingTime(post.body || '');
+const toc = Astro.props.toc || [];
 
 // Table of contents is already generated in processPost
 const shouldShowTOC = !post.data.hideTOC && siteConfig.tableOfContents.enabled && toc.length > 0;
@@ -244,7 +215,7 @@ if (siteConfig.postOptions.graphView.enabled && siteConfig.postOptions.graphView
 
         <!-- Article content -->
         <article class="prose dark:prose-invert max-w-none mb-16" id="post-content">
-          <Content />
+          <slot />
         </article>
 
         {author && (

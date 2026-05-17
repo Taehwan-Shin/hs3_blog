@@ -1,4 +1,3 @@
-I0517 01:44:30.478760 7117706 ev_poll_posix.cc:593] FD from fork parent still in poll list: fd(26, generation: 1)
 import { defineCollection, reference, z } from 'astro:content';
 import { glob } from 'astro/loaders';
 

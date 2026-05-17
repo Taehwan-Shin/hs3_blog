@@ -66,9 +66,6 @@ image: {
         remarkImageGrids(),
         remarkObsidianComments(),
         remarkInlineTags(),
-        remarkMermaid(),
-        remarkObsidianEmbeds(),
-        remarkBases(),
       ],
       rehypePlugins: [
         rehypeKatex,
@@ -112,9 +109,6 @@ image: {
       remarkImageGrids(),
       remarkObsidianComments(),
       remarkInlineTags(),
-      remarkMermaid(),
-      remarkObsidianEmbeds(),
-      remarkBases(),
     ],
     rehypePlugins: [
       rehypeKatex,

@@ -1,44 +1,56 @@
 ---
 import type { GetStaticPaths } from 'astro';
-import { getCollection, getEntry, render } from 'astro:content';
-import { shouldShowPost } from '@/utils/markdown';
-import { processMarkdown, calculateReadingTime, generateTOC } from '@/utils/markdown';
+import { getCollection, render } from 'astro:content';
+import { shouldShowPost, processMarkdown, calculateReadingTime, generateTOC } from '@/utils/markdown';
 import PostLayout from '@/layouts/PostLayout.astro';
 
 export const getStaticPaths: GetStaticPaths = async () => {
+  // Get all posts
   const posts = await getCollection('posts');
+
+  // Filter posts for production (in dev, show all including drafts)
   const isDev = import.meta.env.DEV;
   const visiblePosts = posts.filter(post => shouldShowPost(post, isDev));
 
+  // Generate paths
   return visiblePosts.map(post => ({
     params: { slug: post.id },
-    props: { id: post.id }
+    props: { post }
   }));
 };
 
 export interface Props {
-  id: string;
+  post: any;
 }
 
-const { id } = Astro.props;
-const post = await getEntry('posts', id);
+const { post } = Astro.props;
 
+// Validate post data
 if (!post) {
   return Astro.redirect('/404');
 }
 
+// Check if post should be visible in production
 const isDev = import.meta.env.DEV;
 if (!shouldShowPost(post, isDev)) {
   return Astro.redirect('/404');
 }
 
-// Render post content at build-time (before props serialization)
+// CRITICAL: render() MUST be called in the PAGE component, not in a layout.
+// The Content component can only produce HTML when used in the same file that called render().
 const { Content, headings, remarkPluginFrontmatter } = await render(post);
-
-// Extract metadata from markdown (for props passed to PostLayout)
-const { wordCount, hasMore } = processMarkdown(post.body || '');
+const { wordCount } = processMarkdown(post.body || '');
 const readingTime = calculateReadingTime(post.body || '');
 const toc = await generateTOC(headings);
 ---
 
-<PostLayout post={post} Content={Content} headings={headings} remarkPluginFrontmatter={remarkPluginFrontmatter} wordCount={wordCount} readingTime={readingTime} toc={toc} />
+<PostLayout
+  post={post}
+  headings={headings}
+  remarkPluginFrontmatter={remarkPluginFrontmatter}
+  wordCount={wordCount}
+  readingTime={readingTime}
+  toc={toc}
+>
+  <Content />
+</PostLayout>
