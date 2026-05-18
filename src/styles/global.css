@@ -1034,15 +1034,16 @@ textarea {
   transition: opacity 0.15s ease-out;
 }
 
-/* Fade out only during page leave — new content appears at full opacity */
+/* Fade out during page leave */
 html.is-leaving .transition-swup-fade {
   opacity: 0;
 }
 
-/* Ensure smooth transitions with hardware acceleration */
-#swup-container {
-  transform: translateZ(0);
-  backface-visibility: hidden;
+/* During enter phase (is-animating but not is-leaving): disable transition so Swup completes immediately.
+   Without this, Swup waits for a transitionend that may not reliably fire, keeping is-changing active
+   and blocking menu clicks. */
+html.is-animating:not(.is-leaving) .transition-swup-fade {
+  transition: none;
 }
 
 /* TOC handling */
