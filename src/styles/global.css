@@ -1038,13 +1038,8 @@ textarea {
 html.is-leaving .transition-swup-fade {
   opacity: 0;
 }
-
-/* During enter phase (is-animating but not is-leaving): disable transition so Swup completes immediately.
-   Without this, Swup waits for a transitionend that may not reliably fire, keeping is-changing active
-   and blocking menu clicks. */
-html.is-animating:not(.is-leaving) .transition-swup-fade {
-  transition: none;
-}
+/* Enter phase: JS in content:replace hook sets inline transition:none + opacity:1
+   so Swup sees no active transition and completes immediately, unblocking menu clicks. */
 
 /* TOC handling */
 #toc.toc-not-ready {

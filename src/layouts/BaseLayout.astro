@@ -1361,6 +1361,15 @@ const scrollbarClass = siteConfig.hideScrollBar ? 'scrollbar-hide' : '';
         window.swup.hooks.on('content:replace', () => {
           if (isDev) {
           }
+          // Immediately show new content with no transition so Swup doesn't wait
+          // for transitionend (which may not fire reliably), preventing is-changing
+          // from getting stuck and blocking menu clicks.
+          const swupContainer = document.getElementById('swup-container');
+          if (swupContainer) {
+            swupContainer.style.transition = 'none';
+            swupContainer.style.opacity = '1';
+            void swupContainer.offsetHeight; // force reflow
+          }
           // Re-initialize theme properly respecting theme switching availability
           const theme = getThemeWithoutClearing();
           document.documentElement.setAttribute('data-theme', theme);
@@ -1408,6 +1417,12 @@ const scrollbarClass = siteConfig.hideScrollBar ? 'scrollbar-hide' : '';
 
         window.swup.hooks.on('page:view', () => {
           if (isDev) {
+          }
+          // Restore CSS-controlled transition for the next leave animation
+          const swupContainer = document.getElementById('swup-container');
+          if (swupContainer) {
+            swupContainer.style.transition = '';
+            swupContainer.style.opacity = '';
           }
           // Re-initialize theme properly respecting theme switching availability
           const theme = getThemeWithoutClearing();
