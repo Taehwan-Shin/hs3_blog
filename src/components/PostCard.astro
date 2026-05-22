@@ -1,5 +1,5 @@
 ---
-import type { CollectionEntry } from 'astro:content';
+import { getEntry, type CollectionEntry } from 'astro:content';
 import { formatDate, formatDateMobile, processMarkdown, calculateReadingTime, getReadingTimeMobile } from '../utils/markdown';
 import { siteConfig, getPostCardAspectRatio } from '../config';
 import { getOptimizedFormat } from '@/utils/images';
@@ -13,6 +13,10 @@ interface Props {
 }
 
 const { post, featured = false, eager = false, context = 'posts' } = Astro.props;
+
+// Resolve the author entry so the card shows the correct name/symbol for ANY
+// author (including new ones like hermes) instead of a hardcoded fallback.
+const author = post.data.author ? await getEntry(post.data.author) : null;
 
 // Get reading time and word count from markdown processing
 const { excerpt, wordCount } = processMarkdown(post.body || '');
@@ -81,13 +85,13 @@ const shouldShowCoverImage = (() => {
 
     <div class="p-5 rounded-xl">
       <div class="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs font-medium text-primary-500 dark:text-primary-400 mb-3">
-        {post.data.author && (
+        {author && (
           <div class="flex items-center gap-1.5 bg-primary-100 dark:bg-primary-800 px-2 py-0.5 rounded-md border border-primary-200/50 dark:border-primary-700/50">
-            <span class="text-sm">
-              {post.data.author.id === 'goguryeo' ? '🐎' : post.data.author.id === 'baekje' ? '🎨' : '🏛️'}
-            </span>
+            {author.data.symbol && (
+              <span class="text-sm">{author.data.symbol}</span>
+            )}
             <span class="text-primary-700 dark:text-primary-300">
-              {post.data.author.id === 'goguryeo' ? '고구려' : post.data.author.id === 'baekje' ? '백제' : '신라'}
+              {author.data.name}
             </span>
           </div>
         )}
