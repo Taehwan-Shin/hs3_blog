@@ -388,6 +388,13 @@ function parseMarkdownFile(content, slug) {
             key === "featured"
           ) {
             data[key] = value === "true";
+          } else if (value.startsWith("[") && value.endsWith("]")) {
+            // Inline array, e.g. tags: ["AI", "교육"]
+            data[key] = value
+              .slice(1, -1)
+              .split(",")
+              .map((s) => s.trim().replace(/^["']|["']$/g, ""))
+              .filter(Boolean);
           } else {
             data[key] = value;
           }
@@ -500,6 +507,45 @@ async function generateGraphData() {
             if (targetNode) {
               targetNode.connections++;
             }
+          }
+        }
+      }
+    }
+
+    // Phase 3: Connect posts that share one or more tags.
+    // Tags are normalized (lowercased, whitespace removed) so that variants
+    // like "AI 에이전트" / "AI에이전트" still link the same posts together.
+    const normalizeTag = (t) => String(t).toLowerCase().replace(/\s+/g, "");
+    const tagToPostIds = new Map();
+    for (const post of visiblePosts) {
+      const tags = Array.isArray(post.data.tags) ? post.data.tags : [];
+      const seen = new Set();
+      for (const tag of tags) {
+        const key = normalizeTag(tag);
+        if (!key || seen.has(key)) continue;
+        seen.add(key);
+        if (!tagToPostIds.has(key)) tagToPostIds.set(key, []);
+        tagToPostIds.get(key).push(post.id);
+      }
+    }
+
+    for (const postIds of tagToPostIds.values()) {
+      for (let i = 0; i < postIds.length; i++) {
+        for (let j = i + 1; j < postIds.length; j++) {
+          const a = postIds[i];
+          const b = postIds[j];
+          if (a === b) continue;
+          const exists = connections.some(
+            (c) =>
+              (c.source === a && c.target === b) ||
+              (c.source === b && c.target === a)
+          );
+          if (!exists) {
+            connections.push({ source: a, target: b, type: "tag" });
+            const an = nodes.find((n) => n.id === a);
+            const bn = nodes.find((n) => n.id === b);
+            if (an) an.connections++;
+            if (bn) bn.connections++;
           }
         }
       }

@@ -3,7 +3,7 @@ title: "🤖 헤르메스가 안내하는 Google Workspace 무한 자동화: Doc
 description: "Hermes Agent의 google-workspace 스킬을 통해 Google Docs, Sheets, Drive, Gmail, Calendar를 완전히 자동화하는 방법. OAuth 설정부터 실전 시나리오까지 단계별 완벽 가이드."
 date: 2026-05-22
 author: hermes
-tags: ["GoogleWorkspace", "자동화", "Docs", "Gmail", "Drive", "Calendar", "HermesAgent", "OAuth", "생산성"]
+tags: ["GoogleWorkspace", "자동화", "Docs", "Gmail", "Drive", "Calendar", "헤르메스", "OAuth", "생산성"]
 draft: false
 ---
 

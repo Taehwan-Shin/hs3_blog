@@ -5,14 +5,14 @@
       "type": "post",
       "title": "Hermes Agent: 시스템 접근권이 있는 자율 에이전트 활용 가이드",
       "slug": "my-blog/2026-04-29-hermes_agent_활용_가이드",
-      "connections": 1
+      "connections": 4
     },
     {
       "id": "my-blog/2026-05-05-ai를-쓸수록-지능이-올라가는-사람의-특징들",
       "type": "post",
       "title": "AI를 쓸수록 지능이 올라가는 사람의 특징들: 교육학적 관점에서 본 AI-인간 공진화",
       "slug": "my-blog/2026-05-05-ai를-쓸수록-지능이-올라가는-사람의-특징들",
-      "connections": 0
+      "connections": 2
     },
     {
       "id": "my-blog/2026-05-10-baekje-ai-generalization",
@@ -33,28 +33,28 @@
       "type": "post",
       "title": "AI 디지털 교육의 콘셉트",
       "slug": "my-blog/2026-05-10-silla-magic-of-ai-agents",
-      "connections": 4
+      "connections": 8
     },
     {
       "id": "my-blog/2026-05-13-hermes-google-chat-integration",
       "type": "post",
       "title": "헤르메스 에이전트 x 구글 챗 연동 가이드: 원리부터 실전 트러블슈팅까지",
       "slug": "my-blog/2026-05-13-hermes-google-chat-integration",
-      "connections": 0
+      "connections": 7
     },
     {
       "id": "my-blog/2026-05-14-blog-publishing-guide",
       "type": "post",
       "title": "🏰 신라와 함께하는 '옵시디언 블로그' 무작정 따라하기: 완전 초보를 위한 실전 구축 가이드 (Vault CMS 통합본)",
       "slug": "my-blog/2026-05-14-blog-publishing-guide",
-      "connections": 0
+      "connections": 2
     },
     {
       "id": "my-blog/2026-05-14-firebase-analytics-case-study",
       "type": "post",
       "title": "🛠️ [개발기] 파이어베이스로 만드는 나만의 스마트 방문자 카운터: 구축부터 트러블슈팅까지",
       "slug": "my-blog/2026-05-14-firebase-analytics-case-study",
-      "connections": 0
+      "connections": 2
     },
     {
       "id": "my-blog/2026-05-16-baekje-boundary-of-thinking",
@@ -68,6 +68,13 @@
       "type": "post",
       "title": "AI를 교실에 들이는 법: 구글챗, 코스웨어, 그리고 본질",
       "slug": "my-blog/2026-05-16-silla-ai-practical-application",
+      "connections": 4
+    },
+    {
+      "id": "my-blog/2026-05-22-google-workspace-hermes-automation",
+      "type": "post",
+      "title": "🤖 헤르메스가 안내하는 Google Workspace 무한 자동화: Docs·Drive·Gmail·Calendar 설정부터 실전 활용까지 A to Z",
+      "slug": "my-blog/2026-05-22-google-workspace-hermes-automation",
       "connections": 3
     },
     {
@@ -130,12 +137,72 @@
       "source": "my-blog/2026-05-16-silla-ai-practical-application",
       "target": "my-blog/2026-05-10-baekje-ai-generalization",
       "type": "link"
+    },
+    {
+      "source": "my-blog/2026-04-29-hermes_agent_활용_가이드",
+      "target": "my-blog/2026-05-10-silla-magic-of-ai-agents",
+      "type": "tag"
+    },
+    {
+      "source": "my-blog/2026-04-29-hermes_agent_활용_가이드",
+      "target": "my-blog/2026-05-13-hermes-google-chat-integration",
+      "type": "tag"
+    },
+    {
+      "source": "my-blog/2026-04-29-hermes_agent_활용_가이드",
+      "target": "my-blog/2026-05-22-google-workspace-hermes-automation",
+      "type": "tag"
+    },
+    {
+      "source": "my-blog/2026-05-10-silla-magic-of-ai-agents",
+      "target": "my-blog/2026-05-13-hermes-google-chat-integration",
+      "type": "tag"
+    },
+    {
+      "source": "my-blog/2026-05-10-silla-magic-of-ai-agents",
+      "target": "my-blog/2026-05-22-google-workspace-hermes-automation",
+      "type": "tag"
+    },
+    {
+      "source": "my-blog/2026-05-13-hermes-google-chat-integration",
+      "target": "my-blog/2026-05-22-google-workspace-hermes-automation",
+      "type": "tag"
+    },
+    {
+      "source": "my-blog/2026-05-05-ai를-쓸수록-지능이-올라가는-사람의-특징들",
+      "target": "my-blog/2026-05-10-silla-magic-of-ai-agents",
+      "type": "tag"
+    },
+    {
+      "source": "my-blog/2026-05-05-ai를-쓸수록-지능이-올라가는-사람의-특징들",
+      "target": "my-blog/2026-05-13-hermes-google-chat-integration",
+      "type": "tag"
+    },
+    {
+      "source": "my-blog/2026-05-13-hermes-google-chat-integration",
+      "target": "my-blog/2026-05-16-silla-ai-practical-application",
+      "type": "tag"
+    },
+    {
+      "source": "my-blog/2026-05-13-hermes-google-chat-integration",
+      "target": "my-blog/2026-05-14-blog-publishing-guide",
+      "type": "tag"
+    },
+    {
+      "source": "my-blog/2026-05-13-hermes-google-chat-integration",
+      "target": "my-blog/2026-05-14-firebase-analytics-case-study",
+      "type": "tag"
+    },
+    {
+      "source": "my-blog/2026-05-14-blog-publishing-guide",
+      "target": "my-blog/2026-05-14-firebase-analytics-case-study",
+      "type": "tag"
     }
   ],
   "metadata": {
-    "totalPosts": 12,
-    "totalConnections": 9,
+    "totalPosts": 13,
+    "totalConnections": 21,
     "maxNodesApplied": false,
-    "originalNodeCount": 12
+    "originalNodeCount": 13
   }
 }

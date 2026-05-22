@@ -4,7 +4,7 @@ description: "Hermes Agent의 아키텍처부터 고급 활용 전략, 실무 �
 date: 2026-04-29
 author: baekje
 image: "/posts/attachments/hermes-hero.webp"
-tags: ["AI", "Hermes Agent", "자동화", "기술가이드"]
+tags: ["AI", "헤르메스", "자동화", "기술가이드"]
 ---
 
 이 가이드는 [[200 blog/readme|고교 삼국시대 운영 지침]]에 따라 작성되었습니다.
