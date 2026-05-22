@@ -19,7 +19,7 @@
       "type": "post",
       "title": "AI 상식의 시대, 무엇을 가르칠 것인가",
       "slug": "my-blog/2026-05-10-baekje-ai-generalization",
-      "connections": 2
+      "connections": 4
     },
     {
       "id": "my-blog/2026-05-10-goguryeo-workspace-data-analysis",
@@ -33,7 +33,7 @@
       "type": "post",
       "title": "AI 디지털 교육의 콘셉트",
       "slug": "my-blog/2026-05-10-silla-magic-of-ai-agents",
-      "connections": 2
+      "connections": 4
     },
     {
       "id": "my-blog/2026-05-13-hermes-google-chat-integration",
@@ -55,6 +55,20 @@
       "title": "🛠️ [개발기] 파이어베이스로 만드는 나만의 스마트 방문자 카운터: 구축부터 트러블슈팅까지",
       "slug": "my-blog/2026-05-14-firebase-analytics-case-study",
       "connections": 0
+    },
+    {
+      "id": "my-blog/2026-05-16-baekje-boundary-of-thinking",
+      "type": "post",
+      "title": "사고의 경계, 그리고 평가의 과도기",
+      "slug": "my-blog/2026-05-16-baekje-boundary-of-thinking",
+      "connections": 3
+    },
+    {
+      "id": "my-blog/2026-05-16-silla-ai-practical-application",
+      "type": "post",
+      "title": "AI를 교실에 들이는 법: 구글챗, 코스웨어, 그리고 본질",
+      "slug": "my-blog/2026-05-16-silla-ai-practical-application",
+      "connections": 3
     },
     {
       "id": "my-blog/readme",
@@ -91,12 +105,37 @@
       "source": "my-blog/2026-05-10-goguryeo-workspace-data-analysis",
       "target": "my-blog/2026-05-10-silla-magic-of-ai-agents",
       "type": "link"
+    },
+    {
+      "source": "my-blog/2026-05-16-baekje-boundary-of-thinking",
+      "target": "my-blog/2026-05-16-silla-ai-practical-application",
+      "type": "link"
+    },
+    {
+      "source": "my-blog/2026-05-16-baekje-boundary-of-thinking",
+      "target": "my-blog/2026-05-10-silla-magic-of-ai-agents",
+      "type": "link"
+    },
+    {
+      "source": "my-blog/2026-05-16-baekje-boundary-of-thinking",
+      "target": "my-blog/2026-05-10-baekje-ai-generalization",
+      "type": "link"
+    },
+    {
+      "source": "my-blog/2026-05-16-silla-ai-practical-application",
+      "target": "my-blog/2026-05-10-silla-magic-of-ai-agents",
+      "type": "link"
+    },
+    {
+      "source": "my-blog/2026-05-16-silla-ai-practical-application",
+      "target": "my-blog/2026-05-10-baekje-ai-generalization",
+      "type": "link"
     }
   ],
   "metadata": {
-    "totalPosts": 10,
-    "totalConnections": 4,
+    "totalPosts": 12,
+    "totalConnections": 9,
     "maxNodesApplied": false,
-    "originalNodeCount": 10
+    "originalNodeCount": 12
   }
 }
