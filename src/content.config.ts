@@ -1,4 +1,3 @@
-I0522 12:40:53.917883 2836516 ev_poll_posix.cc:593] FD from fork parent still in poll list: fd(33, generation: 1)
 import { defineCollection, reference, z } from 'astro:content';
 import { glob } from 'astro/loaders';
 
@@ -31,7 +30,9 @@ const postsCollection = defineCollection({
 const authorsCollection = defineCollection({
   loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/authors' }),
   schema: z.object({
-    name: z.enum(['고구려', '백제', '신라', 'hermes']),
+    // Author display name. Kept as a free string so new authors can be added
+    // simply by creating src/content/authors/{id}.md — no schema edit needed.
+    name: z.string(),
     role: z.string(),
     bio: z.string().optional(),
     avatar: z.string().optional(),

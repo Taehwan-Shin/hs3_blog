@@ -39,7 +39,7 @@
 title: "게시글의 핵심 제목"
 description: "검색 결과에 노출될 요약 (1~2문장)"
 date: YYYY-MM-DD
-author: goguryeo # goguryeo, baekje, silla 중 택 1 (파일 id)
+author: goguryeo # src/content/authors/ 의 파일 id (goguryeo, baekje, silla, hermes 등)
 image: "attachments/hero-image.png" # 대표 이미지
 tags: ["AI", "교육", "사회"]
 draft: false
@@ -49,9 +49,38 @@ draft: false
 ---
 
 ## 4. 시스템 무결성 유지 (The Architect's Rule)
-*   **코드 수정 금지**: 헤르메스는 `src/` 폴더 내의 `.astro`, `.ts`, `.mjs` 파일을 수정하지 않습니다. 오직 `content/posts/` 폴더의 마크다운과 `attachments/`의 자산만 관리합니다.
+*   **🚫 코드/설정 파일 절대 수정 금지**: 헤르메스는 `.astro`, `.ts`, `.mjs`, `.js`, `.json` 등 **모든 코드·설정 파일을 절대 수정하지 않습니다.** 특히 `src/content.config.ts`는 어떤 경우에도 건드리지 마십시오. 오직 다음만 관리합니다.
+    *   `src/content/posts/` 의 마크다운 게시글
+    *   `src/content/authors/` 의 필진 마크다운
+    *   `attachments/` 의 이미지 자산
+*   **새 필진 추가 방법**: 새 필진(author)이 필요하면 **`src/content/authors/{id}.md` 마크다운 파일 하나만 새로 만드십시오.** 스키마는 어떤 필진 id도 허용하므로 `content.config.ts` 같은 코드 파일을 수정할 필요가 전혀 없습니다. 필진 파일 형식:
+    ```yaml
+    ---
+    name: "표시 이름"
+    role: "한 줄 소개"
+    bio: "필진 소개 문장"
+    symbol: "⚡"
+    keywords: ["키워드1", "키워드2"]
+    ---
+    ```
+    게시글 프론트매터의 `author:` 에는 이 파일 이름(`.md` 제외)을 적습니다.
+*   **⚠️ 파일에 명령어 출력이 섞이지 않도록 주의**: 셸 리다이렉션(`명령 > 파일`)으로 콘텐츠/설정 파일을 만들지 마십시오. 파이썬·gRPC 등의 백그라운드 로그(`I0522 ... ev_poll_posix.cc ...` 같은 줄)가 파일 첫 줄에 섞여 빌드가 깨진 사례가 있습니다. 파일은 항상 깨끗한 텍스트만 직접 기록하고, 기록 후 첫 줄이 의도한 내용인지 확인하십시오.
 *   **수식 지원**: 수학 기호나 공식은 `$E=mc^2$` 또는 `$$...$$` 형식을 사용하십시오. KaTeX가 자동 렌더링합니다.
 *   **이미지 경로 검증**: 이미지가 깨지지 않도록 `image:` 필드와 본문 내 링크의 경로가 `attachments/`로 시작하는지 항상 확인하십시오.
+
+---
+
+## 5. 푸시 전 필수 검증 (Pre-Push Verification)
+
+`git push` 하기 **전에 반드시** 로컬 빌드를 실행해 성공하는지 확인하십시오. git push 자체가 성공해도 빌드가 깨져 있으면 Vercel 배포가 실패하여 글이 올라가지 않습니다.
+
+```bash
+cd /Users/bliss00/obsidian/vault-blog && pnpm run build
+```
+
+*   빌드 로그 마지막에 `[build] Complete!` 가 보이면 성공입니다 → 푸시 진행.
+*   `[ERROR]` 가 보이거나 빌드가 중단되면 **푸시하지 말고** 원인을 먼저 해결하십시오.
+*   새 게시글 경로(`/posts/.../index.html`)가 빌드 출력에 나타나는지 확인하십시오.
 
 ---
 
