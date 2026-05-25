@@ -20,6 +20,8 @@ draft: false
 
 영국의 세계적인 교육 혁신가이자 AI 교육 플랫폼 **센추리(Century.tech)**의 설립자인 **프리야 라카니(Priya Lakhani)**는 TED 무대에 올라 현대 교육이 직면한 가장 근본적이고도 충격적인 모순을 폭로했습니다. AI 기술이 아이들의 학습을 돕기는커녕, 오히려 **배움의 기회를 적극적으로 회피하고 차단하는 도구**로 전락하고 있다는 경고였습니다.
 
+<img src="/posts/attachments/20260526/priya_intro.jpg" alt="Priya Lakhani TED Talk" class="desktop-image-fix" />
+
 이 글에서는 프리야 라카니의 강연 내용을 상세히 정리하고, 이 뇌 과학적·교육학적 통찰이 **대한민국의 AI 디지털교과서(AIDT) 도입 및 공교육 개혁에 주는 5가지 핵심 시사점**을 짚어봅니다.
 
 ---
@@ -46,6 +48,8 @@ draft: false
 
 여기서 가장 중요한 교육학적 개념이 등장합니다. 바로 **'유창함의 착각(Illusion of Fluency)'**입니다.
 
+<img src="/posts/attachments/20260526/chatgpt_graph.jpg" alt="ChatGPT Euphoria vs Reality Graph" class="desktop-image-fix" />
+
 ```mermaid
 graph TD
     A[AI의 매끄럽고 유창한 답변 읽기] --> B(뇌가 내용을 쉽게 이해했다고 착각)
@@ -64,6 +68,8 @@ AI 챗봇이 써 내려간 매끄럽고 완벽한 문장들을 읽을 때, 우�
 ## 3. 뇌를 성장시키는 4가지 과학적 학습 기법
 
 라카니는 뇌가 실제로 지식을 장기기억으로 보내고 구조화하기 위해 필요한, **생산적 고민을 수반하는 4가지 핵심 기법**을 소개합니다.
+
+<img src="/posts/attachments/20260526/productive_struggle.jpg" alt="4 Cognitive Science Learning Techniques" class="desktop-image-fix" />
 
 ### ① 되새김 (Retrieval / 회상)
 *   **원리:** 단순히 교재를 눈으로 반복해서 읽는 것(Re-reading)은 유창함의 착각만 일으킵니다. 그 대신, 책을 덮고 머릿속에서 강제로 기억을 끄집어내어 회상(Retrieval)하려 애써야 합니다.
@@ -92,7 +98,9 @@ AI 챗봇이 써 내려간 매끄럽고 완벽한 문장들을 읽을 때, 우�
 
 | 연구 대상 | 조건 및 난이도 | 뇌 스캔 결과 (신경과학) |
 | :--- | :--- | :--- |
-| **런던 블랙캡(Black Cab) 택시 기사** | <ul><li>런던 시내 26,000개 거리와 2만 개 이상의 랜드마크 완전 암기</li><li>내비게이션(GPS) 절대 사용 금지</li><li>시험 통과에 평균 3~4년 소요</li></ul> | <ul><li>공간 기억과 탐색을 담당하는 **'해마(Hippocampus)'의 크기가 일반인보다 물리적으로 훨씬 큼**</li><li>강도 높은 두뇌 훈련과 탐색 고민이 뇌의 구조적 성장을 유도함</li></ul> |
+| **런던 블랙캡(Black Cab) 택시 기사** | <ul><li>런던 시내 26,000개 거리และ 2만 개 이상의 랜드마크 완전 암기</li><li>내비게이션(GPS) 절대 사용 금지</li><li>시험 통과에 평균 3~4년 소요</li></ul> | <ul><li>공간 기억과 탐색을 담당하는 **'해마(Hippocampus)'의 크기가 일반인보다 물리적으로 훨씬 큼**</li><li>강도 높은 두뇌 훈련과 탐색 고민이 뇌의 구조적 성장을 유도함</li></ul> |
+
+<img src="/posts/attachments/20260526/london_taxi.jpg" alt="London Taxi Driver Hippocampus Study" class="desktop-image-fix" />
 
 만약 이 택시 기사들이 처음부터 내비게이션(GPS)이라는 편리한 기술에 지도를 찾는 노동을 완전히 양도(대체)해 버렸다면, 그들의 해마는 절대 성장하지 않았을 것입니다. 학습도 마찬가지입니다. 편리한 AI에게 생각과 분석의 과정을 모두 넘겨버린다면, 우리의 인지적 해마는 퇴화할 수밖에 없습니다.
 
@@ -142,6 +150,8 @@ AI가 교육에 효과적으로 기여하는 방식은 다음과 같습니다.
 
 > **"Mental effort is not a bug in the process; it is a feature."**  
 > *"정신적 노력은 학습 과정에서 나타나는 오류(Bug)가 아닙니다. 그것은 학습을 지속시키고 전문성을 구축하며 인간의 독창성을 강화하는 핵심 기능(Feature)입니다."*
+
+<img src="/posts/attachments/20260526/conclusion.jpg" alt="Augmenting vs Replacing Human Cognition" class="desktop-image-fix" />
 
 프리야 라카니가 강연의 마지막에 던진 이 울림 깊은 메시지는 효율성만을 쫓는 현대 디지털 교육관에 큰 경종을 울립니다.
 
