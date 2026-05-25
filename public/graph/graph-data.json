@@ -5,42 +5,42 @@
       "type": "post",
       "title": "Hermes Agent: 시스템 접근권이 있는 자율 에이전트 활용 가이드",
       "slug": "my-blog/2026-04-29-hermes_agent_활용_가이드",
-      "connections": 4
+      "connections": 5
     },
     {
       "id": "my-blog/2026-05-05-ai를-쓸수록-지능이-올라가는-사람의-특징들",
       "type": "post",
       "title": "AI를 쓸수록 지능이 올라가는 사람의 특징들: 교육학적 관점에서 본 AI-인간 공진화",
       "slug": "my-blog/2026-05-05-ai를-쓸수록-지능이-올라가는-사람의-특징들",
-      "connections": 2
+      "connections": 6
     },
     {
       "id": "my-blog/2026-05-10-baekje-ai-generalization",
       "type": "post",
       "title": "AI 상식의 시대, 무엇을 가르칠 것인가",
       "slug": "my-blog/2026-05-10-baekje-ai-generalization",
-      "connections": 4
+      "connections": 6
     },
     {
       "id": "my-blog/2026-05-10-goguryeo-workspace-data-analysis",
       "type": "post",
       "title": "데이터로 읽는 학교, 분석으로 돕는 교사",
       "slug": "my-blog/2026-05-10-goguryeo-workspace-data-analysis",
-      "connections": 2
+      "connections": 4
     },
     {
       "id": "my-blog/2026-05-10-silla-magic-of-ai-agents",
       "type": "post",
       "title": "AI 디지털 교육의 콘셉트",
       "slug": "my-blog/2026-05-10-silla-magic-of-ai-agents",
-      "connections": 8
+      "connections": 12
     },
     {
       "id": "my-blog/2026-05-13-hermes-google-chat-integration",
       "type": "post",
       "title": "헤르메스 에이전트 x 구글 챗 연동 가이드: 원리부터 실전 트러블슈팅까지",
       "slug": "my-blog/2026-05-13-hermes-google-chat-integration",
-      "connections": 7
+      "connections": 10
     },
     {
       "id": "my-blog/2026-05-14-blog-publishing-guide",
@@ -54,21 +54,21 @@
       "type": "post",
       "title": "🛠️ [개발기] 파이어베이스로 만드는 나만의 스마트 방문자 카운터: 구축부터 트러블슈팅까지",
       "slug": "my-blog/2026-05-14-firebase-analytics-case-study",
-      "connections": 2
+      "connections": 3
     },
     {
       "id": "my-blog/2026-05-16-baekje-boundary-of-thinking",
       "type": "post",
       "title": "사고의 경계, 그리고 평가의 과도기",
       "slug": "my-blog/2026-05-16-baekje-boundary-of-thinking",
-      "connections": 3
+      "connections": 5
     },
     {
       "id": "my-blog/2026-05-16-silla-ai-practical-application",
       "type": "post",
       "title": "AI를 교실에 들이는 법: 구글챗, 코스웨어, 그리고 본질",
       "slug": "my-blog/2026-05-16-silla-ai-practical-application",
-      "connections": 4
+      "connections": 5
     },
     {
       "id": "my-blog/2026-05-22-google-workspace-hermes-automation",
@@ -78,6 +78,34 @@
       "connections": 3
     },
     {
+      "id": "my-blog/2026-05-23-baekje-line-highlighting-similarity",
+      "type": "post",
+      "title": "AI 기반 줄 치기 유사도 평가 — 읽기의 본질로 돌아가는 평가",
+      "slug": "my-blog/2026-05-23-baekje-line-highlighting-similarity",
+      "connections": 9
+    },
+    {
+      "id": "my-blog/2026-05-23-goguryeo-saeromos-and-ai-teacher-training",
+      "type": "post",
+      "title": "saeromOS와 교원 AI 연수 모델 — 학교를 위한 두 가지 설계",
+      "slug": "my-blog/2026-05-23-goguryeo-saeromos-and-ai-teacher-training",
+      "connections": 7
+    },
+    {
+      "id": "my-blog/2026-05-23-silla-essay-grading-and-classroom-tv",
+      "type": "post",
+      "title": "서논술평가와 교실 TV — 학교의 작업 단위를 '플로우'로",
+      "slug": "my-blog/2026-05-23-silla-essay-grading-and-classroom-tv",
+      "connections": 8
+    },
+    {
+      "id": "my-blog/2026-05-26-priya-lakhani-ai-edtech",
+      "type": "post",
+      "title": "배움의 고통을 훔쳐가는 AI, 어떻게 대처할 것인가 — 프리야 라카니(Priya Lakhani)의 TED 강연과 한국 교육의 미래",
+      "slug": "my-blog/2026-05-26-priya-lakhani-ai-edtech",
+      "connections": 2
+    },
+    {
       "id": "my-blog/readme",
       "type": "post",
       "title": "고교 삼국시대 운영 및 관리 지침서",
@@ -85,11 +113,18 @@
       "connections": 1
     },
     {
+      "id": "my-blog/responsible-assessment-ai-era",
+      "type": "post",
+      "title": "AI 시대, 책임 있는 평가(Responsible Assessment)란 무엇인가",
+      "slug": "my-blog/responsible-assessment-ai-era",
+      "connections": 5
+    },
+    {
       "id": "my-blog/구글시트_연수자료_분석",
       "type": "post",
       "title": "구글시트(Sheets), 공유문서를 넘어 기능문서로",
       "slug": "my-blog/구글시트_연수자료_분석",
-      "connections": 0
+      "connections": 1
     }
   ],
   "connections": [
@@ -139,6 +174,41 @@
       "type": "link"
     },
     {
+      "source": "my-blog/2026-05-23-baekje-line-highlighting-similarity",
+      "target": "my-blog/2026-05-23-goguryeo-saeromos-and-ai-teacher-training",
+      "type": "link"
+    },
+    {
+      "source": "my-blog/2026-05-23-baekje-line-highlighting-similarity",
+      "target": "my-blog/2026-05-23-silla-essay-grading-and-classroom-tv",
+      "type": "link"
+    },
+    {
+      "source": "my-blog/2026-05-23-baekje-line-highlighting-similarity",
+      "target": "my-blog/2026-05-16-baekje-boundary-of-thinking",
+      "type": "link"
+    },
+    {
+      "source": "my-blog/2026-05-23-goguryeo-saeromos-and-ai-teacher-training",
+      "target": "my-blog/2026-05-23-silla-essay-grading-and-classroom-tv",
+      "type": "link"
+    },
+    {
+      "source": "my-blog/2026-05-23-goguryeo-saeromos-and-ai-teacher-training",
+      "target": "my-blog/2026-05-10-goguryeo-workspace-data-analysis",
+      "type": "link"
+    },
+    {
+      "source": "my-blog/2026-05-23-silla-essay-grading-and-classroom-tv",
+      "target": "my-blog/2026-05-16-silla-ai-practical-application",
+      "type": "link"
+    },
+    {
+      "source": "my-blog/2026-04-29-hermes_agent_활용_가이드",
+      "target": "my-blog/responsible-assessment-ai-era",
+      "type": "tag"
+    },
+    {
       "source": "my-blog/2026-04-29-hermes_agent_활용_가이드",
       "target": "my-blog/2026-05-10-silla-magic-of-ai-agents",
       "type": "tag"
@@ -176,6 +246,91 @@
     {
       "source": "my-blog/2026-05-05-ai를-쓸수록-지능이-올라가는-사람의-특징들",
       "target": "my-blog/2026-05-13-hermes-google-chat-integration",
+      "type": "tag"
+    },
+    {
+      "source": "my-blog/2026-05-05-ai를-쓸수록-지능이-올라가는-사람의-특징들",
+      "target": "my-blog/2026-05-23-baekje-line-highlighting-similarity",
+      "type": "tag"
+    },
+    {
+      "source": "my-blog/2026-05-05-ai를-쓸수록-지능이-올라가는-사람의-특징들",
+      "target": "my-blog/2026-05-23-goguryeo-saeromos-and-ai-teacher-training",
+      "type": "tag"
+    },
+    {
+      "source": "my-blog/2026-05-05-ai를-쓸수록-지능이-올라가는-사람의-특징들",
+      "target": "my-blog/2026-05-23-silla-essay-grading-and-classroom-tv",
+      "type": "tag"
+    },
+    {
+      "source": "my-blog/2026-05-10-silla-magic-of-ai-agents",
+      "target": "my-blog/2026-05-23-baekje-line-highlighting-similarity",
+      "type": "tag"
+    },
+    {
+      "source": "my-blog/2026-05-10-silla-magic-of-ai-agents",
+      "target": "my-blog/2026-05-23-goguryeo-saeromos-and-ai-teacher-training",
+      "type": "tag"
+    },
+    {
+      "source": "my-blog/2026-05-10-silla-magic-of-ai-agents",
+      "target": "my-blog/2026-05-23-silla-essay-grading-and-classroom-tv",
+      "type": "tag"
+    },
+    {
+      "source": "my-blog/2026-05-13-hermes-google-chat-integration",
+      "target": "my-blog/2026-05-23-baekje-line-highlighting-similarity",
+      "type": "tag"
+    },
+    {
+      "source": "my-blog/2026-05-13-hermes-google-chat-integration",
+      "target": "my-blog/2026-05-23-goguryeo-saeromos-and-ai-teacher-training",
+      "type": "tag"
+    },
+    {
+      "source": "my-blog/2026-05-13-hermes-google-chat-integration",
+      "target": "my-blog/2026-05-23-silla-essay-grading-and-classroom-tv",
+      "type": "tag"
+    },
+    {
+      "source": "my-blog/2026-05-05-ai를-쓸수록-지능이-올라가는-사람의-특징들",
+      "target": "my-blog/2026-05-26-priya-lakhani-ai-edtech",
+      "type": "tag"
+    },
+    {
+      "source": "my-blog/2026-05-23-goguryeo-saeromos-and-ai-teacher-training",
+      "target": "my-blog/2026-05-26-priya-lakhani-ai-edtech",
+      "type": "tag"
+    },
+    {
+      "source": "my-blog/2026-05-10-baekje-ai-generalization",
+      "target": "my-blog/2026-05-23-baekje-line-highlighting-similarity",
+      "type": "tag"
+    },
+    {
+      "source": "my-blog/2026-05-10-baekje-ai-generalization",
+      "target": "my-blog/responsible-assessment-ai-era",
+      "type": "tag"
+    },
+    {
+      "source": "my-blog/2026-05-16-baekje-boundary-of-thinking",
+      "target": "my-blog/responsible-assessment-ai-era",
+      "type": "tag"
+    },
+    {
+      "source": "my-blog/2026-05-23-baekje-line-highlighting-similarity",
+      "target": "my-blog/responsible-assessment-ai-era",
+      "type": "tag"
+    },
+    {
+      "source": "my-blog/2026-05-10-goguryeo-workspace-data-analysis",
+      "target": "my-blog/2026-05-23-silla-essay-grading-and-classroom-tv",
+      "type": "tag"
+    },
+    {
+      "source": "my-blog/2026-05-10-silla-magic-of-ai-agents",
+      "target": "my-blog/responsible-assessment-ai-era",
       "type": "tag"
     },
     {
@@ -197,12 +352,22 @@
       "source": "my-blog/2026-05-14-blog-publishing-guide",
       "target": "my-blog/2026-05-14-firebase-analytics-case-study",
       "type": "tag"
+    },
+    {
+      "source": "my-blog/2026-05-14-firebase-analytics-case-study",
+      "target": "my-blog/2026-05-23-baekje-line-highlighting-similarity",
+      "type": "tag"
+    },
+    {
+      "source": "my-blog/2026-05-23-silla-essay-grading-and-classroom-tv",
+      "target": "my-blog/구글시트_연수자료_분석",
+      "type": "tag"
     }
   ],
   "metadata": {
-    "totalPosts": 13,
-    "totalConnections": 21,
+    "totalPosts": 18,
+    "totalConnections": 47,
     "maxNodesApplied": false,
-    "originalNodeCount": 13
+    "originalNodeCount": 18
   }
 }

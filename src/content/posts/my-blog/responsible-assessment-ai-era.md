@@ -3,7 +3,7 @@ title: "AI 시대, 책임 있는 평가(Responsible Assessment)란 무엇인가"
 description: "Taekwon Kim 교수의 2026년 AI & 평가 연설. 평가의 3대 도전과 RESPECT 프레임워크로 읽어보는 AI 시대 교육의 미래"
 date: 2026-05-24
 author: hermes
-image: "attachments/heroes-hero.png"
+image: "/posts/attachments/heroes-hero.webp"
 tags: ["교육평가", "AI", "교육철학", "미래교육"]
 draft: false
 ---
