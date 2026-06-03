@@ -4,7 +4,7 @@ description: "부분의 합 이상인 전체를 인식하는 인간의 독특한
 date: 2026-05-29
 author: "baekje"
 tags: ["게슈탈트", "인간성", "ChatGPT", "화용론", "기호학", "인지심리학"]
-image: "/posts/attachments/20260529/20260529_백제_slide-01.png"
+image: "/posts/attachments/20260529/20260529%20%EB%B0%B1%EC%A0%9C%20%EB%B0%9C%ED%91%9C%EC%9E%90%EB%A3%8C_slide_01.webp"
 category: "my-blog"
 ---
 
@@ -29,13 +29,13 @@ category: "my-blog"
 
 ## 1. 네 가지 핵심 질문: 사고와 언어처리의 주체
 
-<img src="/posts/attachments/20260529/20260529_백제_slide-01.png" alt="슬라이드 1" class="desktop-image-fix" />
+<img src="/posts/attachments/20260529/20260529%20%EB%B0%B1%EC%A0%9C%20%EB%B0%9C%ED%91%9C%EC%9E%90%EB%A3%8C_slide_01.webp" alt="슬라이드 1" class="desktop-image-fix" />
 
 과연 "전체는 부분의 합일까요?" 
 
 많은 사람들이 인공지능이 인간보다 훨씬 정밀하게 계산하고 지식을 방대하게 처리하니까, 언젠가 인간의 모든 지적 역량을 완벽히 대체하거나 심지어 능가할 것이라 예견합니다. 하지만 정말 인간의 사고 구조가 0과 1의 조합, 혹은 가중치들의 선형 결합(합)과 같을까요?
 
-<img src="/posts/attachments/20260529/20260529_백제_slide-02.png" alt="슬라이드 2" class="desktop-image-fix" />
+<img src="/posts/attachments/20260529/20260529%20%EB%B0%B1%EC%A0%9C%20%EB%B0%9C%ED%91%9C%EC%9E%90%EB%A3%8C_slide_02.webp" alt="슬라이드 2" class="desktop-image-fix" />
 
 이 질문을 마주하며 우리는 깊이 있는 사고를 촉진하기 위한 네 가지 핵심 질문을 던져야 합니다.
 1. 인간은 왜 부분들이 아닌 **'전체'**를 먼저 인식하고 구성하는가?
@@ -47,7 +47,7 @@ category: "my-blog"
 
 ## 2. 카니자 삼각형: 인간은 없는 맥락을 본다
 
-<img src="/posts/attachments/20260529/20260529_백제_slide-03.png" alt="슬라이드 3" class="desktop-image-fix" />
+<img src="/posts/attachments/20260529/20260529%20%EB%B0%B1%EC%A0%9C%20%EB%B0%9C%ED%91%9C%EC%9E%90%EB%A3%8C_slide_03.webp" alt="슬라이드 3" class="desktop-image-fix" />
 
 이 차이를 가장 선명하게 시각화해 주는 사례가 바로 **'카니자 삼각형(Kanizsa Triangle)'**입니다. 
 
@@ -55,7 +55,7 @@ category: "my-blog"
 
 우리는 개별 요소를 기계적으로 더하지 않고, 주변 배치를 통해 전체 맥락을 직관적으로 완성합니다. 즉, '없는 것'까지 볼 수 있는 능력입니다. 반면 현재의 AI 이미지 인식 모델은 인간과 같은 맥락적 추론 체계가 없기 때문에 이러한 시각적 착시(안구의 게슈탈트적 통합)를 올바르게 처리하는 데 여전히 큰 어려움을 겪습니다.
 
-<img src="/posts/attachments/20260529/20260529_백제_slide-04.png" alt="슬라이드 4" class="desktop-image-fix" />
+<img src="/posts/attachments/20260529/20260529%20%EB%B0%B1%EC%A0%9C%20%EB%B0%9C%ED%91%9C%EC%9E%90%EB%A3%8C_slide_04.webp" alt="슬라이드 4" class="desktop-image-fix" />
 
 이러한 게슈탈트(Gestalt) 심리학의 핵심 명제는 다음과 같습니다.
 > *"전체는 개별 부분들의 단순한 물리적 합이 아니라, 그 이상이다."*
@@ -69,8 +69,8 @@ category: "my-blog"
 
 ## 3. 게슈탈트 vs AI: 근본적인 처리 방식의 차이
 
-<img src="/posts/attachments/20260529/20260529_백제_slide-05.png" alt="슬라이드 5" class="desktop-image-fix" />
-<img src="/posts/attachments/20260529/20260529_백제_slide-06.png" alt="슬라이드 6" class="desktop-image-fix" />
+<img src="/posts/attachments/20260529/20260529%20%EB%B0%B1%EC%A0%9C%20%EB%B0%9C%ED%91%9C%EC%9E%90%EB%A3%8C_slide_05.webp" alt="슬라이드 5" class="desktop-image-fix" />
+<img src="/posts/attachments/20260529/20260529%20%EB%B0%B1%EC%A0%9C%20%EB%B0%9C%ED%91%9C%EC%9E%90%EB%A3%8C_slide_06.webp" alt="슬라이드 6" class="desktop-image-fix" />
 
 그러나 인공지능이 작동하는 근본적인 존재 방식은 이와 완전히 궤를 달리합니다.
 
@@ -79,8 +79,8 @@ category: "my-blog"
 
 ChatGPT가 고양이 관련 문장 뒤에 "mat(매트)"라는 단어를 골라냈을 때, 그것은 고양이라는 동물과 매트의 물리적 상관관계를 이해하고 쓴 것이 아닙니다. 웹에 널려있던 엄청난 말뭉치 데이터 속의 통계적 빈도를 수학적으로 계산하여 샘플링했을 뿐입니다.
 
-<img src="/posts/attachments/20260529/20260529_백제_slide-07.png" alt="슬라이드 7" class="desktop-image-fix" />
-<img src="/posts/attachments/20260529/20260529_백제_slide-08.png" alt="슬라이드 8" class="desktop-image-fix" />
+<img src="/posts/attachments/20260529/20260529%20%EB%B0%B1%EC%A0%9C%20%EB%B0%9C%ED%91%9C%EC%9E%90%EB%A3%8C_slide_07.webp" alt="슬라이드 7" class="desktop-image-fix" />
+<img src="/posts/attachments/20260529/20260529%20%EB%B0%B1%EC%A0%9C%20%EB%B0%9C%ED%91%9C%EC%9E%90%EB%A3%8C_slide_08.webp" alt="슬라이드 8" class="desktop-image-fix" />
 
 여기서 우리는 **'거대 언어 모델의 역설'**을 마주합니다. 
 
@@ -92,15 +92,15 @@ ChatGPT가 고양이 관련 문장 뒤에 "mat(매트)"라는 단어를 골라�
 
 ## 4. 기호의 덫(The Symbol Trap): 체험이 거세된 텍스트
 
-<img src="/posts/attachments/20260529/20260529_백제_slide-09.png" alt="슬라이드 9" class="desktop-image-fix" />
-<img src="/posts/attachments/20260529/20260529_백제_slide-10.png" alt="슬라이드 10" class="desktop-image-fix" />
+<img src="/posts/attachments/20260529/20260529%20%EB%B0%B1%EC%A0%9C%20%EB%B0%9C%ED%91%9C%EC%9E%90%EB%A3%8C_slide_09.webp" alt="슬라이드 9" class="desktop-image-fix" />
+<img src="/posts/attachments/20260529/20260529%20%EB%B0%B1%EC%A0%9C%20%EB%B0%9C%ED%91%9C%EC%9E%90%EB%A3%8C_slide_10.webp" alt="슬라이드 10" class="desktop-image-fix" />
 
 미술사에서 르네 마그리트의 작품 <이미지의 반역>에는 파이프 그림 아래에 *"Ceci n'est pas une pipe(이것은 파이프가 아니다)"*라는 문장이 적혀 있습니다.
 
 물리적인 '현실 파이프'와 그것을 재현한 '이미지 파이프', 그리고 '파이프'라는 문자 기호(Language) 사이에는 좁힐 수 없는 간극이 존재합니다. 기호는 결코 실재 자체가 아닙니다.
 
-<img src="/posts/attachments/20260529/20260529_백제_slide-11.png" alt="슬라이드 11" class="desktop-image-fix" />
-<img src="/posts/attachments/20260529/20260529_백제_slide-12.png" alt="슬라이드 12" class="desktop-image-fix" />
+<img src="/posts/attachments/20260529/20260529%20%EB%B0%B1%EC%A0%9C%20%EB%B0%9C%ED%91%9C%EC%9E%90%EB%A3%8C_slide_11.webp" alt="슬라이드 11" class="desktop-image-fix" />
+<img src="/posts/attachments/20260529/20260529%20%EB%B0%B1%EC%A0%9C%20%EB%B0%9C%ED%91%9C%EC%9E%90%EB%A3%8C_slide_12.webp" alt="슬라이드 12" class="desktop-image-fix" />
 
 AI는 바로 이 **'기호의 덫(The Symbol Trap)'** 안에 영원히 갇혀 있는 시스템입니다. 
 
@@ -114,9 +114,9 @@ AI는 '사과'라는 단어를 수백만 번 계산하고 분석했지만, 단 �
 
 ## 5. 교육적 함의: AI 시대, 우리는 무엇을 멈춰야 하는가
 
-<img src="/posts/attachments/20260529/20260529_백제_slide-13.png" alt="슬라이드 13" class="desktop-image-fix" />
-<img src="/posts/attachments/20260529/20260529_백제_slide-14.png" alt="슬라이드 14" class="desktop-image-fix" />
-<img src="/posts/attachments/20260529/20260529_백제_slide-15.png" alt="슬라이드 15" class="desktop-image-fix" />
+<img src="/posts/attachments/20260529/20260529%20%EB%B0%B1%EC%A0%9C%20%EB%B0%9C%ED%91%9C%EC%9E%90%EB%A3%8C_slide_13.webp" alt="슬라이드 13" class="desktop-image-fix" />
+<img src="/posts/attachments/20260529/20260529%20%EB%B0%B1%EC%A0%9C%20%EB%B0%9C%ED%91%9C%EC%9E%90%EB%A3%8C_slide_14.webp" alt="슬라이드 14" class="desktop-image-fix" />
+<img src="/posts/attachments/20260529/20260529%20%EB%B0%B1%EC%A0%9C%20%EB%B0%9C%ED%91%9C%EC%9E%90%EB%A3%8C_slide_15.webp" alt="슬라이드 15" class="desktop-image-fix" />
 
 인공지능이 이미 전문직 시험인 의사 국가고시와 변호사 시험에서 인간 평균을 가볍게 뛰어넘는 세상입니다. 그렇다면 우리 공교육은 앞으로 무엇을 멈추고 무엇을 지향해야 할까요?
 

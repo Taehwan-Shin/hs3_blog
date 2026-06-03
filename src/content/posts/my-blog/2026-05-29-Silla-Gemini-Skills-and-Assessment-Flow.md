@@ -4,7 +4,7 @@ description: "크롬에 탑재된 에스크 제미나이의 슬러시(/) 스킬 
 date: 2026-05-29
 author: "silla"
 tags: ["제미나이", "에듀테크", "수행평가", "구글클래스룸", "평가플로우"]
-image: "/posts/attachments/20260529/20260529_신라_slide-01.png"
+image: "/posts/attachments/20260529/20260529%20%EC%8B%A0%EB%9D%BC%20%EB%B0%9C%ED%91%9C%EC%9E%90%EB%A3%8C_slide_01.webp"
 category: "my-blog"
 ---
 
@@ -29,13 +29,13 @@ category: "my-blog"
 
 ## 1. Ask Gemini: 슬러시(/) 키로 여는 압축된 사고의 창
 
-<img src="/posts/attachments/20260529/20260529_신라_slide-01.png" alt="슬라이드 1" class="desktop-image-fix" />
-<img src="/posts/attachments/20260529/20260529_신라_slide-02.png" alt="슬라이드 2" class="desktop-image-fix" />
-<img src="/posts/attachments/20260529/20260529_신라_slide-03.png" alt="슬라이드 3" class="desktop-image-fix" />
-<img src="/posts/attachments/20260529/20260529_신라_slide-04.png" alt="슬라이드 4" class="desktop-image-fix" />
-<img src="/posts/attachments/20260529/20260529_신라_slide-05.png" alt="슬라이드 5" class="desktop-image-fix" />
-<img src="/posts/attachments/20260529/20260529_신라_slide-06.png" alt="슬라이드 6" class="desktop-image-fix" />
-<img src="/posts/attachments/20260529/20260529_신라_slide-07.png" alt="슬라이드 7" class="desktop-image-fix" />
+<img src="/posts/attachments/20260529/20260529%20%EC%8B%A0%EB%9D%BC%20%EB%B0%9C%ED%91%9C%EC%9E%90%EB%A3%8C_slide_01.webp" alt="슬라이드 1" class="desktop-image-fix" />
+<img src="/posts/attachments/20260529/20260529%20%EC%8B%A0%EB%9D%BC%20%EB%B0%9C%ED%91%9C%EC%9E%90%EB%A3%8C_slide_02.webp" alt="슬라이드 2" class="desktop-image-fix" />
+<img src="/posts/attachments/20260529/20260529%20%EC%8B%A0%EB%9D%BC%20%EB%B0%9C%ED%91%9C%EC%9E%90%EB%A3%8C_slide_03.webp" alt="슬라이드 3" class="desktop-image-fix" />
+<img src="/posts/attachments/20260529/20260529%20%EC%8B%A0%EB%9D%BC%20%EB%B0%9C%ED%91%9C%EC%9E%90%EB%A3%8C_slide_04.webp" alt="슬라이드 4" class="desktop-image-fix" />
+<img src="/posts/attachments/20260529/20260529%20%EC%8B%A0%EB%9D%BC%20%EB%B0%9C%ED%91%9C%EC%9E%90%EB%A3%8C_slide_05.webp" alt="슬라이드 5" class="desktop-image-fix" />
+<img src="/posts/attachments/20260529/20260529%20%EC%8B%A0%EB%9D%BC%20%EB%B0%9C%ED%91%9C%EC%9E%90%EB%A3%8C_slide_06.webp" alt="슬라이드 6" class="desktop-image-fix" />
+<img src="/posts/attachments/20260529/20260529%20%EC%8B%A0%EB%9D%BC%20%EB%B0%9C%ED%91%9C%EC%9E%90%EB%A3%8C_slide_07.webp" alt="슬라이드 7" class="desktop-image-fix" />
 
 최근 구글 크롬에 에스크 제미나이(Ask Gemini) 패널이 우측에 기본 탑재되었습니다. 
 
@@ -43,10 +43,10 @@ category: "my-blog"
 
 스스로 필요한 스킬의 프롬프트를 미리 선언해두고, 마우스 클릭이나 단순 엔터만으로 탭 내용을 실시간 가공해 냅니다.
 
-<img src="/posts/attachments/20260529/20260529_신라_slide-08.png" alt="슬라이드 8" class="desktop-image-fix" />
-<img src="/posts/attachments/20260529/20260529_신라_slide-09.png" alt="슬라이드 9" class="desktop-image-fix" />
-<img src="/posts/attachments/20260529/20260529_신라_slide-10.png" alt="슬라이드 10" class="desktop-image-fix" />
-<img src="/posts/attachments/20260529/20260529_신라_slide-11.png" alt="슬라이드 11" class="desktop-image-fix" />
+<img src="/posts/attachments/20260529/20260529%20%EC%8B%A0%EB%9D%BC%20%EB%B0%9C%ED%91%9C%EC%9E%90%EB%A3%8C_slide_08.webp" alt="슬라이드 8" class="desktop-image-fix" />
+<img src="/posts/attachments/20260529/20260529%20%EC%8B%A0%EB%9D%BC%20%EB%B0%9C%ED%91%9C%EC%9E%90%EB%A3%8C_slide_09.webp" alt="슬라이드 9" class="desktop-image-fix" />
+<img src="/posts/attachments/20260529/20260529%20%EC%8B%A0%EB%9D%BC%20%EB%B0%9C%ED%91%9C%EC%9E%90%EB%A3%8C_slide_10.webp" alt="슬라이드 10" class="desktop-image-fix" />
+<img src="/posts/attachments/20260529/20260529%20%EC%8B%A0%EB%9D%BC%20%EB%B0%9C%ED%91%9C%EC%9E%90%EB%A3%8C_slide_11.webp" alt="슬라이드 11" class="desktop-image-fix" />
 
 현재 제가 만들어 매일 사용 중인 대표적인 스킬들을 소개해 드립니다.
 * **인포그래픽 디자이너**: 웹페이지 정보를 도식화하거나 PPT 시안 아이디어를 바로 짜줍니다.
@@ -60,13 +60,13 @@ category: "my-blog"
 
 ## 2. 평가 플로우: 채점부터 기록까지 원클릭 자동화
 
-<img src="/posts/attachments/20260529/20260529_신라_slide-12.png" alt="슬라이드 12" class="desktop-image-fix" />
-<img src="/posts/attachments/20260529/20260529_신라_slide-13.png" alt="슬라이드 13" class="desktop-image-fix" />
-<img src="/posts/attachments/20260529/20260529_신라_slide-14.png" alt="슬라이드 14" class="desktop-image-fix" />
-<img src="/posts/attachments/20260529/20260529_신라_slide-15.png" alt="슬라이드 15" class="desktop-image-fix" />
-<img src="/posts/attachments/20260529/20260529_신라_slide-16.png" alt="슬라이드 16" class="desktop-image-fix" />
-<img src="/posts/attachments/20260529/20260529_신라_slide-17.png" alt="슬라이드 17" class="desktop-image-fix" />
-<img src="/posts/attachments/20260529/20260529_신라_slide-18.png" alt="슬라이드 18" class="desktop-image-fix" />
+<img src="/posts/attachments/20260529/20260529%20%EC%8B%A0%EB%9D%BC%20%EB%B0%9C%ED%91%9C%EC%9E%90%EB%A3%8C_slide_12.webp" alt="슬라이드 12" class="desktop-image-fix" />
+<img src="/posts/attachments/20260529/20260529%20%EC%8B%A0%EB%9D%BC%20%EB%B0%9C%ED%91%9C%EC%9E%90%EB%A3%8C_slide_13.webp" alt="슬라이드 13" class="desktop-image-fix" />
+<img src="/posts/attachments/20260529/20260529%20%EC%8B%A0%EB%9D%BC%20%EB%B0%9C%ED%91%9C%EC%9E%90%EB%A3%8C_slide_14.webp" alt="슬라이드 14" class="desktop-image-fix" />
+<img src="/posts/attachments/20260529/20260529%20%EC%8B%A0%EB%9D%BC%20%EB%B0%9C%ED%91%9C%EC%9E%90%EB%A3%8C_slide_15.webp" alt="슬라이드 15" class="desktop-image-fix" />
+<img src="/posts/attachments/20260529/20260529%20%EC%8B%A0%EB%9D%BC%20%EB%B0%9C%ED%91%9C%EC%9E%90%EB%A3%8C_slide_16.webp" alt="슬라이드 16" class="desktop-image-fix" />
+<img src="/posts/attachments/20260529/20260529%20%EC%8B%A0%EB%9D%BC%20%EB%B0%9C%ED%91%9C%EC%9E%90%EB%A3%8C_slide_17.webp" alt="슬라이드 17" class="desktop-image-fix" />
+<img src="/posts/attachments/20260529/20260529%20%EC%8B%A0%EB%9D%BC%20%EB%B0%9C%ED%91%9C%EC%9E%90%EB%A3%8C_slide_18.webp" alt="슬라이드 18" class="desktop-image-fix" />
 
 두 번째 핵심 주제는 교사의 행정 과부하를 줄이는 **'수행평가 관리 자동화'** 프로젝트입니다. 
 
@@ -83,38 +83,38 @@ category: "my-blog"
 
 ## 3. 데이터의 입력 경로: 텍스트, 손필기, 그리고 영상과 음성
 
-<img src="/posts/attachments/20260529/20260529_신라_slide-19.png" alt="슬라이드 19" class="desktop-image-fix" />
-<img src="/posts/attachments/20260529/20260529_신라_slide-20.png" alt="슬라이드 20" class="desktop-image-fix" />
+<img src="/posts/attachments/20260529/20260529%20%EC%8B%A0%EB%9D%BC%20%EB%B0%9C%ED%91%9C%EC%9E%90%EB%A3%8C_slide_19.webp" alt="슬라이드 19" class="desktop-image-fix" />
+<img src="/posts/attachments/20260529/20260529%20%EC%8B%A0%EB%9D%BC%20%EB%B0%9C%ED%91%9C%EC%9E%90%EB%A3%8C_slide_20.webp" alt="슬라이드 20" class="desktop-image-fix" />
 
 이 플로우를 현실에 대입할 때, 저는 단순 '채점' 단계를 넘어 "처음에 과연 어떤 형태의 데이터가 어떤 경로를 통해 유입되어야 하는가"를 먼저 면밀히 설계해야 함을 깨달았습니다.
 
 데이터가 안전하게 수집되어야 올바른 채점도 가능하기 때문입니다. 크게 세 가지 통로를 고민했습니다.
 
-<img src="/posts/attachments/20260529/20260529_신라_slide-21.png" alt="슬라이드 21" class="desktop-image-fix" />
-<img src="/posts/attachments/20260529/20260529_신라_slide-22.png" alt="슬라이드 22" class="desktop-image-fix" />
-<img src="/posts/attachments/20260529/20260529_신라_slide-23.png" alt="슬라이드 23" class="desktop-image-fix" />
-<img src="/posts/attachments/20260529/20260529_신라_slide-24.png" alt="슬라이드 24" class="desktop-image-fix" />
-<img src="/posts/attachments/20260529/20260529_신라_slide-25.png" alt="슬라이드 25" class="desktop-image-fix" />
-<img src="/posts/attachments/20260529/20260529_신라_slide-26.png" alt="슬라이드 26" class="desktop-image-fix" />
+<img src="/posts/attachments/20260529/20260529%20%EC%8B%A0%EB%9D%BC%20%EB%B0%9C%ED%91%9C%EC%9E%90%EB%A3%8C_slide_21.webp" alt="슬라이드 21" class="desktop-image-fix" />
+<img src="/posts/attachments/20260529/20260529%20%EC%8B%A0%EB%9D%BC%20%EB%B0%9C%ED%91%9C%EC%9E%90%EB%A3%8C_slide_22.webp" alt="슬라이드 22" class="desktop-image-fix" />
+<img src="/posts/attachments/20260529/20260529%20%EC%8B%A0%EB%9D%BC%20%EB%B0%9C%ED%91%9C%EC%9E%90%EB%A3%8C_slide_23.webp" alt="슬라이드 23" class="desktop-image-fix" />
+<img src="/posts/attachments/20260529/20260529%20%EC%8B%A0%EB%9D%BC%20%EB%B0%9C%ED%91%9C%EC%9E%90%EB%A3%8C_slide_24.webp" alt="슬라이드 24" class="desktop-image-fix" />
+<img src="/posts/attachments/20260529/20260529%20%EC%8B%A0%EB%9D%BC%20%EB%B0%9C%ED%91%9C%EC%9E%90%EB%A3%8C_slide_25.webp" alt="슬라이드 25" class="desktop-image-fix" />
+<img src="/posts/attachments/20260529/20260529%20%EC%8B%A0%EB%9D%BC%20%EB%B0%9C%ED%91%9C%EC%9E%90%EB%A3%8C_slide_26.webp" alt="슬라이드 26" class="desktop-image-fix" />
 
 ### ① 텍스트 데이터 경로
 구글 폼, 구글 문서, 앱스 스크립트 웹앱이 대표적입니다. 수행평가의 부정행위를 방지하고 공정성을 지키기 위해 **'크롬북 잠금 모드(구글 폼)'**를 활용해 왔습니다. 잠금 모드 상태에서는 다른 인터넷 창을 띄울 수 없고 오직 입력창에만 집중해야 하므로 안전합니다.
 
 나아가 크롬북 수업도구의 **'집중 세션'** 기능을 병합하면 일반 구글 문서나 시트를 쓸 때도 기기 통제가 가능하여 한결 유연한 작문식 수행평가가 가능해집니다.
 
-<img src="/posts/attachments/20260529/20260529_신라_slide-27.png" alt="슬라이드 27" class="desktop-image-fix" />
-<img src="/posts/attachments/20260529/20260529_신라_slide-28.png" alt="슬라이드 28" class="desktop-image-fix" />
-<img src="/posts/attachments/20260529/20260529_신라_slide-29.png" alt="슬라이드 29" class="desktop-image-fix" />
+<img src="/posts/attachments/20260529/20260529%20%EC%8B%A0%EB%9D%BC%20%EB%B0%9C%ED%91%9C%EC%9E%90%EB%A3%8C_slide_27.webp" alt="슬라이드 27" class="desktop-image-fix" />
+<img src="/posts/attachments/20260529/20260529%20%EC%8B%A0%EB%9D%BC%20%EB%B0%9C%ED%91%9C%EC%9E%90%EB%A3%8C_slide_28.webp" alt="슬라이드 28" class="desktop-image-fix" />
+<img src="/posts/attachments/20260529/20260529%20%EC%8B%A0%EB%9D%BC%20%EB%B0%9C%ED%91%9C%EC%9E%90%EB%A3%8C_slide_29.webp" alt="슬라이드 29" class="desktop-image-fix" />
 
 ### ② 손필기 데이터 경로
 수학이나 과학 교과에서는 펜을 이용한 풀이 과정 평가가 필수적입니다. 이를 위해 실시간 문서 협업 도구인 **'카미(Kami)'**를 도입하여 PDF 위에 디지털 펜으로 서술하는 흐름을 적용했습니다. 실시간 학생 화면 감독 및 마감 시간 자동 회수가 가능하여 관리가 매우 간편합니다.
 
-<img src="/posts/attachments/20260529/20260529_신라_slide-30.png" alt="슬라이드 30" class="desktop-image-fix" />
-<img src="/posts/attachments/20260529/20260529_신라_slide-31.png" alt="슬라이드 31" class="desktop-image-fix" />
-<img src="/posts/attachments/20260529/20260529_신라_slide-32.png" alt="슬라이드 32" class="desktop-image-fix" />
-<img src="/posts/attachments/20260529/20260529_신라_slide-33.png" alt="슬라이드 33" class="desktop-image-fix" />
-<img src="/posts/attachments/20260529/20260529_신라_slide-34.png" alt="슬라이드 34" class="desktop-image-fix" />
-<img src="/posts/attachments/20260529/20260529_신라_slide-35.png" alt="슬라이드 35" class="desktop-image-fix" />
+<img src="/posts/attachments/20260529/20260529%20%EC%8B%A0%EB%9D%BC%20%EB%B0%9C%ED%91%9C%EC%9E%90%EB%A3%8C_slide_30.webp" alt="슬라이드 30" class="desktop-image-fix" />
+<img src="/posts/attachments/20260529/20260529%20%EC%8B%A0%EB%9D%BC%20%EB%B0%9C%ED%91%9C%EC%9E%90%EB%A3%8C_slide_31.webp" alt="슬라이드 31" class="desktop-image-fix" />
+<img src="/posts/attachments/20260529/20260529%20%EC%8B%A0%EB%9D%BC%20%EB%B0%9C%ED%91%9C%EC%9E%90%EB%A3%8C_slide_32.webp" alt="슬라이드 32" class="desktop-image-fix" />
+<img src="/posts/attachments/20260529/20260529%20%EC%8B%A0%EB%9D%BC%20%EB%B0%9C%ED%91%9C%EC%9E%90%EB%A3%8C_slide_33.webp" alt="슬라이드 33" class="desktop-image-fix" />
+<img src="/posts/attachments/20260529/20260529%20%EC%8B%A0%EB%9D%BC%20%EB%B0%9C%ED%91%9C%EC%9E%90%EB%A3%8C_slide_34.webp" alt="슬라이드 34" class="desktop-image-fix" />
+<img src="/posts/attachments/20260529/20260529%20%EC%8B%A0%EB%9D%BC%20%EB%B0%9C%ED%91%9C%EC%9E%90%EB%A3%8C_slide_35.webp" alt="슬라이드 35" class="desktop-image-fix" />
 
 ### ③ 영상 및 음성 데이터 경로
 부정행위를 원천 차단하고 학생의 표현 역량을 고스란히 담아내는 데 가장 적합한 방식입니다. 구글 슬라이드의 **'발표자 스포트라이트'**를 켜고 학생이 자신의 프리젠테이션과 얼굴을 매핑하여 녹화(최대 30분)하여 제출합니다. 클래스룸 자체의 간편 녹화 기능(5분 제한)도 융합해 보았습니다.
@@ -136,7 +136,7 @@ category: "my-blog"
 
 ## 5. 로드맵: 하나의 통합된 파이프라인 구축을 향해
 
-<img src="/posts/attachments/20260529/20260529_신라_slide-36.png" alt="슬라이드 36" class="desktop-image-fix" />
+<img src="/posts/attachments/20260529/20260529%20%EC%8B%A0%EB%9D%BC%20%EB%B0%9C%ED%91%9C%EC%9E%90%EB%A3%8C_slide_36.webp" alt="슬라이드 36" class="desktop-image-fix" />
 
 장기적으로 수행평가 프로세스는 이 모든 파편화된 기술이 하나의 대시보드 안에서 연동되는 플로우로 거듭나야 합니다.
 

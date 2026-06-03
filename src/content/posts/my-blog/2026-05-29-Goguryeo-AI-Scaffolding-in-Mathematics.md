@@ -4,7 +4,7 @@ description: "2022 개정 교육과정의 역량 중심 교육을 위해, 데스
 date: 2026-05-29
 author: "goguryeo"
 tags: ["역량중심교육", "수행평가", "데스모스", "수학모델링", "비계설정"]
-image: "/posts/attachments/20260529/20260529_고구려_slide-01.png"
+image: "/posts/attachments/20260529/20260529%20%EA%B3%A0%EA%B5%AC%EB%A0%A4%20%EB%B0%9C%ED%91%9C%EC%9E%90%EB%A3%8C_slide_01.webp"
 category: "my-blog"
 ---
 
@@ -29,23 +29,23 @@ category: "my-blog"
 
 ## 1. 문제의식: 우리는 역량을 정말 측정하고 있는가?
 
-<img src="/posts/attachments/20260529/20260529_고구려_slide-01.png" alt="슬라이드 1" class="desktop-image-fix" />
+<img src="/posts/attachments/20260529/20260529%20%EA%B3%A0%EA%B5%AC%EB%A0%A4%20%EB%B0%9C%ED%91%9C%EC%9E%90%EB%A3%8C_slide_01.webp" alt="슬라이드 1" class="desktop-image-fix" />
 
 새로운 교육과정이 시작될 때마다 우리는 항상 "역량 중심"을 이야기합니다. 하지만 실제 교실을 들여다보면 과연 학생들이 가진 진짜 문제해결능력을 어떻게 평가하고 있는지 의문이 듭니다. 기존의 지필고사와 기계적인 수행평가 루브릭만으로 아이들의 다채로운 역량을 온전히 담아낼 수 있을까요?
 
 이 근본적인 질문이 제 연구의 시작점이었습니다.
 
-<img src="/posts/attachments/20260529/20260529_고구려_slide-02.png" alt="슬라이드 2" class="desktop-image-fix" />
+<img src="/posts/attachments/20260529/20260529%20%EA%B3%A0%EA%B5%AC%EB%A0%A4%20%EB%B0%9C%ED%91%9C%EC%9E%90%EB%A3%8C_slide_02.webp" alt="슬라이드 2" class="desktop-image-fix" />
 
 현재 교육과정이 지향하는 핵심 역량은 자기관리, 지식정보처리, 창의적 사고, 심미적 감성, 협력적 소통, 공동체 역량 등 매우 다양하고 거시적입니다. 하지만 이러한 의도된 교육과정과 실제 교과서 구성 사이에는 큰 간극이 존재합니다.
 
-<img src="/posts/attachments/20260529/20260529_고구려_slide-03.png" alt="슬라이드 3" class="desktop-image-fix" />
+<img src="/posts/attachments/20260529/20260529%20%EA%B3%A0%EA%B5%AC%EB%A0%A4%20%EB%B0%9C%ED%91%9C%EC%9E%90%EB%A3%8C_slide_03.webp" alt="슬라이드 3" class="desktop-image-fix" />
 
 실제 OECD 보고서(Schmidt, W. et al. 2022)의 데이터를 살펴보면, 19개국 중학교 2학년 수학 교과서 문항 중 무려 81.87%가 단순 계산 위주의 연습 문제(Computational Exercises)에 편중되어 있습니다. 반면 실생활을 다루고 높은 차원의 사고를 요구하는 실생활 적용 문제(Higher-Order Real-World Applications)는 겨우 0.25%에 불과합니다.
 
 역량을 강조하면서도 교과서와 학습 자료는 여전히 과거의 기계적 훈련에 멈춰 있는 셈입니다.
 
-<img src="/posts/attachments/20260529/20260529_고구려_slide-04.png" alt="슬라이드 4" class="desktop-image-fix" />
+<img src="/posts/attachments/20260529/20260529%20%EA%B3%A0%EA%B5%AC%EB%A0%A4%20%EB%B0%9C%ED%91%9C%EC%9E%90%EB%A3%8C_slide_04.webp" alt="슬라이드 4" class="desktop-image-fix" />
 
 이러한 상태에서 문제해결능력이라는 본질적인 목표는 현장으로 내려올수록 점점 왜곡되고 좁아집니다. 거시적으로 역량을 선언하더라도, 수업은 기존 활동의 재구성에 그치고, 평가는 형식적인 루브릭에 의존하며, 실제 채점은 정량적인 결과물 중심의 점수 매기기로 귀결되고 맙니다. 
 
@@ -55,7 +55,7 @@ category: "my-blog"
 
 ## 2. 전환점: AI를 변수가 아닌 상수를 두기
 
-<img src="/posts/attachments/20260529/20260529_고구려_slide-05.png" alt="슬라이드 5" class="desktop-image-fix" />
+<img src="/posts/attachments/20260529/20260529%20%EA%B3%A0%EA%B5%AC%EB%A0%A4%20%EB%B0%9C%ED%91%9C%EC%9E%90%EB%A3%8C_slide_05.webp" alt="슬라이드 5" class="desktop-image-fix" />
 
 그렇다면 어떻게 평가를 혁신할 수 있을까요? 저는 AI를 바라보는 패러다임 자체를 바꾸어야 한다고 생각합니다.
 
@@ -63,7 +63,7 @@ category: "my-blog"
 
 하지만 이제는 과거 계산기가 도입된 후 수학 교육이 단순 '계산 훈련'에서 '개념적 이해와 수학적 판단'으로 진화했듯이, AI 역시 교실 안의 움직이지 않는 **'상수(Constant)'**로 고정하고 평가를 재설계해야 합니다.
 
-<img src="/posts/attachments/20260529/20260529_고구려_slide-06.png" alt="슬라이드 6" class="desktop-image-fix" />
+<img src="/posts/attachments/20260529/20260529%20%EA%B3%A0%EA%B5%AC%EB%A0%A4%20%EB%B0%9C%ED%91%9C%EC%9E%90%EB%A3%8C_slide_06.webp" alt="슬라이드 6" class="desktop-image-fix" />
 
 실제 통계를 보면 영국의 대학생 88%가 평가에 생성형 AI를 활용하고 있으며, 글로벌 대학생의 86%가 학교 과제를 위해 AI를 씁니다. 금지 정책을 펼치더라도 51% 이상의 학생은 계속해서 몰래 쓸 것이라고 답합니다.
 
@@ -73,7 +73,7 @@ category: "my-blog"
 
 ## 3. 설계 원리: 구조화된 프롬프트 비계(Scaffolding)
 
-<img src="/posts/attachments/20260529/20260529_고구려_slide-07.png" alt="슬라이드 7" class="desktop-image-fix" />
+<img src="/posts/attachments/20260529/20260529%20%EA%B3%A0%EA%B5%AC%EB%A0%A4%20%EB%B0%9C%ED%91%9C%EC%9E%90%EB%A3%8C_slide_07.webp" alt="슬라이드 7" class="desktop-image-fix" />
 
 이에 대한 구체적인 해법으로 저는 **'AI 비계 기반 수행평가 모델'**을 제시합니다.
 
@@ -84,7 +84,7 @@ category: "my-blog"
 3. **프롬프트 구조화**: 자유롭게 질문을 던지게 방치하지 않고, 교사가 사전에 인지적 절차를 조직하는 프롬프트 틀을 설계해 제공합니다.
 4. **활용 양상 평가**: 에이전트의 답변을 어떻게 수용하고 비판하며 재정리했는지, 활용 방식 자체를 정성 평가합니다.
 
-<img src="/posts/attachments/20260529/20260529_고구려_slide-08.png" alt="슬라이드 8" class="desktop-image-fix" />
+<img src="/posts/attachments/20260529/20260529%20%EA%B3%A0%EA%B5%AC%EB%A0%A4%20%EB%B0%9C%ED%91%9C%EC%9E%90%EB%A3%8C_slide_08.webp" alt="슬라이드 8" class="desktop-image-fix" />
 
 특히 중요한 지점은 **"교사가 먼저 비계를 짜고, 학생은 그 안에서 생각하도록 돕는 것"**입니다. 
 
@@ -94,8 +94,8 @@ category: "my-blog"
 
 ## 4. 실제 구현: 대수 수행평가 및 분석 흐름
 
-<img src="/posts/attachments/20260529/20260529_고구려_slide-09.png" alt="슬라이드 9" class="desktop-image-fix" />
-<img src="/posts/attachments/20260529/20260529_고구려_slide-10.png" alt="슬라이드 10" class="desktop-image-fix" />
+<img src="/posts/attachments/20260529/20260529%20%EA%B3%A0%EA%B5%AC%EB%A0%A4%20%EB%B0%9C%ED%91%9C%EC%9E%90%EB%A3%8C_slide_09.webp" alt="슬라이드 9" class="desktop-image-fix" />
+<img src="/posts/attachments/20260529/20260529%20%EA%B3%A0%EA%B5%AC%EB%A0%A4%20%EB%B0%9C%ED%91%9C%EC%9E%90%EB%A3%8C_slide_10.webp" alt="슬라이드 10" class="desktop-image-fix" />
 
 실제 1학기 고등학교 대수 수업 시간에 데스모스(Desmos)와 AI 프롬프트 틀을 결합한 데이터 모델링 수행평가를 시도했습니다. 
 
@@ -104,15 +104,15 @@ category: "my-blog"
 
 이후 AI의 답변을 검토하고 보완하기 위해 [3단계 AI 힌트 요구 프롬프트]를 추가로 활용합니다. 직접 정답을 물어보지 않고, 문제를 스스로 해결해 나갈 수 있도록 힌트와 핵심 키워드만을 추출하여 사고를 유도하는 구조입니다.
 
-<img src="/posts/attachments/20260529/20260529_고구려_slide-11.png" alt="슬라이드 11" class="desktop-image-fix" />
-<img src="/posts/attachments/20260529/20260529_고구려_slide-12.png" alt="슬라이드 12" class="desktop-image-fix" />
+<img src="/posts/attachments/20260529/20260529%20%EA%B3%A0%EA%B5%AC%EB%A0%A4%20%EB%B0%9C%ED%91%9C%EC%9E%90%EB%A3%8C_slide_11.webp" alt="슬라이드 11" class="desktop-image-fix" />
+<img src="/posts/attachments/20260529/20260529%20%EA%B3%A0%EA%B5%AC%EB%A0%A4%20%EB%B0%9C%ED%91%9C%EC%9E%90%EB%A3%8C_slide_12.webp" alt="슬라이드 12" class="desktop-image-fix" />
 
 이 과정을 거치며 학생들은 AI가 제공한 비판적 피드백과 힌트를 재해석하고, 본인의 생각을 추가하여 활동지와 보고서에 자신만의 언어로 최종 해석을 기술하게 됩니다.
 
 이 모델의 핵심은 **"AI를 썼다는 사실보다, AI와 어떻게 소통하며 최종 수학적 의사결정에 도달했는가"**에 있습니다. AI를 단순 자판기처럼 쓴 학생과, 인지적 성장을 돕는 검증 도구로 쓴 학생은 결과물이 비슷해 보여도 그 과정에서 드러나는 역량의 궤도가 완전히 다릅니다.
 
-<img src="/posts/attachments/20260529/20260529_고구려_slide-13.png" alt="슬라이드 13" class="desktop-image-fix" />
-<img src="/posts/attachments/20260529/20260529_고구려_slide-14.png" alt="슬라이드 14" class="desktop-image-fix" />
+<img src="/posts/attachments/20260529/20260529%20%EA%B3%A0%EA%B5%AC%EB%A0%A4%20%EB%B0%9C%ED%91%9C%EC%9E%90%EB%A3%8C_slide_13.webp" alt="슬라이드 13" class="desktop-image-fix" />
+<img src="/posts/attachments/20260529/20260529%20%EA%B3%A0%EA%B5%AC%EB%A0%A4%20%EB%B0%9C%ED%91%9C%EC%9E%90%EB%A3%8C_slide_14.webp" alt="슬라이드 14" class="desktop-image-fix" />
 
 연구는 총 3가지 흐름으로 정교하게 분석을 시도합니다.
 1. **로그 분석**: 학생들이 AI 챗봇과 대화하며 질문을 수정해 나간 패턴을 수집합니다.
@@ -125,13 +125,13 @@ category: "my-blog"
 
 ## 5. 나아가며: 진짜 역량은 언제 드러나는가
 
-<img src="/posts/attachments/20260529/20260529_고구려_slide-15.png" alt="슬라이드 15" class="desktop-image-fix" />
-<img src="/posts/attachments/20260529/20260529_고구려_slide-16.png" alt="슬라이드 16" class="desktop-image-fix" />
-<img src="/posts/attachments/20260529/20260529_고구려_slide-17.png" alt="슬라이드 17" class="desktop-image-fix" />
-<img src="/posts/attachments/20260529/20260529_고구려_slide-18.png" alt="슬라이드 18" class="desktop-image-fix" />
-<img src="/posts/attachments/20260529/20260529_고구려_slide-19.png" alt="슬라이드 19" class="desktop-image-fix" />
-<img src="/posts/attachments/20260529/20260529_고구려_slide-20.png" alt="슬라이드 20" class="desktop-image-fix" />
-<img src="/posts/attachments/20260529/20260529_고구려_slide-21.png" alt="슬라이드 21" class="desktop-image-fix" />
+<img src="/posts/attachments/20260529/20260529%20%EA%B3%A0%EA%B5%AC%EB%A0%A4%20%EB%B0%9C%ED%91%9C%EC%9E%90%EB%A3%8C_slide_15.webp" alt="슬라이드 15" class="desktop-image-fix" />
+<img src="/posts/attachments/20260529/20260529%20%EA%B3%A0%EA%B5%AC%EB%A0%A4%20%EB%B0%9C%ED%91%9C%EC%9E%90%EB%A3%8C_slide_16.webp" alt="슬라이드 16" class="desktop-image-fix" />
+<img src="/posts/attachments/20260529/20260529%20%EA%B3%A0%EA%B5%AC%EB%A0%A4%20%EB%B0%9C%ED%91%9C%EC%9E%90%EB%A3%8C_slide_17.webp" alt="슬라이드 17" class="desktop-image-fix" />
+<img src="/posts/attachments/20260529/20260529%20%EA%B3%A0%EA%B5%AC%EB%A0%A4%20%EB%B0%9C%ED%91%9C%EC%9E%90%EB%A3%8C_slide_18.webp" alt="슬라이드 18" class="desktop-image-fix" />
+<img src="/posts/attachments/20260529/20260529%20%EA%B3%A0%EA%B5%AC%EB%A0%A4%20%EB%B0%9C%ED%91%9C%EC%9E%90%EB%A3%8C_slide_19.webp" alt="슬라이드 19" class="desktop-image-fix" />
+<img src="/posts/attachments/20260529/20260529%20%EA%B3%A0%EA%B5%AC%EB%A0%A4%20%EB%B0%9C%ED%91%9C%EC%9E%90%EB%A3%8C_slide_20.webp" alt="슬라이드 20" class="desktop-image-fix" />
+<img src="/posts/attachments/20260529/20260529%20%EA%B3%A0%EA%B5%AC%EB%A0%A4%20%EB%B0%9C%ED%91%9C%EC%9E%90%EB%A3%8C_slide_21.webp" alt="슬라이드 21" class="desktop-image-fix" />
 
 미래의 핵심 역량은 기술이 배제된 진공 상태가 아니라, AI가 이미 숨 쉬듯 존재하는 초연결 환경에서 문제를 해결해 내는 실제적인 능력입니다. 
 
