@@ -272,3 +272,5 @@ TPU 반도체 설계 구조를 연구하거나, 거주지 설계를 위한 수�
 ## 🔗 연관 글
 - 고구려 선생님의 블로그 글: [데이터로 읽는 학교, 분석으로 돕는 교사](/posts/my-blog/2026-05-10-Goguryeo-Workspace-Data-Analysis)
 - 백제 선생님의 블로그 글: [AI 상식의 시대, 무엇을 가르칠 것인가](/posts/my-blog/2026-05-10-Baekje-AI-Generalization)
+
+<video>https://www.youtube.com/watch?v=iI5TEa9aO84</video>

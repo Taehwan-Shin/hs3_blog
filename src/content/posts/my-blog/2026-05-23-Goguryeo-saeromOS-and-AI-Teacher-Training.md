@@ -315,3 +315,5 @@ SAEROM OS는 네 갈래로 구성됩니다.
 - 백제 선생님의 같은 날 글: [AI 기반 줄 치기 유사도 평가 — 읽기의 본질로 돌아가는 평가](/posts/my-blog/2026-05-23-baekje-line-highlighting-similarity)
 - 신라 선생님의 같은 날 글: [서논술평가와 교실 TV — 학교의 작업 단위를 '플로우'로](/posts/my-blog/2026-05-23-silla-essay-grading-and-classroom-tv)
 - 고구려의 이전 글: [데이터로 읽는 학교, 분석으로 돕는 교사](/posts/my-blog/2026-05-10-goguryeo-workspace-data-analysis)
+
+<video>https://www.youtube.com/watch?v=xr-x3ofUPTo</video>

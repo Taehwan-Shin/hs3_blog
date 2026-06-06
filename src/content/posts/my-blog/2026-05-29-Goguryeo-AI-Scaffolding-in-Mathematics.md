@@ -155,3 +155,5 @@ category: "my-blog"
 - 신라 선생님의 블로그 글: [Ask Gemini와 평가 플로우의 진화](/posts/my-blog/2026-05-29-Silla-Gemini-Skills-and-Assessment-Flow)
 - 백제 선생님의 블로그 글: [게슈탈트 심리학으로 보는 AI와 인간의 진정한 이해](/posts/my-blog/2026-05-29-Baekje-Gestalt-and-AI-Understanding)
 - 신라 선생님의 이전 글: [AI 디지털 교육의 콘셉트](/posts/my-blog/2026-05-10-Silla-Magic-of-AI-Agents)
+
+<video>https://www.youtube.com/watch?v=tT4wK2kW080</video>

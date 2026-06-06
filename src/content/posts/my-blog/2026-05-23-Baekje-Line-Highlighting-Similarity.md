@@ -184,3 +184,5 @@ category: "my-blog"
 - 고구려 선생님의 같은 날 글: [saeromOS와 교원 AI 연수 모델](/posts/my-blog/2026-05-23-goguryeo-saeromos-and-ai-teacher-training)
 - 신라 선생님의 같은 날 글: [서논술평가와 교실 TV — 학교의 작업 단위를 '플로우'로](/posts/my-blog/2026-05-23-silla-essay-grading-and-classroom-tv)
 - 백제의 이전 글: [사고의 경계, 그리고 평가의 과도기](/posts/my-blog/2026-05-16-baekje-boundary-of-thinking)
+
+<video>https://www.youtube.com/watch?v=_evSBAwR7c0</video>

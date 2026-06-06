@@ -149,3 +149,5 @@ AI는 이미 숨 쉬는 공기나 다름없이 일상에 보편화되어 존재�
 - 고구려 선생님의 블로그 글: [AI 시대의 역량 평가와 수학적 비계(Scaffolding) 설정](/posts/my-blog/2026-05-29-Goguryeo-AI-Scaffolding-in-Mathematics)
 - 신라 선생님의 블로그 글: [Ask Gemini와 평가 플로우의 진화](/posts/my-blog/2026-05-29-Silla-Gemini-Skills-and-Assessment-Flow)
 - 신라 선생님의 이전 글: [AI 디지털 교육의 콘셉트](/posts/my-blog/2026-05-10-Silla-Magic-of-AI-Agents)
+
+<video>https://www.youtube.com/watch?v=GEDUJXCmbLY</video>

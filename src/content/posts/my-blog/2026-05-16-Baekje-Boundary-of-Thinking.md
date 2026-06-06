@@ -300,3 +300,5 @@ AI가 정답을 친절히 알려주는 대신 **오히려 학생의 답에 반�
 - 신라 선생님의 블로그 글: [AI를 교실에 들이는 법: 구글챗, 코스웨어, 그리고 본질](/posts/my-blog/2026-05-16-silla-ai-practical-application)
 - 신라 선생님의 이전 글: [AI 디지털 교육의 콘셉트](/posts/my-blog/2026-05-10-silla-magic-of-ai-agents)
 - 백제의 이전 글: [AI 상식의 시대, 무엇을 가르칠 것인가](/posts/my-blog/2026-05-10-baekje-ai-generalization)
+
+<video>https://www.youtube.com/watch?v=MzIHoVVg4kw</video>

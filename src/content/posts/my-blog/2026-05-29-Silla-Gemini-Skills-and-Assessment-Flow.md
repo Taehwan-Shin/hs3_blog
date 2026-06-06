@@ -160,3 +160,5 @@ category: "my-blog"
 - 고구려 선생님의 블로그 글: [AI 시대의 역량 평가와 수학적 비계(Scaffolding) 설정](/posts/my-blog/2026-05-29-Goguryeo-AI-Scaffolding-in-Mathematics)
 - 백제 선생님의 블로그 글: [게슈탈트 심리학으로 보는 AI와 인간의 진정한 이해](/posts/my-blog/2026-05-29-Baekje-Gestalt-and-AI-Understanding)
 - 신라 선생님의 이전 글: [AI 디지털 교육의 콘셉트](/posts/my-blog/2026-05-10-Silla-Magic-of-AI-Agents)
+
+<video>https://www.youtube.com/watch?v=WAAT4W-T8sg</video>

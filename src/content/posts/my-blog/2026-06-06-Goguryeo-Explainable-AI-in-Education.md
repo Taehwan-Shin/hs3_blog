@@ -190,3 +190,5 @@ XAI-ED 렌즈는 이를 구체적인 6가지 질문(이해관계자, 설명의 �
 - 백제 선생님의 블로그 글: [AI 시대, 효율보다 '의미'를 남기는 질문의 힘](/posts/my-blog/2026-06-06-Baekje-Homo-Ludens-and-Human-Edge)
 - 신라 선생님의 블로그 글: [로컬 에이전트 구축과 학교 시스템 리디자인](/posts/my-blog/2026-06-06-Silla-DGX-Spark-and-Flow-Design)
 - 고구려 선생님의 이전 글: [AI 시대의 역량 평가와 수학적 비계(Scaffolding) 설정](/posts/my-blog/2026-05-29-Goguryeo-AI-Scaffolding-in-Mathematics)
+
+<video>https://www.youtube.com/watch?v=1kuavypKdLQ</video>

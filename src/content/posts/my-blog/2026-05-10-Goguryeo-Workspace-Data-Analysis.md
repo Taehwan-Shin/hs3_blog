@@ -182,3 +182,5 @@ AI를 통해 하나씩 해결해 나가는 과정이 매우 흥미로웠습니�
 ## 🔗 연관 글
 - 백제 선생님의 블로그 글: [AI 상식의 시대, 무엇을 가르칠 것인가](/posts/my-blog/2026-05-10-Baekje-AI-Generalization)
 - 신라 선생님의 블로그 글: [AI 디지털 교육의 콘셉트](/posts/my-blog/2026-05-10-Silla-Magic-of-AI-Agents)
+
+<video>https://www.youtube.com/watch?v=B6sbMKqE2-8</video>

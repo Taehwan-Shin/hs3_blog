@@ -282,3 +282,5 @@ A열의 **'채점 요구 사항'** 칸이 핵심입니다. 여기에 디테일�
 - 고구려 선생님의 같은 날 글: [saeromOS와 교원 AI 연수 모델](/posts/my-blog/2026-05-23-goguryeo-saeromos-and-ai-teacher-training)
 - 백제 선생님의 같은 날 글: [AI 기반 줄 치기 유사도 평가](/posts/my-blog/2026-05-23-baekje-line-highlighting-similarity)
 - 신라의 이전 글: [AI를 교실에 들이는 법: 구글챗, 코스웨어, 그리고 본질](/posts/my-blog/2026-05-16-silla-ai-practical-application)
+
+<video>https://www.youtube.com/watch?v=3kSC69nD-xI</video>

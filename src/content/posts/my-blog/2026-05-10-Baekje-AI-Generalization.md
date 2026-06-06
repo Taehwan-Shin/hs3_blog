@@ -119,3 +119,5 @@ AI가 인간의 기능을 대체한다면, 우리 아이들은 **무엇을 새�
 ## 🔗 연관 글
 - 고구려 선생님의 블로그 글: [데이터로 읽는 학교, 분석으로 돕는 교사](/posts/my-blog/2026-05-10-Goguryeo-Workspace-Data-Analysis)
 - 신라 선생님의 블로그 글: [AI 디지털 교육의 콘셉트](/posts/my-blog/2026-05-10-Silla-Magic-of-AI-Agents)
+
+<video>https://www.youtube.com/watch?v=B2LBjs2X918</video>

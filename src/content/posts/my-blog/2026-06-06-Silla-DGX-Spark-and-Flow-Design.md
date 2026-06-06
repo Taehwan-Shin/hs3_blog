@@ -165,3 +165,5 @@ category: "my-blog"
 - 고구려 선생님의 블로그 글: [AI 채점의 블랙박스와 설명가능한 AI(XAI-ED)](/posts/my-blog/2026-06-06-Goguryeo-Explainable-AI-in-Education)
 - 백제 선생님의 블로그 글: [AI 시대, 효율보다 '의미'를 남기는 질문의 힘](/posts/my-blog/2026-06-06-Baekje-Homo-Ludens-and-Human-Edge)
 - 신라 선생님의 이전 글: [Ask Gemini와 평가 플로우의 진화](/posts/my-blog/2026-05-29-Silla-Gemini-Skills-and-Assessment-Flow)
+
+<video>https://www.youtube.com/watch?v=JN77qUa-VYE</video>

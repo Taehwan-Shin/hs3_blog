@@ -126,3 +126,5 @@ category: "my-blog"
 - 고구려 선생님의 블로그 글: [AI 채점의 블랙박스와 설명가능한 AI(XAI-ED)](/posts/my-blog/2026-06-06-Goguryeo-Explainable-AI-in-Education)
 - 신라 선생님의 블로그 글: [로컬 에이전트 구축과 학교 시스템 리디자인](/posts/my-blog/2026-06-06-Silla-DGX-Spark-and-Flow-Design)
 - 신라 선생님의 이전 글: [Ask Gemini와 평가 플로우의 진화](/posts/my-blog/2026-05-29-Silla-Gemini-Skills-and-Assessment-Flow)
+
+<video>https://www.youtube.com/watch?v=tVKRK_zcGIc</video>

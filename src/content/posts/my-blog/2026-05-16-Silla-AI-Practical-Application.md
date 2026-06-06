@@ -222,3 +222,5 @@ CLI 기반으로는 워프(Warp) 안에 여러 채널을 열어 관리합니다.
 - 백제 선생님의 블로그 글: [사고의 경계, 그리고 평가의 과도기](/posts/my-blog/2026-05-16-baekje-boundary-of-thinking)
 - 신라의 이전 글: [AI 디지털 교육의 콘셉트](/posts/my-blog/2026-05-10-silla-magic-of-ai-agents)
 - 백제 선생님의 이전 글: [AI 상식의 시대, 무엇을 가르칠 것인가](/posts/my-blog/2026-05-10-baekje-ai-generalization)
+
+<video>https://www.youtube.com/watch?v=h3qvZilF5gw</video>
