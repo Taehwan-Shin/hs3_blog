@@ -185,9 +185,9 @@ export const siteConfig: SiteConfig = {
   // [CONFIG:SITE_URL]
   site: "https://hs3.kr",
   // [CONFIG:SITE_TITLE]
-  title: "고교 삼국시대",
+  title: "고교삼국",
   // [CONFIG:HOMEPAGE_TITLE]
-  homepageTitle: "고교 삼국시대 — 세 교사의 AI & 디지털 교육 기록",
+  homepageTitle: "고교삼국: 세 교사의 AI & 디지털 교육 기록",
   // [CONFIG:SITE_DESCRIPTION]
   description: "고구려, 백제, 신라 세 교사가 전하는 고등학교 에듀테크, AI 교수법, 그리고 미래 교육 시스템에 대한 전문적인 통찰.",
   // [CONFIG:SITE_AUTHOR]
@@ -234,7 +234,7 @@ export const siteConfig: SiteConfig = {
     // [CONFIG:FOOTER_ENABLED]
     enabled: true,
     // [CONFIG:FOOTER_CONTENT]
-    content: `© 2026 hs3.kr  고교 삼국시대.  교육 · 디지털 · AI · 창작의 기록.`,
+    content: `© 2026 hs3.kr  고교삼국.  교육 · 디지털 · AI · 창작의 기록.`,
     // [CONFIG:FOOTER_SHOW_SOCIAL_ICONS]
     showSocialIconsInFooter: false,
   },

@@ -1,15 +1,15 @@
 ---
 title: "소개"
-description: "고교 삼국시대: 고구려, 백제, 신라 세 교사의 AI & 디지털 교육 기록"
+description: "고교삼국: 고구려, 백제, 신라 세 교사의 AI & 디지털 교육 기록"
 noIndex: false
 hideTOC: false
 draft: false
 ---
-![고교 삼국시대: 고구려, 백제, 신라](attachments/about-hero.webp)
+![고교삼국: 고구려, 백제, 신라](/posts/attachments/gogyo-samguk-cover.webp)
 
-## 🏛️ 고교 삼국시대 (Gogyeo Samguksidae)
+## 🏛️ 고교삼국 (Gogyo Samguk)
 
-'고교 삼국시대'는 고등학교 현장에서 디지털 혁신과 인공지능 교육을 연구하는 세 명의 교사가 함께 만들어가는 지식 기록 공간입니다.
+'고교삼국'은 고등학교 현장에서 디지털 혁신과 인공지능 교육을 연구하는 세 명의 교사가 함께 만들어가는 지식 기록 공간입니다.
 
 ### 👥 필진 소개
 
