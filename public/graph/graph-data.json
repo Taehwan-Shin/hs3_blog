@@ -138,28 +138,42 @@
       "type": "post",
       "title": "AI 채점의 블랙박스와 설명가능한 AI(XAI-ED)",
       "slug": "my-blog/2026-06-06-goguryeo-explainable-ai-in-education",
-      "connections": 5
+      "connections": 6
     },
     {
       "id": "my-blog/2026-06-06-silla-dgx-spark-and-flow-design",
       "type": "post",
       "title": "로컬 에이전트 구축과 학교 시스템 리디자인",
       "slug": "my-blog/2026-06-06-silla-dgx-spark-and-flow-design",
-      "connections": 6
+      "connections": 7
     },
     {
       "id": "my-blog/2026-06-13-baekje-local-edtech-data-pipeline-architecture",
       "type": "post",
       "title": "개인 교사용 로컬 에듀테크 데이터 파이프라인 아키텍처",
       "slug": "my-blog/2026-06-13-baekje-local-edtech-data-pipeline-architecture",
-      "connections": 3
+      "connections": 5
     },
     {
       "id": "my-blog/2026-06-13-silla-ai-side-effects-and-value-deflation-chicken-game",
       "type": "post",
       "title": "SNS vs AI 부작용 10년 주기설과 가치 디플레이션 치킨게임",
       "slug": "my-blog/2026-06-13-silla-ai-side-effects-and-value-deflation-chicken-game",
-      "connections": 4
+      "connections": 6
+    },
+    {
+      "id": "my-blog/2026-06-20-baekje-sense-philosophy-and-pure-education",
+      "type": "post",
+      "title": "센스의 철학과 장상호의 순수 교육학으로 바라본 AI 시대의 배움",
+      "slug": "my-blog/2026-06-20-baekje-sense-philosophy-and-pure-education",
+      "connections": 3
+    },
+    {
+      "id": "my-blog/2026-06-20-silla-desktop-software-and-workflow-redesign",
+      "type": "post",
+      "title": "학교 필수 소프트웨어 정립과 업무 워크플로우 재설계",
+      "slug": "my-blog/2026-06-20-silla-desktop-software-and-workflow-redesign",
+      "connections": 6
     },
     {
       "id": "my-blog/readme",
@@ -180,7 +194,7 @@
       "type": "post",
       "title": "구글시트(Sheets), 공유문서를 넘어 기능문서로",
       "slug": "my-blog/구글시트_연수자료_분석",
-      "connections": 2
+      "connections": 3
     }
   ],
   "connections": [
@@ -346,6 +360,36 @@
     },
     {
       "source": "my-blog/2026-06-13-silla-ai-side-effects-and-value-deflation-chicken-game",
+      "target": "my-blog/2026-06-06-goguryeo-explainable-ai-in-education",
+      "type": "link"
+    },
+    {
+      "source": "my-blog/2026-06-20-baekje-sense-philosophy-and-pure-education",
+      "target": "my-blog/2026-06-20-silla-desktop-software-and-workflow-redesign",
+      "type": "link"
+    },
+    {
+      "source": "my-blog/2026-06-20-baekje-sense-philosophy-and-pure-education",
+      "target": "my-blog/2026-06-13-silla-ai-side-effects-and-value-deflation-chicken-game",
+      "type": "link"
+    },
+    {
+      "source": "my-blog/2026-06-20-baekje-sense-philosophy-and-pure-education",
+      "target": "my-blog/2026-06-13-baekje-local-edtech-data-pipeline-architecture",
+      "type": "link"
+    },
+    {
+      "source": "my-blog/2026-06-20-silla-desktop-software-and-workflow-redesign",
+      "target": "my-blog/2026-06-13-baekje-local-edtech-data-pipeline-architecture",
+      "type": "link"
+    },
+    {
+      "source": "my-blog/2026-06-20-silla-desktop-software-and-workflow-redesign",
+      "target": "my-blog/2026-06-13-silla-ai-side-effects-and-value-deflation-chicken-game",
+      "type": "link"
+    },
+    {
+      "source": "my-blog/2026-06-20-silla-desktop-software-and-workflow-redesign",
       "target": "my-blog/2026-06-06-goguryeo-explainable-ai-in-education",
       "type": "link"
     },
@@ -541,14 +585,24 @@
     },
     {
       "source": "my-blog/2026-06-06-silla-dgx-spark-and-flow-design",
+      "target": "my-blog/2026-06-20-silla-desktop-software-and-workflow-redesign",
+      "type": "tag"
+    },
+    {
+      "source": "my-blog/2026-06-06-silla-dgx-spark-and-flow-design",
+      "target": "my-blog/구글시트_연수자료_분석",
+      "type": "tag"
+    },
+    {
+      "source": "my-blog/2026-06-20-silla-desktop-software-and-workflow-redesign",
       "target": "my-blog/구글시트_연수자료_분석",
       "type": "tag"
     }
   ],
   "metadata": {
-    "totalPosts": 26,
-    "totalConnections": 72,
+    "totalPosts": 28,
+    "totalConnections": 80,
     "maxNodesApplied": false,
-    "originalNodeCount": 26
+    "originalNodeCount": 28
   }
 }
