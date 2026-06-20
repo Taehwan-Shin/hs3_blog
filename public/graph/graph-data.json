@@ -131,20 +131,34 @@
       "type": "post",
       "title": "AI 시대, 효율보다 '의미'를 남기는 질문의 힘",
       "slug": "my-blog/2026-06-06-baekje-homo-ludens-and-human-edge",
-      "connections": 4
+      "connections": 5
     },
     {
       "id": "my-blog/2026-06-06-goguryeo-explainable-ai-in-education",
       "type": "post",
       "title": "AI 채점의 블랙박스와 설명가능한 AI(XAI-ED)",
       "slug": "my-blog/2026-06-06-goguryeo-explainable-ai-in-education",
-      "connections": 3
+      "connections": 5
     },
     {
       "id": "my-blog/2026-06-06-silla-dgx-spark-and-flow-design",
       "type": "post",
       "title": "로컬 에이전트 구축과 학교 시스템 리디자인",
       "slug": "my-blog/2026-06-06-silla-dgx-spark-and-flow-design",
+      "connections": 6
+    },
+    {
+      "id": "my-blog/2026-06-13-baekje-local-edtech-data-pipeline-architecture",
+      "type": "post",
+      "title": "개인 교사용 로컬 에듀테크 데이터 파이프라인 아키텍처",
+      "slug": "my-blog/2026-06-13-baekje-local-edtech-data-pipeline-architecture",
+      "connections": 3
+    },
+    {
+      "id": "my-blog/2026-06-13-silla-ai-side-effects-and-value-deflation-chicken-game",
+      "type": "post",
+      "title": "SNS vs AI 부작용 10년 주기설과 가치 디플레이션 치킨게임",
+      "slug": "my-blog/2026-06-13-silla-ai-side-effects-and-value-deflation-chicken-game",
       "connections": 4
     },
     {
@@ -303,6 +317,36 @@
     {
       "source": "my-blog/2026-06-06-silla-dgx-spark-and-flow-design",
       "target": "my-blog/2026-05-29-silla-gemini-skills-and-assessment-flow",
+      "type": "link"
+    },
+    {
+      "source": "my-blog/2026-06-13-baekje-local-edtech-data-pipeline-architecture",
+      "target": "my-blog/2026-06-13-silla-ai-side-effects-and-value-deflation-chicken-game",
+      "type": "link"
+    },
+    {
+      "source": "my-blog/2026-06-13-baekje-local-edtech-data-pipeline-architecture",
+      "target": "my-blog/2026-06-06-silla-dgx-spark-and-flow-design",
+      "type": "link"
+    },
+    {
+      "source": "my-blog/2026-06-13-baekje-local-edtech-data-pipeline-architecture",
+      "target": "my-blog/2026-06-06-goguryeo-explainable-ai-in-education",
+      "type": "link"
+    },
+    {
+      "source": "my-blog/2026-06-13-silla-ai-side-effects-and-value-deflation-chicken-game",
+      "target": "my-blog/2026-06-06-baekje-homo-ludens-and-human-edge",
+      "type": "link"
+    },
+    {
+      "source": "my-blog/2026-06-13-silla-ai-side-effects-and-value-deflation-chicken-game",
+      "target": "my-blog/2026-06-06-silla-dgx-spark-and-flow-design",
+      "type": "link"
+    },
+    {
+      "source": "my-blog/2026-06-13-silla-ai-side-effects-and-value-deflation-chicken-game",
+      "target": "my-blog/2026-06-06-goguryeo-explainable-ai-in-education",
       "type": "link"
     },
     {
@@ -502,9 +546,9 @@
     }
   ],
   "metadata": {
-    "totalPosts": 24,
-    "totalConnections": 66,
+    "totalPosts": 26,
+    "totalConnections": 72,
     "maxNodesApplied": false,
-    "originalNodeCount": 24
+    "originalNodeCount": 26
   }
 }
