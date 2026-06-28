@@ -96,7 +96,7 @@
       "type": "post",
       "title": "서논술평가와 교실 TV — 학교의 작업 단위를 '플로우'로",
       "slug": "my-blog/2026-05-23-silla-essay-grading-and-classroom-tv",
-      "connections": 10
+      "connections": 11
     },
     {
       "id": "my-blog/2026-05-26-priya-lakhani-ai-edtech",
@@ -166,14 +166,28 @@
       "type": "post",
       "title": "센스의 철학과 장상호의 순수 교육학으로 바라본 AI 시대의 배움",
       "slug": "my-blog/2026-06-20-baekje-sense-philosophy-and-pure-education",
-      "connections": 3
+      "connections": 5
     },
     {
       "id": "my-blog/2026-06-20-silla-desktop-software-and-workflow-redesign",
       "type": "post",
       "title": "학교 필수 소프트웨어 정립과 업무 워크플로우 재설계",
       "slug": "my-blog/2026-06-20-silla-desktop-software-and-workflow-redesign",
-      "connections": 6
+      "connections": 8
+    },
+    {
+      "id": "my-blog/2026-06-27-baekje-llm-wiki-and-knowledge-management",
+      "type": "post",
+      "title": "LLM-Wiki: 개인 지식 관리(PKM)의 새로운 패러다임",
+      "slug": "my-blog/2026-06-27-baekje-llm-wiki-and-knowledge-management",
+      "connections": 3
+    },
+    {
+      "id": "my-blog/2026-06-27-silla-ai-feedback-pipeline-and-backwards-design",
+      "type": "post",
+      "title": "기록 지원에서 설계까지: 교사 체감형 AI 역산 설계",
+      "slug": "my-blog/2026-06-27-silla-ai-feedback-pipeline-and-backwards-design",
+      "connections": 5
     },
     {
       "id": "my-blog/readme",
@@ -194,7 +208,7 @@
       "type": "post",
       "title": "구글시트(Sheets), 공유문서를 넘어 기능문서로",
       "slug": "my-blog/구글시트_연수자료_분석",
-      "connections": 3
+      "connections": 4
     }
   ],
   "connections": [
@@ -394,6 +408,31 @@
       "type": "link"
     },
     {
+      "source": "my-blog/2026-06-27-baekje-llm-wiki-and-knowledge-management",
+      "target": "my-blog/2026-06-27-silla-ai-feedback-pipeline-and-backwards-design",
+      "type": "link"
+    },
+    {
+      "source": "my-blog/2026-06-27-baekje-llm-wiki-and-knowledge-management",
+      "target": "my-blog/2026-06-20-baekje-sense-philosophy-and-pure-education",
+      "type": "link"
+    },
+    {
+      "source": "my-blog/2026-06-27-baekje-llm-wiki-and-knowledge-management",
+      "target": "my-blog/2026-06-20-silla-desktop-software-and-workflow-redesign",
+      "type": "link"
+    },
+    {
+      "source": "my-blog/2026-06-27-silla-ai-feedback-pipeline-and-backwards-design",
+      "target": "my-blog/2026-06-20-baekje-sense-philosophy-and-pure-education",
+      "type": "link"
+    },
+    {
+      "source": "my-blog/2026-06-27-silla-ai-feedback-pipeline-and-backwards-design",
+      "target": "my-blog/2026-06-20-silla-desktop-software-and-workflow-redesign",
+      "type": "link"
+    },
+    {
       "source": "my-blog/2026-04-29-hermes_agent_활용_가이드",
       "target": "my-blog/responsible-assessment-ai-era",
       "type": "tag"
@@ -579,6 +618,11 @@
       "type": "tag"
     },
     {
+      "source": "my-blog/2026-05-23-silla-essay-grading-and-classroom-tv",
+      "target": "my-blog/2026-06-27-silla-ai-feedback-pipeline-and-backwards-design",
+      "type": "tag"
+    },
+    {
       "source": "my-blog/2026-05-29-baekje-gestalt-and-ai-understanding",
       "target": "my-blog/2026-06-06-baekje-homo-ludens-and-human-edge",
       "type": "tag"
@@ -597,12 +641,17 @@
       "source": "my-blog/2026-06-20-silla-desktop-software-and-workflow-redesign",
       "target": "my-blog/구글시트_연수자료_분석",
       "type": "tag"
+    },
+    {
+      "source": "my-blog/2026-06-27-silla-ai-feedback-pipeline-and-backwards-design",
+      "target": "my-blog/구글시트_연수자료_분석",
+      "type": "tag"
     }
   ],
   "metadata": {
-    "totalPosts": 28,
-    "totalConnections": 80,
+    "totalPosts": 30,
+    "totalConnections": 87,
     "maxNodesApplied": false,
-    "originalNodeCount": 28
+    "originalNodeCount": 30
   }
 }
