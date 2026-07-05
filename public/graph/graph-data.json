@@ -68,7 +68,7 @@
       "type": "post",
       "title": "AI를 교실에 들이는 법: 구글챗, 코스웨어, 그리고 본질",
       "slug": "my-blog/2026-05-16-silla-ai-practical-application",
-      "connections": 5
+      "connections": 6
     },
     {
       "id": "my-blog/2026-05-22-google-workspace-hermes-automation",
@@ -188,6 +188,27 @@
       "title": "기록 지원에서 설계까지: 교사 체감형 AI 역산 설계",
       "slug": "my-blog/2026-06-27-silla-ai-feedback-pipeline-and-backwards-design",
       "connections": 5
+    },
+    {
+      "id": "my-blog/2026-07-05-baekje-digital-catcher-in-the-rye",
+      "type": "post",
+      "title": "디지털 호밀밭의 파수꾼: 통제에서 보호로의 교육 패러다임 전환",
+      "slug": "my-blog/2026-07-05-baekje-digital-catcher-in-the-rye",
+      "connections": 2
+    },
+    {
+      "id": "my-blog/2026-07-05-goguryeo-apps-script-ai-assessment-hub",
+      "type": "post",
+      "title": "교실용 AI 채점 분석기: Apps Script 기반 사용량 통제와 프롬프트 가이드 설계",
+      "slug": "my-blog/2026-07-05-goguryeo-apps-script-ai-assessment-hub",
+      "connections": 2
+    },
+    {
+      "id": "my-blog/2026-07-05-silla-digital-classroom-retrospective-and-cognitive-load",
+      "type": "post",
+      "title": "디지털 교육 수업 설계 회고: 활동 중심과 기초 학력의 밸런스",
+      "slug": "my-blog/2026-07-05-silla-digital-classroom-retrospective-and-cognitive-load",
+      "connections": 3
     },
     {
       "id": "my-blog/readme",
@@ -433,6 +454,21 @@
       "type": "link"
     },
     {
+      "source": "my-blog/2026-07-05-baekje-digital-catcher-in-the-rye",
+      "target": "my-blog/2026-07-05-goguryeo-apps-script-ai-assessment-hub",
+      "type": "link"
+    },
+    {
+      "source": "my-blog/2026-07-05-baekje-digital-catcher-in-the-rye",
+      "target": "my-blog/2026-07-05-silla-digital-classroom-retrospective-and-cognitive-load",
+      "type": "link"
+    },
+    {
+      "source": "my-blog/2026-07-05-goguryeo-apps-script-ai-assessment-hub",
+      "target": "my-blog/2026-07-05-silla-digital-classroom-retrospective-and-cognitive-load",
+      "type": "link"
+    },
+    {
       "source": "my-blog/2026-04-29-hermes_agent_활용_가이드",
       "target": "my-blog/responsible-assessment-ai-era",
       "type": "tag"
@@ -603,6 +639,11 @@
       "type": "tag"
     },
     {
+      "source": "my-blog/2026-05-16-silla-ai-practical-application",
+      "target": "my-blog/2026-07-05-silla-digital-classroom-retrospective-and-cognitive-load",
+      "type": "tag"
+    },
+    {
       "source": "my-blog/2026-05-23-silla-essay-grading-and-classroom-tv",
       "target": "my-blog/2026-05-29-goguryeo-ai-scaffolding-in-mathematics",
       "type": "tag"
@@ -649,9 +690,9 @@
     }
   ],
   "metadata": {
-    "totalPosts": 30,
-    "totalConnections": 87,
+    "totalPosts": 33,
+    "totalConnections": 91,
     "maxNodesApplied": false,
-    "originalNodeCount": 30
+    "originalNodeCount": 33
   }
 }
