@@ -211,6 +211,20 @@
       "connections": 3
     },
     {
+      "id": "my-blog/2026-07-11-baekje-ai-bias-and-values",
+      "type": "post",
+      "title": "AI 가치관 검증의 시대: 환각보다 무서운 보이지 않는 규범화",
+      "slug": "my-blog/2026-07-11-baekje-ai-bias-and-values",
+      "connections": 1
+    },
+    {
+      "id": "my-blog/2026-07-11-silla-global-educational-crisis-and-future",
+      "type": "post",
+      "title": "6개국 초중고 교육 위기 보고서: 무엇이 학교를 흔들고 있는가",
+      "slug": "my-blog/2026-07-11-silla-global-educational-crisis-and-future",
+      "connections": 1
+    },
+    {
       "id": "my-blog/readme",
       "type": "post",
       "title": "고교삼국 운영 및 관리 지침서",
@@ -469,6 +483,11 @@
       "type": "link"
     },
     {
+      "source": "my-blog/2026-07-11-baekje-ai-bias-and-values",
+      "target": "my-blog/2026-07-11-silla-global-educational-crisis-and-future",
+      "type": "link"
+    },
+    {
       "source": "my-blog/2026-04-29-hermes_agent_활용_가이드",
       "target": "my-blog/responsible-assessment-ai-era",
       "type": "tag"
@@ -690,9 +709,9 @@
     }
   ],
   "metadata": {
-    "totalPosts": 33,
-    "totalConnections": 91,
+    "totalPosts": 35,
+    "totalConnections": 92,
     "maxNodesApplied": false,
-    "originalNodeCount": 33
+    "originalNodeCount": 35
   }
 }
